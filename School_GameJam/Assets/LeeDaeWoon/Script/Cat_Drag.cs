@@ -15,6 +15,8 @@ public class Cat_Drag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
 
     int Cat_Star;
     bool Recycle = false;
+    bool Drage_Check = false;
+    public GameObject Area_obj;
 
     public int _Cat_Star
     {
@@ -22,7 +24,7 @@ public class Cat_Drag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
         set
         {
             transform.GetChild(Cat_Star).gameObject.SetActive(false);
-            transform.GetChild(Cat_Star+1).gameObject.SetActive(true);
+            transform.GetChild(Cat_Star + 1).gameObject.SetActive(true);
             Cat_Star = value;
         }
     }
@@ -39,10 +41,10 @@ public class Cat_Drag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
     void Update()
     {
     }
-
     public void OnDrag(PointerEventData eventData)
     {
         transform.position = eventData.position;
+
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -52,6 +54,7 @@ public class Cat_Drag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        // 같은 등급과 종류를 합쳐 등급을 한 단계 올려준다.
         if (Save != null && Save.GetComponent<Cat_Drag>().cat_Information == cat_Information && _Cat_Star == Save.GetComponent<Cat_Drag>()._Cat_Star)
         {
             for (int i = 0; i < Cat_Manager.Inst.D_Area.Count; i++)
@@ -66,6 +69,8 @@ public class Cat_Drag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
             Destroy(this.gameObject);
 
         }
+
+        // 현재 위치에 고양이가 배치되었을 경우 교체할 고양이와 드래그를 할 고양이의 위치를 서로 교체한다.
         else if (Save != null)
         {
             GameObject Save_Area = Cat_Area;
@@ -78,8 +83,22 @@ public class Cat_Drag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
 
         }
 
+        //else if (Save == null && Save.GetComponent<Cat_Drag>().cat_Information != cat_Information)
+        //{
+
+        //    for (int i = 0; i < Cat_Manager.Inst.D_Area.Count; i++)
+        //    {
+        //        if (Cat_Area == Cat_Manager.Inst.D_Area[i])
+        //        {
+        //            Cat_Manager.Inst.Area.Add(Cat_Manager.Inst.D_Area[i]);
+        //            Cat_Manager.Inst.D_Area.RemoveAt(i);
+        //        }
+        //    }
+        //    transform.position = Area_obj.transform.position;
+        //}
+
+        // 컴퓨터 위치가 아니거나 해금이 안됬을 경우
         else
-            // 원레 위치로 돌아가기
             this.transform.position = defultposition;
 
         if (Recycle == true)
@@ -105,7 +124,10 @@ public class Cat_Drag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
         if (collision.CompareTag("Recycle_Bin"))
             Recycle = true;
 
+        if (collision.CompareTag("Area"))
+            Area_obj = collision.GetComponent<Area>().Area_Obj;
     }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Cat"))
@@ -113,5 +135,9 @@ public class Cat_Drag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
 
         if (collision.CompareTag("Recycle_Bin"))
             Recycle = false;
+
+        if (collision.CompareTag("Area"))
+            Drage_Check = false;
+
     }
 }

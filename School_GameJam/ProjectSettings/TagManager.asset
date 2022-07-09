@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Cat
+  - Floor3
+  - Floor2
+  - Computer
+  - Recycle_Bin
+  - Area
   layers:
   - Default
   - TransparentFX

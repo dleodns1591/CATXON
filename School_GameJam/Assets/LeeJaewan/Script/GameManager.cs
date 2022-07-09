@@ -59,10 +59,6 @@ public class GameManager : MonoBehaviour
 
         EventText.text = "Event" + RandomEvent;
         GamePlayTimeCount += Time.deltaTime;
-        
-
-
-
 
         goldText.text = gold + "$";
         // 모든 그 컴퓨터가 고장이 났을 때, 게임 오버를 해주는 구문

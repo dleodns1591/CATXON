@@ -17,7 +17,6 @@ public class Cat_Manager : MonoBehaviour
     public GameObject Cat_Area;
     private int Area_Random;
 
-
     void Start()
     {
 
@@ -34,7 +33,9 @@ public class Cat_Manager : MonoBehaviour
         {
             Cat_Random = Random.Range(0, 3);
             Area_Random = Random.Range(0, Area.Count);
+
             Instantiate(Cat_List[Cat_Random], Area[Area_Random].transform.position, Quaternion.identity, GameObject.Find("Cat_Canvas").transform);
+
             Cat_Area = Area[Area_Random];
             D_Area.Add(Area[Area_Random]);
             Area.RemoveAt(Area_Random);
