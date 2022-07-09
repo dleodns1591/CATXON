@@ -8,6 +8,9 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     [SerializeField]
+    Slider slTimer;
+
+    [SerializeField]
     GameObject GameOverPanel;
 
     // 게임 플레이 시간 변수입니다.
@@ -34,7 +37,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI EventText;
     [SerializeField]
-    TextMeshProUGUI goldText;
+    Text goldText;
 
     [SerializeField]
     Text Timer_Text;
@@ -43,21 +46,28 @@ public class GameManager : MonoBehaviour
     List<Computer> computers;
     void Start()
     {
+        slTimer = GetComponent<Slider>();
         GamePlayTimeCount = 0;
         GamePlayTimeCountMin = 0;
         RandomEvent = 0;
         gold = 5000f;
 
         GameOverPanel.SetActive(false);
-        
     }
 
     void Update()
     {
+       /* slTimer.value += Time.deltaTime;
+        if (slTimer.value >= EventTime2) 
+        {
+            slTimer.value -= EventTime2;
+        }*/
+
+
         if (IsGameOver == false)
         Timer_System();
 
-        EventText.text = "Event" + RandomEvent;
+        EventText.text = string.Format("{0:D2}", (int)EventTime + "s");
         GamePlayTimeCount += Time.deltaTime;
 
         goldText.text = gold + "$";
