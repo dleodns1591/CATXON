@@ -3,11 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Cat
-  - Computer
-  - Floor2
-  - Floor3
+  tags: []
   layers:
   - Default
   - TransparentFX
