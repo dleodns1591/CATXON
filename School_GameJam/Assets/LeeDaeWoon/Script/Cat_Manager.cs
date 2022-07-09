@@ -9,7 +9,8 @@ public class Cat_Manager : MonoBehaviour
 
     [Header("고양이 소환")]
     public List<GameObject> Cat_List = new List<GameObject>();
-    public List<GameObject> Area_List = new List<GameObject>();
+    public List<GameObject> Area = new List<GameObject>();
+    public List<GameObject> D_Area = new List<GameObject>();
     private int Cat_Random;
 
     [Header("위치")]
@@ -29,12 +30,14 @@ public class Cat_Manager : MonoBehaviour
 
     public void Cat_Instantitate_Click()
     {
-        if (Area_List.Count > 0)
+        if (Area.Count > 0)
         {
             Cat_Random = Random.Range(0, 3);
-            Area_Random = Random.Range(0, Area_List.Count);
-            Instantiate(Cat_List[Cat_Random], Area_List[Area_Random].transform.position, Quaternion.identity, GameObject.Find("Cat_Area_Canvas").transform);
-            Area_List.RemoveAt(Area_Random);
+            Area_Random = Random.Range(0, Area.Count);
+            Instantiate(Cat_List[Cat_Random], Area[Area_Random].transform.position, Quaternion.identity, GameObject.Find("Cat_Canvas").transform);
+            Cat_Area = Area[Area_Random];
+            D_Area.Add(Area[Area_Random]);
+            Area.RemoveAt(Area_Random);
         }
     }
 }

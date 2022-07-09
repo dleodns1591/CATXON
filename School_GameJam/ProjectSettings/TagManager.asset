@@ -4,8 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Cat
   - Computer
+  - Cat
+  - Recycle_Bin
   layers:
   - Default
   - TransparentFX
