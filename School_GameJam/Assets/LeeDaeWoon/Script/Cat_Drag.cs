@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cat_Add : MonoBehaviour
+public class Cat_Drag : MonoBehaviour
 {
     void Start()
     {
