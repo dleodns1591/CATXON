@@ -1707,6 +1707,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78e80e2472f026d4cbd69027433aa5f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Anim: {fileID: 0}
 --- !u!95 &493801352
 Animator:
   serializedVersion: 4
@@ -4242,7 +4243,7 @@ GameObject:
   - component: {fileID: 1472089388}
   - component: {fileID: 1472089387}
   m_Layer: 0
-  m_Name: "\uBC84\uD2BC \uB300\uCDA9"
+  m_Name: GoldValue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

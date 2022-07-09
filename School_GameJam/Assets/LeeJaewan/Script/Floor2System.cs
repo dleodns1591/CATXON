@@ -9,16 +9,18 @@ public class Floor2System : MonoBehaviour
     public static bool ClickButton = false;
     void Start()
     {
+        IsOpenFloor2 = false;
         ClickButton = false;
         Anim = GetComponent<Animator>();
         Anim.SetBool("IsOpen2", false);
     }
     void Update()
     {
+        Debug.Log(IsOpenFloor2);
         if (ClickButton == true && GameManager.gold >= 801)
         {
             OpenFloor2();
-            Debug.Log(IsOpenFloor2);
+            
 
         }
     }

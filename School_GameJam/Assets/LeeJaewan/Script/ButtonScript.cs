@@ -45,11 +45,7 @@ public class ButtonScript : MonoBehaviour
             button.SetActive(false);
         }
     }
-    public void LockedOffCelling() 
-    {
-        
-        CellingSystem.OnClickButton3 = true;
-    }
+   
     void Start()
     {
         
