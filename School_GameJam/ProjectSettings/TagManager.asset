@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Cat
   - Computer
+  - Floor2
+  - Floor3
   layers:
   - Default
   - TransparentFX

@@ -7,10 +7,10 @@ public class Computer : MonoBehaviour
     Animator anim;
 
     // 골드를 몇 초마다 지급하는지 초를 정해주는 변수입니다.
-    public float GoldGetTime = 3;
+    public float GoldGetTime = 1;
 
     // 골드를 얼마나 얻을지에 대한 변수입니다.
-    public float GoldValue = 10;
+    public float GoldValue = 5;
 
     
 
@@ -39,6 +39,7 @@ public class Computer : MonoBehaviour
 
         if (IsSit == true && IsBreak == false && IsWork == true)
         {
+            anim.SetBool("IsCatSit", true);
             moneyGetTime += Time.deltaTime;
             if (moneyGetTime >= GoldGetTime)
             {
@@ -57,6 +58,7 @@ public class Computer : MonoBehaviour
             IsBreak = false;
             IsWork = false;
             BreakTime = 0;
+            anim.SetBool("IsCatSit", false);
         }
 
         if (IsBreak == true)

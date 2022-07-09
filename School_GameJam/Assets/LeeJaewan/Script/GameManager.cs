@@ -1,20 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.UI;
 using TMPro;
-
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-
+    
+   
     [SerializeField]
     GameObject GameOverPanel;
+
+    // 게임 플레이 시간 변수입니다.
+    public float GamePlayTimeCount, GamePlayTimeCount2;
+
+    public int GamePlayTimeCountMin;
+
+    public static bool IsGameOver = false;
+
 
     //골드 감소 시간 변수입니다.
     public float MoneyMinusTime, MoneyMinusTime2 = 20f,MoneyMinusValue = 100;
 
 
     // 플레이어 골드 입니다,
+    [SerializeField]
     public static float gold = 0;
 
     // 이벤트 불러오는 시간 값입니다.
@@ -26,27 +37,40 @@ public class GameManager : MonoBehaviour
     TextMeshProUGUI EventText;
     [SerializeField]
     TextMeshProUGUI goldText;
+
+    [SerializeField]
+    Text Timer_Text;
+
     [SerializeField]
     List<Computer> computers;
     void Start()
     {
+        GamePlayTimeCount = 0;
+        GamePlayTimeCountMin = 0;
         RandomEvent = 0;
-        gold = 2000f;
+        gold = 5000f;
 
         GameOverPanel.SetActive(false);
+        
     }
 
     void Update()
     {
-
+        if (IsGameOver == false)
+        Timer_System();
 
         EventText.text = "Event" + RandomEvent;
+        GamePlayTimeCount += Time.deltaTime;
+        
+
+
 
 
         goldText.text = gold + "$";
         // 모든 그 컴퓨터가 고장이 났을 때, 게임 오버를 해주는 구문
-        if (!computers.Exists((Computer x) => !x.IsBreak))
+        if (!computers.Exists((Computer x) => !x.IsBreak)) 
             GameOver();
+
 
         // 플레이어의 골드가 0이 되었을 때 , 게임 오버를 해주는 구문
         else if (GameManager.gold <= 0) 
@@ -57,6 +81,7 @@ public class GameManager : MonoBehaviour
         if (EventTime >= EventTime2) 
         {
             EventTime -= EventTime2;
+            
             RandomEvent = Random.Range(1,6);
             switch (RandomEvent)
             {
@@ -92,6 +117,7 @@ public class GameManager : MonoBehaviour
     void GameOver() 
     {
         GameOverPanel.SetActive(true);
+        IsGameOver = true;
     }
 
     void Event1()
@@ -113,8 +139,19 @@ public class GameManager : MonoBehaviour
     }
     void Event5()
     {
-        Debug.Log("이벤트 5입니다 (정전 이벤트 )");
+        Debug.Log("이벤트 5입니다 ( 정전 이벤트 )");
         
     }
+    public void Timer_System()
+    {
+        GamePlayTimeCount =(GamePlayTimeCount2 += Time.deltaTime);
+        Timer_Text.text = string.Format("{0:D2}:{1:D2}", GamePlayTimeCountMin, (int)GamePlayTimeCount);
 
+        if ((int)GamePlayTimeCount > 59)
+        {
+            GamePlayTimeCount2 = 0;
+            GamePlayTimeCountMin++;
+        }
+    }
+   
 }
