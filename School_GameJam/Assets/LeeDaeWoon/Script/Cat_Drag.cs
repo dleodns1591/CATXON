@@ -83,20 +83,6 @@ public class Cat_Drag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
 
         }
 
-        //else if (Save == null && Save.GetComponent<Cat_Drag>().cat_Information != cat_Information)
-        //{
-
-        //    for (int i = 0; i < Cat_Manager.Inst.D_Area.Count; i++)
-        //    {
-        //        if (Cat_Area == Cat_Manager.Inst.D_Area[i])
-        //        {
-        //            Cat_Manager.Inst.Area.Add(Cat_Manager.Inst.D_Area[i]);
-        //            Cat_Manager.Inst.D_Area.RemoveAt(i);
-        //        }
-        //    }
-        //    transform.position = Area_obj.transform.position;
-        //}
-
         // 컴퓨터 위치가 아니거나 해금이 안됬을 경우
         else
             this.transform.position = defultposition;
@@ -123,9 +109,6 @@ public class Cat_Drag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
 
         if (collision.CompareTag("Recycle_Bin"))
             Recycle = true;
-
-        if (collision.CompareTag("Area"))
-            Area_obj = collision.GetComponent<Area>().Area_Obj;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
