@@ -16,7 +16,7 @@ public class Floor2System : MonoBehaviour
     }
     void Update()
     {
-        Debug.Log(IsOpenFloor2);
+        
         if (ClickButton == true && GameManager.gold >= 801)
         {
             OpenFloor2();
