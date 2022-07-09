@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/LeeJaewan/Title.unity
+    guid: 874a217234344864a81c640f9341ffec
+  - enabled: 1
+    path: Assets/LeeJaewan/Jaewan.unity
+    guid: 827fdccc095459546a16487fb315f89d
+  - enabled: 1
+    path: Assets/LeeJaewan/Credit.unity
+    guid: 6f97839f61b9c9a41a407c5e4166a2f7
   m_configObjects: {}

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7901951851531015883}
   - component: {fileID: 3410252016365989779}
   - component: {fileID: 6447260081548302408}
+  - component: {fileID: 5947452152409339084}
   m_Layer: 0
   m_Name: 'Computer '
   m_TagString: Untagged
@@ -28,7 +29,8 @@ Transform:
   m_GameObject: {fileID: 2990878300831779232}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.7249, y: -2.3714, z: 0}
-  m_LocalScale: {x: 1.2896907, y: 0.77275413, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -44,6 +46,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -122,9 +125,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bb0471ca31b2854284bf708aa0fccf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerGold: 0
   GoldGetTime: 3
   GoldValue: 10
   BreakTime: 5
+  BrokenTime: 10
   IsSit: 0
   IsBreak: 0
+  IsWork: 0
+--- !u!95 &5947452152409339084
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2990878300831779232}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 32e590570f7cb4740b1255f0cde2a1c1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
