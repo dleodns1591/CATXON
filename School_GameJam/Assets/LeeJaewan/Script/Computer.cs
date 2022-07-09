@@ -7,10 +7,10 @@ public class Computer : MonoBehaviour
     Animator anim;
 
     // 골드를 몇 초마다 지급하는지 초를 정해주는 변수입니다.
-    public float GoldGetTime = 1;
+    public static float GoldGetTime = 1;
 
     // 골드를 얼마나 얻을지에 대한 변수입니다.
-    public float GoldValue = 5;
+    public static float GoldValue = 5;
 
     
 
@@ -30,6 +30,8 @@ public class Computer : MonoBehaviour
 
     // 고양이가 일을 하고 있는가를 뜻하는 변수입니다
     public bool IsWork = false;
+
+
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -83,6 +85,23 @@ public class Computer : MonoBehaviour
                 IsWork = false;
             Debug.Log("지금 작동중입니다.");
         }
+
+        // 2층일과 닿고 있을때 
+        if (collision.CompareTag("Floor2")) 
+        {
+            // 2층의 불이 켜져있는지 확인
+            if (Floor2System.IsOpenFloor2 == true)
+            {
+                // 불이 꺼져있다면 고양이가 있을지라도 일을 안 함
+                IsWork = false;
+            }
+            else if (Floor2System.IsOpenFloor2 == false) 
+            {
+                IsWork = true;
+            }
+        }
+        
+
 
     }
     private void OnTriggerExit2D(Collider2D collision)
