@@ -5,11 +5,10 @@ using UnityEngine;
 public class Floor2System : MonoBehaviour
 {
     Animator Anim;
-    public static bool IsOpenFloor2 = false;
     public static bool ClickButton = false;
+    public GameObject Button;
     void Start()
     {
-        IsOpenFloor2 = false;
         ClickButton = false;
         Anim = GetComponent<Animator>();
         Anim.SetBool("IsOpen2", false);
@@ -17,19 +16,17 @@ public class Floor2System : MonoBehaviour
     void Update()
     {
         
-        if (ClickButton == true && GameManager.gold >= 801)
-        {
-            OpenFloor2();
-            
-
-        }
     }
     public void OpenFloor2()
     {
-        Anim.SetBool("IsOpen2", true);
-        IsOpenFloor2 = true;
+        if(GameManager.gold >= 800 && Cat_Manager.Inst.BuyFloor_Idx == 0)
+        {
+            GameManager.gold -= 800;
+            Anim.SetBool("IsOpen2", true);
+            ++Cat_Manager.Inst.BuyFloor_Idx;
+            Button.SetActive(false);
+        }
         
-
     }
 }
 

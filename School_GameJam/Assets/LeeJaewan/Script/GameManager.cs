@@ -63,6 +63,9 @@ public class GameManager : MonoBehaviour
             slTimer.value -= EventTime2;
         }*/
 
+        if (Input.GetKeyDown(KeyCode.G))
+            gold += 1000;
+
 
         if (IsGameOver == false)
         Timer_System();
@@ -157,5 +160,5 @@ public class GameManager : MonoBehaviour
             GamePlayTimeCountMin++;
         }
     }
-   
+
 }
