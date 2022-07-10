@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
         GamePlayTimeCount = 0;
         GamePlayTimeCountMin = 0;
         RandomEvent = 0;
-        gold = 5000f;
+        gold = 2000f;
 
         GameOverPanel.SetActive(false);
     }

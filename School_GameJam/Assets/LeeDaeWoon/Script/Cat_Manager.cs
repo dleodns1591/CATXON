@@ -11,6 +11,7 @@ public class Cat_Manager : MonoBehaviour
     public List<GameObject> Cat_List = new List<GameObject>();
     public List<GameObject> Area = new List<GameObject>();
     public List<GameObject> D_Area = new List<GameObject>();
+    public List<GameObject> Cat_Num = new List<GameObject>();
     private int Cat_Random;
 
     [Header("À§Ä¡")]
@@ -39,6 +40,7 @@ public class Cat_Manager : MonoBehaviour
             Cat_Area = Area[Area_Random];
             D_Area.Add(Area[Area_Random]);
             Area.RemoveAt(Area_Random);
+
         }
     }
 }
