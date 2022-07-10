@@ -72,12 +72,12 @@ public class GameManager : MonoBehaviour
 
         goldText.text = gold + "$";
         // 모든 그 컴퓨터가 고장이 났을 때, 게임 오버를 해주는 구문
-        if (!computers.Exists((Computer x) => !x.IsBreak)) 
-            GameOver();
+        //if (!computers.Exists((Computer x) => !x.IsBreak)) 
+        //    GameOver();
 
 
         // 플레이어의 골드가 0이 되었을 때 , 게임 오버를 해주는 구문
-        else if (GameManager.gold <= 0) 
+        if (GameManager.gold <= 0) 
             GameOver();
 
 
