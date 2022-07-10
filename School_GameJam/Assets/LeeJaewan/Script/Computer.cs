@@ -90,12 +90,12 @@ public class Computer : MonoBehaviour
         if (collision.CompareTag("Floor2")) 
         {
             // 2층의 불이 켜져있는지 확인
-            if (Floor2System.IsOpenFloor2 == true)
+            if (Cat_Manager.Inst.BuyFloor_Idx == 1)
             {
                 // 불이 꺼져있다면 고양이가 있을지라도 일을 안 함
                 IsWork = false;
             }
-            else if (Floor2System.IsOpenFloor2 == false) 
+            else 
             {
                 IsWork = true;
             }

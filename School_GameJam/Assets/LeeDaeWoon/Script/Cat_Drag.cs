@@ -61,7 +61,24 @@ public class Cat_Drag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
             {
                 if (Cat_Area == Cat_Manager.Inst.D_Area[i])
                 {
-                    Cat_Manager.Inst.Area.Add(Cat_Manager.Inst.D_Area[i]);
+                    switch(Cat_Manager.Inst.D_Area[i].GetComponent<Area>().floor)
+                    {
+                        case 0:
+                            {
+                                Cat_Manager.Inst.Area.floor_1.Add(Cat_Manager.Inst.D_Area[i]);
+                                break;
+                            }
+                        case 1:
+                            {
+                                Cat_Manager.Inst.Area.floor_2.Add(Cat_Manager.Inst.D_Area[i]);
+                                break;
+                            }
+                        case 2:
+                            {
+                                Cat_Manager.Inst.Area.floor_3.Add(Cat_Manager.Inst.D_Area[i]);
+                                break;
+                            }
+                    }
                     Cat_Manager.Inst.D_Area.RemoveAt(i);
                 }
             }
@@ -93,7 +110,24 @@ public class Cat_Drag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
             {
                 if (Cat_Area == Cat_Manager.Inst.D_Area[i])
                 {
-                    Cat_Manager.Inst.Area.Add(Cat_Manager.Inst.D_Area[i]);
+                    switch (Cat_Manager.Inst.D_Area[i].GetComponent<Area>().floor)
+                    {
+                        case 0:
+                            {
+                                Cat_Manager.Inst.Area.floor_1.Add(Cat_Manager.Inst.D_Area[i]);
+                                break;
+                            }
+                        case 1:
+                            {
+                                Cat_Manager.Inst.Area.floor_2.Add(Cat_Manager.Inst.D_Area[i]);
+                                break;
+                            }
+                        case 2:
+                            {
+                                Cat_Manager.Inst.Area.floor_3.Add(Cat_Manager.Inst.D_Area[i]);
+                                break;
+                            }
+                    }
                     Cat_Manager.Inst.D_Area.RemoveAt(i);
                 }
             }

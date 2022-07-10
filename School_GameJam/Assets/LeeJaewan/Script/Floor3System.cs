@@ -5,8 +5,8 @@ using UnityEngine;
 public class Floor3System : MonoBehaviour
 {
     Animator Anim;
-    public static bool IsOpenFloor3 = false;
     public static bool ClickButton2 = false;
+    public GameObject Button;
     void Start()
     {
         ClickButton2 = false;
@@ -15,16 +15,17 @@ public class Floor3System : MonoBehaviour
     }
     void Update()
     {
-        if (ClickButton2 == true && Floor2System.IsOpenFloor2 == true)
-        {
-            OpenFloor3();
-            Debug.Log(IsOpenFloor3);
-        }
+      
     }
-    void OpenFloor3()
+    public void OpenFloor3()
     {
-        Anim.SetBool("IsOpen3", true);
-        IsOpenFloor3 = true;
-        
+        if (GameManager.gold >= 3000 && Cat_Manager.Inst.BuyFloor_Idx == 1)
+        {
+            GameManager.gold -= 3000;
+            Anim.SetBool("IsOpen3", true);
+            ++Cat_Manager.Inst.BuyFloor_Idx;
+            Button.SetActive(false);
+        }
+
     }
 }
