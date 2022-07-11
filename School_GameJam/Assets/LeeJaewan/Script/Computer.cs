@@ -26,7 +26,7 @@ public class Computer : MonoBehaviour
     public bool IsSit = false;
 
     // 컴퓨터가 부셔졌나 를 뜻하는 변수
-    public bool IsBreak = false;
+    public static bool IsBreak = false;
 
     // 고양이가 일을 하고 있는가를 뜻하는 변수입니다
     public bool IsWork = false;
@@ -74,7 +74,7 @@ public class Computer : MonoBehaviour
             anim.SetBool("IsBroken", false);
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Cat"))
         {

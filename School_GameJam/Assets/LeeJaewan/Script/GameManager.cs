@@ -7,11 +7,32 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+
+    float sec = 0;
+
+   
+
+    [SerializeField]
+    Text GameGoldText;
+    [SerializeField]
+    Text GameTimerText;
+
     [SerializeField]
     Slider slTimer;
 
     [SerializeField]
     GameObject GameOverPanel;
+
+    [SerializeField]
+    GameObject EventPanel1;
+    [SerializeField]
+    GameObject EventPanel2;
+    [SerializeField]
+    GameObject EventPanel3;
+    [SerializeField]
+    GameObject EventPanel4;
+  
+
 
     // 게임 플레이 시간 변수입니다.
     public float GamePlayTimeCount, GamePlayTimeCount2;
@@ -22,7 +43,7 @@ public class GameManager : MonoBehaviour
 
 
     //골드 감소 시간 변수입니다.
-    public float MoneyMinusTime, MoneyMinusTime2 = 20f,MoneyMinusValue = 100;
+    public float MoneyMinusTime, MoneyMinusTime2 = 5f,MoneyMinusValue = 100;
 
 
     // 플레이어 골드 입니다,
@@ -57,20 +78,28 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-       /* slTimer.value += Time.deltaTime;
-        if (slTimer.value >= EventTime2) 
-        {
-            slTimer.value -= EventTime2;
-        }*/
+
+        if (Input.GetKeyDown(KeyCode.L)) { GameOverPanel.SetActive(true); }
+
+
+        /* slTimer.value += Time.deltaTime;
+         if (slTimer.value >= EventTime2) 
+         {
+             slTimer.value -= EventTime2;
+         }*/
 
         if (Input.GetKeyDown(KeyCode.G))
             gold += 1000;
+        else if (Input.GetKeyDown(KeyCode.F)) 
+        {
+            gold -= 1000;
+        }
 
 
         if (IsGameOver == false)
-        Timer_System();
-
-        EventText.text = string.Format("{0:D2}", (int)EventTime + "s");
+          Timer_System();
+        
+        EventText.text = "" + Cat_Manager.Inst.D_Area.Count;
         GamePlayTimeCount += Time.deltaTime;
 
         goldText.text = gold + "$";
@@ -104,9 +133,6 @@ public class GameManager : MonoBehaviour
                 case 4:
                     Event4();
                     break;
-                case 5:
-                    Event5();
-                    break;
                 default:
                     break;
             }
@@ -130,25 +156,33 @@ public class GameManager : MonoBehaviour
     void Event1()
     {
         Debug.Log("이벤트 1입니다 ( 로또 당첨 )");
+        EventPanel1.SetActive(true);
+        gold += (gold / 2);
+        StartCoroutine(asd());
+
     }
     void Event2()
     {
         Debug.Log("이벤트 2입니다 ( 컴퓨터 수리 )");
+        EventPanel2.SetActive(true);
+        Computer.IsBreak = false;
+        StartCoroutine(asd());
     }
     
     void Event3()
     {
         Debug.Log("이벤트 3입니다 ( 파업 )");
+        EventPanel3.SetActive(true);
+        StartCoroutine(asd());
     }
     void Event4()
     {
         Debug.Log("이벤트 4입니다 ( 도둑 고양이 ");
+        EventPanel4.SetActive(true);
+        gold -= (gold * 0.2f);
+        StartCoroutine(asd());
     }
-    void Event5()
-    {
-        Debug.Log("이벤트 5입니다 ( 정전 이벤트 )");
-        
-    }
+   
     public void Timer_System()
     {
         GamePlayTimeCount =(GamePlayTimeCount2 += Time.deltaTime);
@@ -160,5 +194,15 @@ public class GameManager : MonoBehaviour
             GamePlayTimeCountMin++;
         }
     }
+    IEnumerator asd() 
+    {
+        yield return new WaitForSeconds(10);
+        EventPanel1.SetActive(false);
+        EventPanel2.SetActive(false);
+        EventPanel3.SetActive(false);
+        EventPanel4.SetActive(false);
+       
 
+    }
+   
 }
