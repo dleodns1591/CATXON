@@ -1,18 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Computer : MonoBehaviour
 {
     Animator anim;
-
+    Image img;
     // 골드를 몇 초마다 지급하는지 초를 정해주는 변수입니다.
     public static float GoldGetTime = 1;
 
     // 골드를 얼마나 얻을지에 대한 변수입니다.
     public static float GoldValue = 5;
 
-    
+    public Sprite[] Sprite = new Sprite[3];
 
     // 컴퓨터가 고장나는 시간 변수입니다.
     [SerializeField]
@@ -35,6 +36,7 @@ public class Computer : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
+        img = GetComponent<Image>();
     }
     void Update()
     {
@@ -42,16 +44,20 @@ public class Computer : MonoBehaviour
         if (IsSit == true && IsBreak == false && IsWork == true)
         {
             anim.SetBool("IsCatSit", true);
-            moneyGetTime += Time.deltaTime;
-            if (moneyGetTime >= GoldGetTime)
+            if (GameManager.IsGameOver == false)
             {
-                moneyGetTime -= GoldGetTime;
-                GameManager.gold += GoldValue;
-            }
-            BreakTime += Time.deltaTime;
-            if (BreakTime >= BrokenTime) 
-            {
-                IsBreak = true;
+                moneyGetTime += Time.deltaTime;
+                if (moneyGetTime >= GoldGetTime)
+                {
+                    moneyGetTime -= GoldGetTime;
+                    GameManager.gold += GoldValue;
+                    //GameManager.GameTotalGoldValue+= GoldValue;
+                }
+                BreakTime += Time.deltaTime;
+                if (BreakTime >= BrokenTime)
+                {
+                    IsBreak = true;
+                }
             }
         }
 
@@ -60,18 +66,18 @@ public class Computer : MonoBehaviour
             IsBreak = false;
             IsWork = false;
             BreakTime = 0;
-            anim.SetBool("IsCatSit", false);
+            img.sprite = Sprite[0];
         }
 
         if (IsBreak == true)
         {
             moneyGetTime = 0;
             IsWork = false;
-            anim.SetBool("IsBroken", true);
+            img.sprite = Sprite[2];
         }
-        else if (IsBreak == false)
+        else if (IsBreak == false && IsSit == true)
         {
-            anim.SetBool("IsBroken", false);
+            img.sprite = Sprite[2];
         }
     }
     private void OnTriggerStay2D(Collider2D collision)
@@ -98,6 +104,7 @@ public class Computer : MonoBehaviour
             else 
             {
                 IsWork = true;
+                //Sp.sprite = Sprite[2];
             }
         }
         
