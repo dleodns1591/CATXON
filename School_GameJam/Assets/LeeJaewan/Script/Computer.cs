@@ -5,15 +5,19 @@ using UnityEngine.UI;
 
 public class Computer : MonoBehaviour
 {
-    Animator anim;
-    Image img;
+    
+    Image Computerimg;
     // 골드를 몇 초마다 지급하는지 초를 정해주는 변수입니다.
     public static float GoldGetTime = 1;
 
     // 골드를 얼마나 얻을지에 대한 변수입니다.
     public static float GoldValue = 5;
-
-    public Sprite[] Sprite = new Sprite[3];
+    [SerializeField]
+    Sprite Idle;
+    [SerializeField]
+    Sprite WorkComputer;
+    [SerializeField]
+    Sprite BrokenComputer;
 
     // 컴퓨터가 고장나는 시간 변수입니다.
     [SerializeField]
@@ -35,49 +39,33 @@ public class Computer : MonoBehaviour
 
     void Start()
     {
-        anim = GetComponent<Animator>();
-        img = GetComponent<Image>();
+       
+        Computerimg = GetComponent<Image>();
     }
     void Update()
     {
+        GoldCount();
 
-        if (IsSit == true && IsBreak == false && IsWork == true)
-        {
-            anim.SetBool("IsCatSit", true);
-            if (GameManager.IsGameOver == false)
-            {
-                moneyGetTime += Time.deltaTime;
-                if (moneyGetTime >= GoldGetTime)
-                {
-                    moneyGetTime -= GoldGetTime;
-                    GameManager.gold += GoldValue;
-                    //GameManager.GameTotalGoldValue+= GoldValue;
-                }
-                BreakTime += Time.deltaTime;
-                if (BreakTime >= BrokenTime)
-                {
-                    IsBreak = true;
-                }
-            }
-        }
 
-        else if (IsSit == false)
+
+        if (IsSit == false)
         {
             IsBreak = false;
             IsWork = false;
             BreakTime = 0;
-            img.sprite = Sprite[0];
+            Computerimg.sprite = Idle;
         }
 
         if (IsBreak == true)
         {
             moneyGetTime = 0;
             IsWork = false;
-            img.sprite = Sprite[2];
+            Computerimg.sprite = BrokenComputer;
+            Debug.Log("asdasdasdasdasd");
         }
         else if (IsBreak == false && IsSit == true)
         {
-            img.sprite = Sprite[2];
+            Computerimg.sprite = WorkComputer;
         }
     }
     private void OnTriggerStay2D(Collider2D collision)
@@ -116,7 +104,47 @@ public class Computer : MonoBehaviour
         if (collision.CompareTag("Cat"))
         {
             IsSit = false;
-            Debug.Log("작동이 끝났습니다.");
+            
+        }
+    }
+    void GoldCount() 
+    {
+        if (IsSit == true && IsBreak == false && IsWork == true)
+        {
+            Debug.Log(IsBreak);
+            BrokenTimeCount();
+            Computerimg.sprite = WorkComputer;
+            if (GameManager.IsGameOver == false)
+            {
+                if (moneyGetTime >= GoldGetTime)
+                {
+                    moneyGetTime -= GoldGetTime;
+                    GameManager.gold += GoldValue;
+                    //GameManager.GameTotalGoldValue+= GoldValue;
+                }
+                
+            }
+        }
+        void BrokenTimeCount() 
+        {
+            StartCoroutine(BreakTimeCountPlus());
+            if (BreakTime >= BrokenTime)
+            {
+                BreakTime -= BrokenTime;
+                IsBreak = true;
+            }
+        }
+        IEnumerator GoldCountPlus() 
+        {
+            moneyGetTime++;
+            yield return new WaitForSecondsRealtime(1);
+            StartCoroutine(GoldCountPlus());
+        }
+        IEnumerator BreakTimeCountPlus() 
+        {
+            BreakTime++;
+            yield return new WaitForSecondsRealtime(1);
+            StartCoroutine(BreakTimeCountPlus());
         }
     }
 }
