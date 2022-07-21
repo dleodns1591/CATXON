@@ -7,7 +7,10 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+
     float sec = 0;
+
+   
 
     [SerializeField]
     Text GameGoldText;
@@ -15,14 +18,15 @@ public class GameManager : MonoBehaviour
     Text GameTimerText;
 
     [SerializeField]
+    Text GameTotalTime;
+    [SerializeField]
+    Text GameTotalGold;
+
+    [SerializeField]
     Slider slTimer;
 
     [SerializeField]
     GameObject GameOverPanel;
-    [SerializeField]
-    TextMeshProUGUI GameGold;
-    [SerializeField]
-    TextMeshProUGUI GameTiemr;
 
     [SerializeField]
     GameObject EventPanel1;
@@ -32,8 +36,12 @@ public class GameManager : MonoBehaviour
     GameObject EventPanel3;
     [SerializeField]
     GameObject EventPanel4;
-  
 
+
+    [SerializeField]
+    GameObject GameTotalTime2;
+    [SerializeField]
+    GameObject GameTotalGold2;
 
     // 게임 플레이 시간 변수입니다.
     public float GamePlayTimeCount, GamePlayTimeCount2;
@@ -51,13 +59,14 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     public static float gold = 0;
 
+    public static float GameTotalGoldValue = 0;
     // 이벤트 불러오는 시간 값입니다.
     public float EventTime, EventTime2= 45f;
 
     //이벤트 번호를 랜덤으로 정해줍니다.
     int RandomEvent;
     [SerializeField]
-    TextMeshProUGUI EventText;
+    Text EntityText;
     [SerializeField]
     Text goldText;
 
@@ -74,13 +83,16 @@ public class GameManager : MonoBehaviour
         RandomEvent = 0;
         gold = 2000f;
 
+        StartCoroutine(TimeSet());
         GameOverPanel.SetActive(false);
+        GameTotalGold2.SetActive(false);
+        GameTotalTime2.SetActive(false);
     }
 
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.L)) { GameOverPanel.SetActive(true); }
+      
 
 
         /* slTimer.value += Time.deltaTime;
@@ -92,14 +104,16 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.G))
             gold += 1000;
         else if (Input.GetKeyDown(KeyCode.F)) 
+        {
             gold -= 1000;
+        }
 
 
         if (IsGameOver == false)
           Timer_System();
-        
-        EventText.text = "" + Cat_Manager.Inst.D_Area.Count;
-        GamePlayTimeCount += Time.deltaTime;
+
+        EntityText.text = "" + Cat_Manager.Inst.D_Area.Count + "마리";
+     
 
         goldText.text = gold + "$";
         // 모든 그 컴퓨터가 고장이 났을 때, 게임 오버를 해주는 구문
@@ -150,9 +164,15 @@ public class GameManager : MonoBehaviour
     {
         GameOverPanel.SetActive(true);
         IsGameOver = true;
+        StopCoroutine(TimeSet());
+        if(gold <= 0)
+        gold = 0;
 
-        //GameTiemr.text = Timer_Text.text;
-        //GameGold.text = gold + "$";
+        GameTotalTime2.SetActive(true);
+        GameTotalGold2.SetActive(true);
+
+        GameTotalTime.text = string.Format("{0:D2}:{1:D2}", GamePlayTimeCountMin, (int)GamePlayTimeCount);
+        GameTotalGold.text = goldText.text = GameTotalGoldValue + "$";
     }
 
     void Event1()
@@ -160,7 +180,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("이벤트 1입니다 ( 로또 당첨 )");
         EventPanel1.SetActive(true);
         gold += (gold / 2);
-        StartCoroutine(asd());
+        StartCoroutine(EventPanelOff());
 
     }
     void Event2()
@@ -168,43 +188,54 @@ public class GameManager : MonoBehaviour
         Debug.Log("이벤트 2입니다 ( 컴퓨터 수리 )");
         EventPanel2.SetActive(true);
         Computer.IsBreak = false;
-        StartCoroutine(asd());
+        StartCoroutine(EventPanelOff());
     }
     
     void Event3()
     {
         Debug.Log("이벤트 3입니다 ( 파업 )");
         EventPanel3.SetActive(true);
-        StartCoroutine(asd());
+        StartCoroutine(EventPanelOff());
     }
     void Event4()
     {
         Debug.Log("이벤트 4입니다 ( 도둑 고양이 ");
         EventPanel4.SetActive(true);
         gold -= (gold * 0.2f);
-        StartCoroutine(asd());
+        StartCoroutine(EventPanelOff());
     }
    
     public void Timer_System()
     {
-        GamePlayTimeCount =(GamePlayTimeCount2 += Time.deltaTime);
+        //GamePlayTimeCount =(GamePlayTimeCount2 += Time.deltaTime);
         Timer_Text.text = string.Format("{0:D2}:{1:D2}", GamePlayTimeCountMin, (int)GamePlayTimeCount);
-
+       
         if ((int)GamePlayTimeCount > 59)
         {
-            GamePlayTimeCount2 = 0;
+            GamePlayTimeCount = 0;
             GamePlayTimeCountMin++;
         }
     }
-    IEnumerator asd() 
+   
+    IEnumerator EventPanelOff() 
     {
         yield return new WaitForSeconds(10);
         EventPanel1.SetActive(false);
         EventPanel2.SetActive(false);
         EventPanel3.SetActive(false);
         EventPanel4.SetActive(false);
-       
+    }
+    IEnumerator TimeSet()
+    {
+        GamePlayTimeCount++;
+        yield return new WaitForSecondsRealtime(1);
+        if (IsGameOver == false)
+            StartCoroutine(TimeSet());
+        else
+            StopCoroutine(TimeSet());
+        
+}
 
     }
    
-}
+

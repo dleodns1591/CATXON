@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 9194674099354519141}
   - component: {fileID: 9194674099354519147}
   - component: {fileID: 9194674099354519140}
-  - component: {fileID: 4243100712037018969}
   - component: {fileID: 771072347}
   - component: {fileID: 1881868343}
   - component: {fileID: 1881868344}
@@ -40,7 +39,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -139.69562, y: -65.69565}
-  m_SizeDelta: {x: 120.704, y: 130.4651}
+  m_SizeDelta: {x: 142, y: 165}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9194674099354519147
 CanvasRenderer:
@@ -80,26 +79,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!95 &4243100712037018969
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9194674099354519142}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4dbf0898b6643b248962ca48a4d666e7, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &771072347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,6 +91,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bb0471ca31b2854284bf708aa0fccf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Idle: {fileID: 21300000, guid: 30e0d0a8bf60834449d36f2e5ea60e8b, type: 2}
+  WorkComputer: {fileID: 21300000, guid: 3e1449b1d634060449faac240637f3e9, type: 2}
+  BrokenComputer: {fileID: 21300000, guid: cd7268db7e2d80a4c966425c9fa29952, type: 2}
   BreakTime: 0
   BrokenTime: 10
   IsSit: 0
