@@ -16,22 +16,20 @@ public class Cat_Manager : MonoBehaviour
     void Awake() => Inst = this;
 
     [Header("고양이 소환")]
-    public List<GameObject> Cat_List = new List<GameObject>();
     public Floor Area = new Floor();
     public List<GameObject> D_Area = new List<GameObject>();
     public List<GameObject> Cat_Num = new List<GameObject>();
-    private int Cat_Random;
+    public List<GameObject> Cat_List = new List<GameObject>();
+    int Cat_Random;
 
     [Header("위치")]
     public GameObject Cat_Area;
-    private int Area_Random;
+    int Area_Random;
 
-    public Text Gold_Text;
     public int Gold;
-
-    int Click = 0;
-
+    public Text Gold_Text;
     public int BuyFloor_Idx = 0;
+
     void Start()
     {
 
@@ -39,7 +37,7 @@ public class Cat_Manager : MonoBehaviour
 
     void Update()
     {
-        Gold_Text.text = "" + Gold;
+        Gold_Text.text = Gold.ToString();
         switch (D_Area.Count)
         {
             case 0:
@@ -96,7 +94,6 @@ public class Cat_Manager : MonoBehaviour
             case 17:
                 Gold = 9064;
                 break;
-
         }
     }
 
@@ -106,9 +103,11 @@ public class Cat_Manager : MonoBehaviour
         {
             GameManager.gold -= Gold;
             Cat_Random = Random.Range(0, 3);
-            int Random_Floor = 0;
+
             bool cheak = true;
             int whileCount = 0;
+            int Random_Floor = 0;
+
             while (cheak)
             {
                 whileCount++;
@@ -119,23 +118,22 @@ public class Cat_Manager : MonoBehaviour
                         if (Area.floor_1.Count != 0)
                             cheak = false;
                         break;
+
                     case 1:
                         if (Area.floor_2.Count != 0)
                             cheak = false;
                         break;
+
                     case 2:
                         if (Area.floor_3.Count != 0)
                             cheak = false;
                         break;
                 }
+
                 if (whileCount > 50)
-                {
-                    Debug.Log("와이 돈 유 다이");
                     break;
-                }
             }
-            Debug.Log(Area.floor_1.Count);
-            Debug.Log(Random_Floor);
+
             switch (Random_Floor)
             {
                 case 0:
@@ -147,6 +145,7 @@ public class Cat_Manager : MonoBehaviour
                         Area.floor_1.RemoveAt(Area_Random);
                         break;
                     }
+
                 case 1:
                     {
                         Area_Random = Random.Range(0, Area.floor_2.Count);
@@ -156,6 +155,7 @@ public class Cat_Manager : MonoBehaviour
                         Area.floor_2.RemoveAt(Area_Random);
                         break;
                     }
+
                 case 2:
                     {
                         Area_Random = Random.Range(0, Area.floor_3.Count);
@@ -165,9 +165,8 @@ public class Cat_Manager : MonoBehaviour
                         Area.floor_3.RemoveAt(Area_Random);
                         break;
                     }
+
                 default:
-                    Debug.Log("니가 왜 떠 ㅅㅂ");
-                    Debug.Log(Random_Floor);
                     break;
             }
         }

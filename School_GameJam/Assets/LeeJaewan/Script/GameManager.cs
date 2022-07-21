@@ -7,10 +7,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-
     float sec = 0;
-
-   
 
     [SerializeField]
     Text GameGoldText;
@@ -22,6 +19,10 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     GameObject GameOverPanel;
+    [SerializeField]
+    TextMeshProUGUI GameGold;
+    [SerializeField]
+    TextMeshProUGUI GameTiemr;
 
     [SerializeField]
     GameObject EventPanel1;
@@ -91,9 +92,7 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.G))
             gold += 1000;
         else if (Input.GetKeyDown(KeyCode.F)) 
-        {
             gold -= 1000;
-        }
 
 
         if (IsGameOver == false)
@@ -151,6 +150,9 @@ public class GameManager : MonoBehaviour
     {
         GameOverPanel.SetActive(true);
         IsGameOver = true;
+
+        //GameTiemr.text = Timer_Text.text;
+        //GameGold.text = gold + "$";
     }
 
     void Event1()
