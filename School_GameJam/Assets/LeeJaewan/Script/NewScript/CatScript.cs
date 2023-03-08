@@ -5,24 +5,20 @@ using UnityEngine;
 public class CatScript : MonoBehaviour
 {
     [SerializeField] public bool IsDrag = false;
-    [SerializeField] bool CanSit = false;
+    [SerializeField] public bool IsSit = false;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Chier"))
         {
-            CanSit = true;
-            Debug.Log("CanSit :" + CanSit);
-            DragAndDrop.Instance.ReturnCanSit(CanSit);
+            DragAndDrop.Instance.CollisionChier = collision.gameObject;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Chier")) 
         {
-            CanSit = false;
-            Debug.Log("CanSit :" + CanSit);
-            DragAndDrop.Instance.ReturnCanSit(CanSit);
+            DragAndDrop.Instance.CollisionChier = null;
         }
     }
 

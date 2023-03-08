@@ -249,7 +249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDrag: 0
-  CanSit: 0
+  IsSit: 0
 --- !u!50 &565163833
 Rigidbody2D:
   serializedVersion: 4
@@ -790,7 +790,7 @@ GameObject:
   - component: {fileID: 1421643724}
   - component: {fileID: 1421643723}
   m_Layer: 0
-  m_Name: d
+  m_Name: DragAndDrop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -809,6 +809,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SelectObject: {fileID: 0}
+  CollisionChier: {fileID: 0}
+  IsChier: 0
   prevPos: {x: 0, y: 0, z: 0}
 --- !u!4 &1421643724
 Transform:
@@ -1035,7 +1037,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDrag: 0
-  CanSit: 0
+  IsSit: 0
 --- !u!50 &2055319666
 Rigidbody2D:
   serializedVersion: 4
