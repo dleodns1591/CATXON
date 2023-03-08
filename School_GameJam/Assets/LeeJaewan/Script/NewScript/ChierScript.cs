@@ -8,7 +8,13 @@ public class ChierScript : MonoBehaviour
     public void _ObjectSit(GameObject obj) 
     {
         Sit_Obj = obj;
+        CatScript cat = obj.GetComponent<CatScript>();
+        cat.IsSit = true;
         obj.transform.position = transform.position;
+    }
+    public void ReturnPrevSeat(CatScript cat)
+    {
+        _ObjectSit(cat.SitChier.gameObject);
     }
     private void OnTriggerExit2D(Collider2D collision)
     {

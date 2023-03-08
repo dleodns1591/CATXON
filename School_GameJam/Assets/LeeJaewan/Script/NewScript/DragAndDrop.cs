@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class DragAndDrop : Singleton<DragAndDrop>
 {
-    [SerializeField] GameObject SelectObject;
+    [SerializeField] CatScript SelectCat;
     [SerializeField] public GameObject CollisionChier;
-                     ChierScript chier;
+    ChierScript chier;
     [SerializeField] public bool IsChier;
     [SerializeField] public Vector3 prevPos;
 
@@ -20,47 +20,25 @@ public class DragAndDrop : Singleton<DragAndDrop>
         그 후에 만약 cat 지역변수에 해당된 값이 null이 아니라면 touchObj를 반환하고,
         그 외에는 null값을 반환한다.
      */
-    GameObject _ClickObjectReturn() 
+    CatScript _ClickObjectReturn() 
     {
             Vector2 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hitInfo = Physics2D.Raycast(touchPos, Camera.main.transform.forward);
             if (hitInfo.collider != null)
             {
-                GameObject touchObj = hitInfo.transform.gameObject;
-                CatScript cat = touchObj.GetComponent<CatScript>();
-                cat.IsDrag = true;
-                if (cat != null)
-                    return touchObj;
-                else
-                    return null;
+               
             }
-            else
-                return null;
+             
     }
     /*
         이 함수는 SelectObject의 CatScript를 참조한 후, CatScript를 가진 해당 객체의 IsDrag 변수를 false로 초기화 한 후
         만약에 IsCheir가 false라면 ReturnPrevious 함수를 호출해 드래그 하기 전 위치로 돌려보내고
         그 후에 null값을 리턴하는 함수입니다.
      */
-    GameObject _DropObj() 
+    CatScript _DropObj() 
     {
-        CatScript cat = SelectObject.GetComponent<CatScript>();
-        GameObject obj = cat.gameObject;
-        if(CollisionChier != null)
-        chier = CollisionChier.GetComponent<ChierScript>();
-        cat.IsDrag = false;
-
-        if (CollisionChier == null) // 닿아있는 의자가 없고, 닿아있는 의자에 앉은 obj가 없을 때
-            ReturnPreviousPos(prevPos);
-        else if (CollisionChier != null && cat.IsSit == false) ;
-        else if (chier.Sit_Obj == null)
-            chier._ObjectSit(obj);
+        
         return null;
-    }
-    public void ReturnPreviousPos(Vector3 prev) 
-    {
-        if(prev != null)
-        SelectObject.transform.position = prev;
     }
     /* 이 함수는 마우스 좌클릭을 입력 받았을 때 ClickObject 변수를 _ClickObjectReturn 함수로 초기화 해준 후,
        SelectObject가 null이고, ClickObject가 null이 아닐때 SelectObject를 ClickObject로 초기화해서
@@ -72,35 +50,37 @@ public class DragAndDrop : Singleton<DragAndDrop>
     {
         if (Input.GetMouseButtonDown(0))
         {
-            GameObject ClickObject = _ClickObjectReturn();
-            if (SelectObject == null && ClickObject != null)
+            CatScript ClickObject = _ClickObjectReturn();
+            if(ClickObject != null)
+            CollisionChier = ClickObject.CollisionObj;
+            if (SelectCat == null && ClickObject != null)
             {
-                SelectObject = ClickObject;
-                prevPos = SelectObject.transform.position;
+                SelectCat = ClickObject;
+                prevPos = SelectCat.transform.position;
             }
-            else if (SelectObject != null)
-                SelectObject = _DropObj();
+            else if (SelectCat != null)
+                SelectCat = _DropObj();
         }
     }
-    /*   _SetSelectObject 함수를 호출해서 SelectObject 변수를 지속적으로 초기화 해주고,
+    /*   
+        _SetSelectObject 함수를 호출해서 SelectObject 변수를 지속적으로 초기화 해주고,
           SelectObject가 null이 아닐때, SelectObject.transform.localPosition을 mousePos로 초기화해
           SelectObject가 마우스 포인터를 따라다닐 수 있도록 해주는 함수
      */
     void _ClickObjectSetTransform() 
     {
         _SetSelectObject();
-        if (SelectObject != null)
+        if (SelectCat != null)
         {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);;
-            float x = mousePos.x, y = mousePos.y, z = SelectObject.transform.position.z;
-            SelectObject.transform.localPosition = new Vector3(x,y,z);
+            float x = mousePos.x, y = mousePos.y, z = SelectCat.transform.position.z;
+            SelectCat.transform.localPosition = new Vector3(x,y,z);
         }
     }
     void Start()
     {
         
     }
-
     void Update()
     {
         _ClickObjectSetTransform();

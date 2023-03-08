@@ -6,19 +6,21 @@ public class CatScript : MonoBehaviour
 {
     [SerializeField] public bool IsDrag = false;
     [SerializeField] public bool IsSit = false;
+    [SerializeField] public ChierScript SitChier;
+    [SerializeField] public GameObject CollisionObj;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Chier"))
         {
-            DragAndDrop.Instance.CollisionChier = collision.gameObject;
+            CollisionObj = collision.gameObject;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Chier")) 
         {
-            DragAndDrop.Instance.CollisionChier = null;
+            CollisionObj = null;
         }
     }
 

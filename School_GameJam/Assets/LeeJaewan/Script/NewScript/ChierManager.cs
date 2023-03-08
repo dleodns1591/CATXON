@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ChierManager :Singleton<ChierManager>
 {
-    [SerializeField] List<ChierScript> ChierNum = new List<ChierScript>();
+    [SerializeField] public List<ChierScript> ChierNum = new List<ChierScript>();
 
    
 
