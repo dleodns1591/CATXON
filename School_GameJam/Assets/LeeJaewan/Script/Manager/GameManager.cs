@@ -8,19 +8,18 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
 
+    public static GameManager instance;
+    void Awake() => instance = this;
+
     float sec = 0;
 
-   
+    [Header("µ·")]
+    public int currentGold = 0;
+    [SerializeField] Text GameTotalGold;
 
-    [SerializeField]
-    Text GameGoldText;
-    [SerializeField]
-    Text GameTimerText;
-
-    [SerializeField]
-    Text GameTotalTime;
-    [SerializeField]
-    Text GameTotalGold;
+    [Header("½Ã°£")]
+    public int currentTime = 0;
+    [SerializeField] Text GameTotalTime;
 
     [SerializeField]
     Slider slTimer;
@@ -91,10 +90,6 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-
-      
-
-
         /* slTimer.value += Time.deltaTime;
          if (slTimer.value >= EventTime2) 
          {
@@ -150,8 +145,6 @@ public class GameManager : MonoBehaviour
                     break;
             }
         }
-
-
 
         MoneyMinusTime += Time.deltaTime;
         if (MoneyMinusTime >= MoneyMinusTime2)
