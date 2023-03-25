@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
 [System.Serializable]
 public class Floor
 {
@@ -12,8 +13,8 @@ public class Floor
 
 public class Cat_Manager : MonoBehaviour
 {
-    public static Cat_Manager Inst { get; private set; }
-    void Awake() => Inst = this;
+    public static Cat_Manager instance { get; private set; }
+    void Awake() => instance = this;
 
     [Header("고양이 소환")]
     public Floor Area = new Floor();

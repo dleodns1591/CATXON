@@ -39,7 +39,7 @@ public class ButtonScript : MonoBehaviour
     public void LockedOff3()
     {
             Floor3System.ClickButton2 = true;
-        if (Cat_Manager.Inst.BuyFloor_Idx == 1)
+        if (Cat_Manager.instance.BuyFloor_Idx == 1)
         {
             GameManager.gold -= 3000;
             button.SetActive(false);

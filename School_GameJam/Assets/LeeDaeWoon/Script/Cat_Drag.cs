@@ -35,7 +35,7 @@ public class Cat_Drag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
 
     void Start()
     {
-        Cat_Area = Cat_Manager.Inst.Cat_Area;
+        Cat_Area = Cat_Manager.instance.Cat_Area;
     }
 
     void Update()
@@ -57,29 +57,29 @@ public class Cat_Drag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
         // 같은 등급과 종류를 합쳐 등급을 한 단계 올려준다.
         if (Save != null && Save.GetComponent<Cat_Drag>().cat_Information == cat_Information && _Cat_Star == Save.GetComponent<Cat_Drag>()._Cat_Star)
         {
-            for (int i = 0; i < Cat_Manager.Inst.D_Area.Count; i++)
+            for (int i = 0; i < Cat_Manager.instance.D_Area.Count; i++)
             {
-                if (Cat_Area == Cat_Manager.Inst.D_Area[i])
+                if (Cat_Area == Cat_Manager.instance.D_Area[i])
                 {
-                    switch(Cat_Manager.Inst.D_Area[i].GetComponent<Area>().floor)
+                    switch (Cat_Manager.instance.D_Area[i].GetComponent<Area>().floor)
                     {
                         case 0:
                             {
-                                Cat_Manager.Inst.Area.floor_1.Add(Cat_Manager.Inst.D_Area[i]);
+                                Cat_Manager.instance.Area.floor_1.Add(Cat_Manager.instance.D_Area[i]);
                                 break;
                             }
                         case 1:
                             {
-                                Cat_Manager.Inst.Area.floor_2.Add(Cat_Manager.Inst.D_Area[i]);
+                                Cat_Manager.instance.Area.floor_2.Add(Cat_Manager.instance.D_Area[i]);
                                 break;
                             }
                         case 2:
                             {
-                                Cat_Manager.Inst.Area.floor_3.Add(Cat_Manager.Inst.D_Area[i]);
+                                Cat_Manager.instance.Area.floor_3.Add(Cat_Manager.instance.D_Area[i]);
                                 break;
                             }
                     }
-                    Cat_Manager.Inst.D_Area.RemoveAt(i);
+                    Cat_Manager.instance.D_Area.RemoveAt(i);
                 }
             }
             Save.GetComponent<Cat_Drag>()._Cat_Star++;
@@ -106,29 +106,23 @@ public class Cat_Drag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
 
         if (Recycle == true)
         {
-            for (int i = 0; i < Cat_Manager.Inst.D_Area.Count; i++)
+            for (int i = 0; i < Cat_Manager.instance.D_Area.Count; i++)
             {
-                if (Cat_Area == Cat_Manager.Inst.D_Area[i])
+                if (Cat_Area == Cat_Manager.instance.D_Area[i])
                 {
-                    switch (Cat_Manager.Inst.D_Area[i].GetComponent<Area>().floor)
+                    switch (Cat_Manager.instance.D_Area[i].GetComponent<Area>().floor)
                     {
                         case 0:
-                            {
-                                Cat_Manager.Inst.Area.floor_1.Add(Cat_Manager.Inst.D_Area[i]);
-                                break;
-                            }
+                            Cat_Manager.instance.Area.floor_1.Add(Cat_Manager.instance.D_Area[i]);
+                            break;
                         case 1:
-                            {
-                                Cat_Manager.Inst.Area.floor_2.Add(Cat_Manager.Inst.D_Area[i]);
-                                break;
-                            }
+                            Cat_Manager.instance.Area.floor_2.Add(Cat_Manager.instance.D_Area[i]);
+                            break;
                         case 2:
-                            {
-                                Cat_Manager.Inst.Area.floor_3.Add(Cat_Manager.Inst.D_Area[i]);
-                                break;
-                            }
+                            Cat_Manager.instance.Area.floor_3.Add(Cat_Manager.instance.D_Area[i]);
+                            break;
                     }
-                    Cat_Manager.Inst.D_Area.RemoveAt(i);
+                    Cat_Manager.instance.D_Area.RemoveAt(i);
                 }
             }
             Destroy(this.gameObject);

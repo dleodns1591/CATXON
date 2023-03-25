@@ -19,11 +19,11 @@ public class Floor2System : MonoBehaviour
     }
     public void OpenFloor2()
     {
-        if(GameManager.gold >= 800 && Cat_Manager.Inst.BuyFloor_Idx == 0)
+        if(GameManager.gold >= 800 && Cat_Manager.instance.BuyFloor_Idx == 0)
         {
             GameManager.gold -= 800;
             Anim.SetBool("IsOpen2", true);
-            ++Cat_Manager.Inst.BuyFloor_Idx;
+            ++Cat_Manager.instance.BuyFloor_Idx;
             Button.SetActive(false);
         }
         
