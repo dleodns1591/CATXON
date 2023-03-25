@@ -19,13 +19,13 @@ public class Floor3System : MonoBehaviour
     }
     public void OpenFloor3()
     {
-        if (GameManager.gold >= 3000 && Cat_Manager.instance.BuyFloor_Idx == 1)
-        {
-            GameManager.gold -= 3000;
-            Anim.SetBool("IsOpen3", true);
-            ++Cat_Manager.instance.BuyFloor_Idx;
-            Button.SetActive(false);
-        }
+        //if (GameManager.gold >= 3000 && Cat_Manager.instance.BuyFloor_Idx == 1)
+        //{
+        //    GameManager.gold -= 3000;
+        //    Anim.SetBool("IsOpen3", true);
+        //    ++Cat_Manager.instance.BuyFloor_Idx;
+        //    Button.SetActive(false);
+        //}
 
     }
 }

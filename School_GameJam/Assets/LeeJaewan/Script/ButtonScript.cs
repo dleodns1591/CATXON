@@ -11,7 +11,6 @@ public class ButtonScript : MonoBehaviour
     public GameObject button;
     public void GameStart() 
     {
-        GameManager.IsGameOver = false;
         SceneManager.LoadScene(1);
     }
 
@@ -29,21 +28,21 @@ public class ButtonScript : MonoBehaviour
     }
     public void LockedOff2() 
     {
-        Floor2System.ClickButton = true;
-        if (GameManager.gold >= 800) 
-        {
-            GameManager.gold -= 800;
-            button.SetActive(false);
-        }
+        //Floor2System.ClickButton = true;
+        //if (GameManager.instance >= 800) 
+        //{
+        //    GameManager.gold -= 800;
+        //    button.SetActive(false);
+        //}
     }
     public void LockedOff3()
     {
-            Floor3System.ClickButton2 = true;
-        if (Cat_Manager.instance.BuyFloor_Idx == 1)
-        {
-            GameManager.gold -= 3000;
-            button.SetActive(false);
-        }
+        //    Floor3System.ClickButton2 = true;
+        //if (Cat_Manager.instance.BuyFloor_Idx == 1)
+        //{
+        //    GameManager.gold -= 3000;
+        //    button.SetActive(false);
+        //}
     }
    
     void Start()

@@ -31,25 +31,26 @@ public class Cat_Drag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
     GameObject Save;
 
     public static Vector2 defultposition;
-    public GameObject Cat_Area;
+    GameObject catArea;
 
     void Start()
     {
-        Cat_Area = Cat_Manager.instance.Cat_Area;
+        catArea = Cat_Manager.instance.catArea;
     }
 
     void Update()
     {
+
     }
+
     public void OnDrag(PointerEventData eventData)
     {
         transform.position = eventData.position;
-
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        defultposition = this.transform.position;
+        defultposition = transform.position;
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -59,73 +60,69 @@ public class Cat_Drag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
         {
             for (int i = 0; i < Cat_Manager.instance.D_Area.Count; i++)
             {
-                if (Cat_Area == Cat_Manager.instance.D_Area[i])
+                if (catArea == Cat_Manager.instance.D_Area[i])
                 {
                     switch (Cat_Manager.instance.D_Area[i].GetComponent<Area>().floor)
                     {
                         case 0:
-                            {
-                                Cat_Manager.instance.Area.floor_1.Add(Cat_Manager.instance.D_Area[i]);
-                                break;
-                            }
+                            Cat_Manager.instance.area.floor01.Add(Cat_Manager.instance.D_Area[i]);
+                            break;
+
                         case 1:
-                            {
-                                Cat_Manager.instance.Area.floor_2.Add(Cat_Manager.instance.D_Area[i]);
-                                break;
-                            }
+                            Cat_Manager.instance.area.floor02.Add(Cat_Manager.instance.D_Area[i]);
+                            break;
+
                         case 2:
-                            {
-                                Cat_Manager.instance.Area.floor_3.Add(Cat_Manager.instance.D_Area[i]);
-                                break;
-                            }
+                            Cat_Manager.instance.area.floor03.Add(Cat_Manager.instance.D_Area[i]);
+                            break;
                     }
                     Cat_Manager.instance.D_Area.RemoveAt(i);
                 }
             }
             Save.GetComponent<Cat_Drag>()._Cat_Star++;
-            Destroy(this.gameObject);
+            Destroy(gameObject);
 
         }
 
         // 현재 위치에 고양이가 배치되었을 경우 교체할 고양이와 드래그를 할 고양이의 위치를 서로 교체한다.
         else if (Save != null)
         {
-            GameObject Save_Area = Cat_Area;
+            GameObject Save_Area = catArea;
 
             transform.position = Save.transform.position;
-            Cat_Area = Save.GetComponent<Cat_Drag>().Cat_Area;
+            catArea = Save.GetComponent<Cat_Drag>().catArea;
 
             Save.transform.position = defultposition;
-            Save.GetComponent<Cat_Drag>().Cat_Area = Save_Area;
+            Save.GetComponent<Cat_Drag>().catArea = Save_Area;
 
         }
 
         // 컴퓨터 위치가 아니거나 해금이 안됬을 경우
         else
-            this.transform.position = defultposition;
+            transform.position = defultposition;
 
-        if (Recycle == true)
+        if (Recycle)
         {
             for (int i = 0; i < Cat_Manager.instance.D_Area.Count; i++)
             {
-                if (Cat_Area == Cat_Manager.instance.D_Area[i])
+                if (catArea == Cat_Manager.instance.D_Area[i])
                 {
                     switch (Cat_Manager.instance.D_Area[i].GetComponent<Area>().floor)
                     {
                         case 0:
-                            Cat_Manager.instance.Area.floor_1.Add(Cat_Manager.instance.D_Area[i]);
+                            Cat_Manager.instance.area.floor01.Add(Cat_Manager.instance.D_Area[i]);
                             break;
                         case 1:
-                            Cat_Manager.instance.Area.floor_2.Add(Cat_Manager.instance.D_Area[i]);
+                            Cat_Manager.instance.area.floor02.Add(Cat_Manager.instance.D_Area[i]);
                             break;
                         case 2:
-                            Cat_Manager.instance.Area.floor_3.Add(Cat_Manager.instance.D_Area[i]);
+                            Cat_Manager.instance.area.floor03.Add(Cat_Manager.instance.D_Area[i]);
                             break;
                     }
                     Cat_Manager.instance.D_Area.RemoveAt(i);
                 }
             }
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
 

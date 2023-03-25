@@ -22,39 +22,20 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     Slider slTimer;
 
-    [SerializeField]
-    GameObject GameOverPanel;
-
-    [SerializeField]
-    GameObject EventPanel1;
-    [SerializeField]
-    GameObject EventPanel2;
-    [SerializeField]
-    GameObject EventPanel3;
-    [SerializeField]
-    GameObject EventPanel4;
-
+    [SerializeField] GameObject EventPanel1;
+    [SerializeField] GameObject EventPanel2;
+    [SerializeField] GameObject EventPanel3;
+    [SerializeField] GameObject EventPanel4;
 
     [SerializeField]
     GameObject GameTotalTime2;
     [SerializeField]
     GameObject GameTotalGold2;
 
-    // 게임 플레이 시간 변수입니다.
-    public float GamePlayTimeCount, GamePlayTimeCount2;
-
     public int GamePlayTimeCountMin;
-
-    public static bool IsGameOver = false;
-
 
     //골드 감소 시간 변수입니다.
     public float MoneyMinusTime, MoneyMinusTime2 = 5f, MoneyMinusValue = 100;
-
-
-    // 플레이어 골드 입니다,
-    [SerializeField]
-    public static float gold = 0;
 
     public static float GameTotalGoldValue = 0;
     // 이벤트 불러오는 시간 값입니다.
@@ -77,12 +58,9 @@ public class GameManager : MonoBehaviour
         currentGold = 2000;
 
         slTimer = GetComponent<Slider>();
-        GamePlayTimeCount = 0;
         GamePlayTimeCountMin = 0;
         RandomEvent = 0;
 
-        StartCoroutine(TimeSet());
-        GameOverPanel.SetActive(false);
         GameTotalGold2.SetActive(false);
         GameTotalTime2.SetActive(false);
     }
@@ -128,7 +106,7 @@ public class GameManager : MonoBehaviour
         if (MoneyMinusTime >= MoneyMinusTime2)
         {
             MoneyMinusTime -= MoneyMinusTime2;
-            gold -= MoneyMinusValue;
+            currentGold -= (int)MoneyMinusValue;
         }
 
         Cheat();
@@ -150,7 +128,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("이벤트 1입니다 ( 로또 당첨 )");
         EventPanel1.SetActive(true);
-        gold += (gold / 2);
+        currentGold += (currentGold / 2);
         StartCoroutine(EventPanelOff());
 
     }
@@ -172,7 +150,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("이벤트 4입니다 ( 도둑 고양이 ");
         EventPanel4.SetActive(true);
-        gold -= (gold * 0.2f);
+        currentGold -= (int)(currentGold * 0.2f);
         StartCoroutine(EventPanelOff());
     }
     #endregion
@@ -185,16 +163,17 @@ public class GameManager : MonoBehaviour
         EventPanel3.SetActive(false);
         EventPanel4.SetActive(false);
     }
-    IEnumerator TimeSet()
-    {
-        GamePlayTimeCount++;
-        yield return new WaitForSecondsRealtime(1);
-        if (IsGameOver == false)
-            StartCoroutine(TimeSet());
-        else
-            StopCoroutine(TimeSet());
 
-    }
+    //IEnumerator TimeSet()
+    //{
+    //    GamePlayTimeCount++;
+    //    yield return new WaitForSecondsRealtime(1);
+    //    if (IsGameOver == false)
+    //        StartCoroutine(TimeSet());
+    //    else
+    //        StopCoroutine(TimeSet());
+
+    //}
 }
 
 

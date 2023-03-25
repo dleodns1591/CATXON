@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
+    public static UIManager instance;
+    void Awake() => instance = this;
+
     [Header("돈")]
     [SerializeField] Text goldText;
 
@@ -18,7 +21,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] Text catCountText;
 
     [Header("고양이 고용")]
-    [SerializeField] int employmentGold;
     [SerializeField] Text employmentGoldText;
     [SerializeField] Button employmentBtn;
 
@@ -29,6 +31,14 @@ public class UIManager : MonoBehaviour
     [SerializeField] Text overTime;
     [SerializeField] Button rePlayBtn;
     [SerializeField] Button mainBtn;
+    public bool isGameOver = false;
+
+    [Header("층")]
+    [SerializeField] GameObject floor2;
+    [SerializeField] GameObject floor3;
+    [SerializeField] GameObject roof;
+    [SerializeField] Button limit800;
+    [SerializeField] Button limit3000;
 
     void Start()
     {
@@ -44,7 +54,7 @@ public class UIManager : MonoBehaviour
 
     void UIText()
     {
-        employmentGoldText.text = employmentGold.ToString();
+        employmentGoldText.text = Cat_Manager.instance.employmentGold.ToString();
         goldText.text = GameManager.instance.currentGold + "$";
         catCountText.text = Cat_Manager.instance.D_Area.Count + "마리";
     }
@@ -67,6 +77,7 @@ public class UIManager : MonoBehaviour
         if (GameManager.instance.currentGold <= 0)
         {
             Time.timeScale = 0;
+            isGameOver = true;
 
             gameoverWindow.SetActive(true);
 
@@ -80,7 +91,7 @@ public class UIManager : MonoBehaviour
         // 다시 하기 버튼을 눌렀을 경우
         rePlayBtn.onClick.AddListener(() =>
         {
-
+            SceneManager.LoadScene("Ingame");
         });
 
         // 메인화면 버튼을 눌렀을 경우
@@ -92,7 +103,30 @@ public class UIManager : MonoBehaviour
         // 고용 버튼을 눌렀을 경우
         employmentBtn.onClick.AddListener(() =>
         {
+            Cat_Manager.instance.CatSummon();
+        });
 
+        // 800제한 버튼을 눌렀을 경우
+        limit800.onClick.AddListener(() =>
+        {
+            if(GameManager.instance.currentGold >= 800)
+            {
+                GameManager.instance.currentGold -= 800;
+                limit800.gameObject.SetActive(false);
+                floor2.SetActive(true);
+            }
+        });
+
+        // 1300제한 버튼을 눌렀을 경우
+        limit3000.onClick.AddListener(() =>
+        {
+            if (GameManager.instance.currentGold >= 3000)
+            {
+                GameManager.instance.currentGold -= 3000;
+                limit3000.gameObject.SetActive(false);
+                floor3.SetActive(true);
+                roof.SetActive(true);
+            }
         });
     }
 }

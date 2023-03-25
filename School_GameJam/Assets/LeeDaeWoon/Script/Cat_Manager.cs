@@ -6,29 +6,28 @@ using UnityEngine.UI;
 [System.Serializable]
 public class Floor
 {
-    public List<GameObject> floor_1 = new List<GameObject>();
-    public List<GameObject> floor_2 = new List<GameObject>();
-    public List<GameObject> floor_3 = new List<GameObject>();
+    public List<GameObject> floor01 = new List<GameObject>();
+    public List<GameObject> floor02 = new List<GameObject>();
+    public List<GameObject> floor03 = new List<GameObject>();
 }
 
 public class Cat_Manager : MonoBehaviour
 {
-    public static Cat_Manager instance { get; private set; }
+    public static Cat_Manager instance;
     void Awake() => instance = this;
 
     [Header("고양이 소환")]
-    public Floor Area = new Floor();
+    public Floor area = new Floor();
     public List<GameObject> D_Area = new List<GameObject>();
     public List<GameObject> Cat_Num = new List<GameObject>();
-    public List<GameObject> Cat_List = new List<GameObject>();
-    int Cat_Random;
+
+    public GameObject[] catType = new GameObject[3];
 
     [Header("위치")]
-    public GameObject Cat_Area;
-    int Area_Random;
+    public GameObject catArea;
+    int areaRandom = 0;
 
-    public int Gold;
-    public Text Gold_Text;
+    public int employmentGold;
     public int BuyFloor_Idx = 0;
 
     void Start()
@@ -38,95 +37,99 @@ public class Cat_Manager : MonoBehaviour
 
     void Update()
     {
-        Gold_Text.text = Gold.ToString();
+        EmployMnetGold();
+    }
+
+    void EmployMnetGold()
+    {
         switch (D_Area.Count)
         {
             case 0:
-                Gold = 50;
+                employmentGold = 50;
                 break;
             case 1:
-                Gold = 60;
+                employmentGold = 60;
                 break;
             case 2:
-                Gold = 72;
+                employmentGold = 72;
                 break;
             case 3:
-                Gold = 86;
+                employmentGold = 86;
                 break;
             case 4:
-                Gold = 111;
+                employmentGold = 111;
                 break;
             case 5:
-                Gold = 144;
+                employmentGold = 144;
                 break;
             case 6:
-                Gold = 187;
+                employmentGold = 187;
                 break;
             case 7:
-                Gold = 243;
+                employmentGold = 243;
                 break;
             case 8:
-                Gold = 315;
+                employmentGold = 315;
                 break;
             case 9:
-                Gold = 409;
+                employmentGold = 409;
                 break;
             case 10:
-                Gold = 531;
+                employmentGold = 531;
                 break;
             case 11:
-                Gold = 796;
+                employmentGold = 796;
                 break;
             case 12:
-                Gold = 1194;
+                employmentGold = 1194;
                 break;
             case 13:
-                Gold = 1791;
+                employmentGold = 1791;
                 break;
             case 14:
-                Gold = 2686;
+                employmentGold = 2686;
                 break;
             case 15:
-                Gold = 4029;
+                employmentGold = 4029;
                 break;
             case 16:
-                Gold = 6043;
+                employmentGold = 6043;
                 break;
             case 17:
-                Gold = 9064;
+                employmentGold = 9064;
                 break;
         }
     }
 
-    public void Cat_Instantitate_Click()
+    public void CatSummon()
     {
-        if (GameManager.gold >= Gold && D_Area.Count < 6 * (BuyFloor_Idx + 1))
+        if (GameManager.instance.currentGold >= employmentGold && D_Area.Count < 6 * (BuyFloor_Idx + 1))
         {
-            GameManager.gold -= Gold;
-            Cat_Random = Random.Range(0, 3);
+            GameManager.instance.currentGold -= employmentGold;
+            int catRandom = Random.Range(0, 3);
 
             bool cheak = true;
             int whileCount = 0;
-            int Random_Floor = 0;
+            int randomFloor = 0;
 
             while (cheak)
             {
                 whileCount++;
-                Random_Floor = Random.Range(0, BuyFloor_Idx + 1);
-                switch (Random_Floor)
+                randomFloor = Random.Range(0, BuyFloor_Idx + 1);
+                switch (randomFloor)
                 {
                     case 0:
-                        if (Area.floor_1.Count != 0)
+                        if (area.floor01.Count != 0)
                             cheak = false;
                         break;
 
                     case 1:
-                        if (Area.floor_2.Count != 0)
+                        if (area.floor02.Count != 0)
                             cheak = false;
                         break;
 
                     case 2:
-                        if (Area.floor_3.Count != 0)
+                        if (area.floor03.Count != 0)
                             cheak = false;
                         break;
                 }
@@ -135,35 +138,36 @@ public class Cat_Manager : MonoBehaviour
                     break;
             }
 
-            switch (Random_Floor)
+            switch (randomFloor)
             {
                 case 0:
                     {
-                        Area_Random = Random.Range(0, Area.floor_1.Count);
-                        Instantiate(Cat_List[Cat_Random], Area.floor_1[Area_Random].transform.position, Quaternion.identity, GameObject.Find("Cat_Canvas").transform);
-                        Cat_Area = Area.floor_1[Area_Random];
-                        D_Area.Add(Area.floor_1[Area_Random]);
-                        Area.floor_1.RemoveAt(Area_Random);
+                        areaRandom = Random.Range(0, area.floor01.Count);
+
+                        Instantiate(catType[catRandom], area.floor01[areaRandom].transform.position, Quaternion.identity, GameObject.Find("CatCanvas").transform);
+                        catArea = area.floor01[areaRandom];
+                        D_Area.Add(area.floor01[areaRandom]);
+                        area.floor01.RemoveAt(areaRandom);
                         break;
                     }
 
                 case 1:
                     {
-                        Area_Random = Random.Range(0, Area.floor_2.Count);
-                        Instantiate(Cat_List[Cat_Random], Area.floor_2[Area_Random].transform.position, Quaternion.identity, GameObject.Find("Cat_Canvas").transform);
-                        Cat_Area = Area.floor_2[Area_Random];
-                        D_Area.Add(Area.floor_2[Area_Random]);
-                        Area.floor_2.RemoveAt(Area_Random);
+                        areaRandom = Random.Range(0, area.floor02.Count);
+                        Instantiate(catType[catRandom], area.floor02[areaRandom].transform.position, Quaternion.identity, GameObject.Find("CatCanvas").transform);
+                        catArea = area.floor02[areaRandom];
+                        D_Area.Add(area.floor02[areaRandom]);
+                        area.floor02.RemoveAt(areaRandom);
                         break;
                     }
 
                 case 2:
                     {
-                        Area_Random = Random.Range(0, Area.floor_3.Count);
-                        Instantiate(Cat_List[Cat_Random], Area.floor_3[Area_Random].transform.position, Quaternion.identity, GameObject.Find("Cat_Canvas").transform);
-                        Cat_Area = Area.floor_3[Area_Random];
-                        D_Area.Add(Area.floor_3[Area_Random]);
-                        Area.floor_3.RemoveAt(Area_Random);
+                        areaRandom = Random.Range(0, area.floor03.Count);
+                        Instantiate(catType[catRandom], area.floor03[areaRandom].transform.position, Quaternion.identity, GameObject.Find("CatCanvas").transform);
+                        catArea = area.floor03[areaRandom];
+                        D_Area.Add(area.floor03[areaRandom]);
+                        area.floor03.RemoveAt(areaRandom);
                         break;
                     }
 

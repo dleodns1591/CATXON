@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class Computer : MonoBehaviour
 {
-    
-    Image Computerimg;
+    Image computer;
+
     // 골드를 몇 초마다 지급하는지 초를 정해주는 변수입니다.
     public static float GoldGetTime = 1;
 
@@ -39,44 +39,45 @@ public class Computer : MonoBehaviour
 
     void Start()
     {
-       
-        Computerimg = GetComponent<Image>();
+        computer = GetComponent<Image>();
     }
+
     void Update()
     {
         GoldCount();
 
 
 
-        if (IsSit == false)
+        if (!IsSit)
         {
             IsBreak = false;
             IsWork = false;
             BreakTime = 0;
-            Computerimg.sprite = Idle;
+            computer.sprite = Idle;
         }
 
-        if (IsBreak == true)
+        if (IsBreak)
         {
             moneyGetTime = 0;
             IsWork = false;
-            Computerimg.sprite = BrokenComputer;
-            Debug.Log("asdasdasdasdasd");
+            computer.sprite = BrokenComputer;
         }
-        else if (IsBreak == false && IsSit == true)
-        {
-            Computerimg.sprite = WorkComputer;
-        }
+
+        else if (!IsBreak && IsSit)
+            computer.sprite = WorkComputer;
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Cat"))
         {
             IsSit = true;
-            if (IsSit == true)
+
+            if (IsSit)
                 IsWork = true;
-            else if (IsSit == true && IsBreak == true)
+
+            else if (IsSit && IsBreak)
                 IsWork = false;
+
             Debug.Log("지금 작동중입니다.");
         }
 
@@ -95,31 +96,26 @@ public class Computer : MonoBehaviour
                 //Sp.sprite = Sprite[2];
             }
         }
-        
-
-
     }
-    private void OnTriggerExit2D(Collider2D collision)
+    void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Cat"))
-        {
             IsSit = false;
-            
-        }
     }
+
     void GoldCount() 
     {
         if (IsSit == true && IsBreak == false && IsWork == true)
         {
             Debug.Log(IsBreak);
             BrokenTimeCount();
-            Computerimg.sprite = WorkComputer;
-            if (GameManager.IsGameOver == false)
+            computer.sprite = WorkComputer;
+            if (!UIManager.instance.isGameOver)
             {
                 if (moneyGetTime >= GoldGetTime)
                 {
                     moneyGetTime -= GoldGetTime;
-                    GameManager.gold += GoldValue;
+                    GameManager.instance.currentGold += (int)GoldValue;
                     //GameManager.GameTotalGoldValue+= GoldValue;
                 }
                 
