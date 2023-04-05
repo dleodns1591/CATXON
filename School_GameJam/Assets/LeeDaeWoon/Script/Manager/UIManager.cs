@@ -24,6 +24,12 @@ public class UIManager : MonoBehaviour
     [SerializeField] Text employmentGoldText;
     [SerializeField] Button employmentBtn;
 
+    [Header("이벤트")]
+    public int maxCoolTime = 0;
+    public float currentCoolTime = 0;
+    [SerializeField] Image eventCard;
+    [SerializeField] Image eventSlider;
+    bool isEvent = false;
 
     [Header("게임오버")]
     [SerializeField] GameObject gameoverWindow;
@@ -37,11 +43,13 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject floor2;
     [SerializeField] GameObject floor3;
     [SerializeField] GameObject roof;
-    [SerializeField] Button limit800;
-    [SerializeField] Button limit3000;
+    [SerializeField] Button limit800Btn;
+    [SerializeField] Button limit3000Btn;
 
     void Start()
     {
+        currentCoolTime = maxCoolTime;
+
         Btns();
     }
 
@@ -50,6 +58,7 @@ public class UIManager : MonoBehaviour
         Timer();
         UIText();
         GameOver();
+        EventCard();
     }
 
     void UIText()
@@ -62,7 +71,6 @@ public class UIManager : MonoBehaviour
     void Timer()
     {
         sec += Time.deltaTime;
-        timerText.text = string.Format("{0:D2}:{1:D2}", min, (int)sec);
 
         if ((int)sec > 59)
         {
@@ -71,9 +79,36 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    void EventCard()
+    {
+        eventSlider.fillAmount = Mathf.Lerp(eventSlider.fillAmount, currentCoolTime / maxCoolTime, Time.deltaTime * 10);
+
+        if (!isEvent)
+        {
+            isEvent = true;
+            eventSlider.fillAmount = 1;
+            currentCoolTime = maxCoolTime;
+            StartCoroutine(EventCoolTime());
+
+
+        }
+
+        if (currentCoolTime <= 0)
+            isEvent = false;
+    }
+
+    IEnumerator EventCoolTime()
+    {
+        while(currentCoolTime >= 0)
+        {
+            currentCoolTime -= 0.01f;
+            yield return new WaitForSeconds(0.01f);
+        }
+    }
+
     void GameOver()
     {
-        // 현재 골드가 0이 되었을 때 게임오버가 된다.
+        // 현재 골드가 0이하일 경우 게임오버가 된다.
         if (GameManager.instance.currentGold <= 0)
         {
             Time.timeScale = 0;
@@ -82,7 +117,7 @@ public class UIManager : MonoBehaviour
             gameoverWindow.SetActive(true);
 
             overGold.text = GameManager.instance.currentGold + "$";
-            overTime.text = timerText.text;
+            overTime.text = string.Format("{0:D2}:{1:D2}", min, (int)sec);
         }
     }
 
@@ -107,23 +142,23 @@ public class UIManager : MonoBehaviour
         });
 
         // 800제한 버튼을 눌렀을 경우
-        limit800.onClick.AddListener(() =>
+        limit800Btn.onClick.AddListener(() =>
         {
             if(GameManager.instance.currentGold >= 800)
             {
                 GameManager.instance.currentGold -= 800;
-                limit800.gameObject.SetActive(false);
+                limit800Btn.gameObject.SetActive(false);
                 floor2.SetActive(true);
             }
         });
 
         // 1300제한 버튼을 눌렀을 경우
-        limit3000.onClick.AddListener(() =>
+        limit3000Btn.onClick.AddListener(() =>
         {
             if (GameManager.instance.currentGold >= 3000)
             {
                 GameManager.instance.currentGold -= 3000;
-                limit3000.gameObject.SetActive(false);
+                limit3000Btn.gameObject.SetActive(false);
                 floor3.SetActive(true);
                 roof.SetActive(true);
             }

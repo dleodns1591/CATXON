@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-
     public static GameManager instance;
     void Awake() => instance = this;
 
@@ -61,7 +60,7 @@ public class GameManager : MonoBehaviour
         GamePlayTimeCountMin = 0;
         RandomEvent = 0;
 
-        GameTotalGold2.SetActive(false);
+        //GameTotalGold2.SetActive(false);
         GameTotalTime2.SetActive(false);
     }
 
