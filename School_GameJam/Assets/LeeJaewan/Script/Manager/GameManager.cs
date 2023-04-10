@@ -50,8 +50,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     Text Timer_Text;
 
-    [SerializeField]
-    List<Computer> computers;
+    public List<Computer> computers;
+
     void Start()
     {
         currentGold = 2000;
@@ -135,7 +135,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("이벤트 2입니다 ( 컴퓨터 수리 )");
         EventPanel2.SetActive(true);
-        Computer.isBreak = false;
+        //Computer.isBreak = false;
         StartCoroutine(EventPanelOff());
     }
 

@@ -27,7 +27,7 @@ public class Computer : MonoBehaviour
     bool isSit = false;
 
     // 컴퓨터가 부셔졌나 를 뜻하는 변수
-    public static bool isBreak = false;
+    public bool isBreak = false;
 
     // 고양이가 일을 하고 있는가를 뜻하는 변수입니다
     public bool isWork = false;

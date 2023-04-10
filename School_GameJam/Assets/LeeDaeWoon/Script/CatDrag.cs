@@ -16,6 +16,7 @@ public class CatDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragH
     int catStar = 0;
     bool isDrag = false;
     bool isRecycle = false;
+
     public GameObject Area_obj;
 
     public int _CatStar
@@ -28,6 +29,7 @@ public class CatDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragH
             catStar = value;
         }
     }
+
     [SerializeField] GameObject save;
 
     public static Vector2 currentPos;
@@ -46,19 +48,21 @@ public class CatDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragH
     // 드래그 하는 마우스 커서가 움직일 때마다 호출한다.
     public void OnDrag(PointerEventData eventData)
     {
-        transform.position = eventData.position;
+        if (!EventManager.instance.isDragLimit)
+            transform.position = eventData.position;
     }
 
     // 드래그 시 처음 한 번 호출한다.
     public void OnBeginDrag(PointerEventData eventData)
     {
-        currentPos = transform.position;
+        if (!EventManager.instance.isDragLimit)
+            currentPos = transform.position;
     }
 
     // 드래그 종료 시 한 번 호출한다.
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (save != null)
+        if (save != null && !EventManager.instance.isDragLimit)
         {
             // 같은 등급과 종류를 합쳐 등급을 한 단계 올려준다.
             if (save.GetComponent<CatDrag>().eInformation == eInformation && _CatStar == save.GetComponent<CatDrag>()._CatStar)

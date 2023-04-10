@@ -36,11 +36,14 @@ public class EventManager : MonoBehaviour
     [SerializeField] GameObject eventPanel;
     [SerializeField] GameObject eventParent;
     [SerializeField] Image eventSlider;
+    public bool isDragLimit = false;
+
     bool isEvent = false;
     bool isEventCool = false;
 
     void Start()
     {
+
     }
 
     void Update()
@@ -80,7 +83,6 @@ public class EventManager : MonoBehaviour
             eventType.transform.DOLocalMoveY(0, 0.5f).SetEase(Ease.OutBack);
 
             yield return new WaitForSeconds(1.5f);
-
             eventType.transform.DOLocalMoveX(-1500, 1).SetEase(Ease.Linear).OnComplete(() =>
             {
                 Destroy(eventType);
@@ -90,30 +92,41 @@ public class EventManager : MonoBehaviour
 
     void EventType(int randomEvent)
     {
-        switch(eventSpawn[randomEvent].eEvent)
+        switch (eventSpawn[randomEvent].eEvent)
         {
             case Event.EEvent.Lotto: // 로또
                 GameManager.instance.currentGold += GameManager.instance.currentGold / 2;
                 break;
 
             case Event.EEvent.Repair: // 수리
+                for (int i = 0; i < GameManager.instance.computers.Count; i++)
+                    GameManager.instance.computers[i].isBreak = false;
                 break;
 
             case Event.EEvent.WalkOut: // 파업
+                StartCoroutine(WalkOutEvent());
                 break;
 
             case Event.EEvent.Stray: // 도둑
+                float result = GameManager.instance.currentGold * 0.2f;
+                GameManager.instance.currentGold += (int)result;
                 break;
-
         }
     }
 
-        IEnumerator EventCoolTime()
+    IEnumerator WalkOutEvent()
+    {
+        isDragLimit = true;
+        yield return new WaitForSeconds(10);
+        isDragLimit = false;
+    }
+
+    IEnumerator EventCoolTime()
+    {
+        while (currentCoolTime >= 0)
         {
-            while (currentCoolTime >= 0)
-            {
-                currentCoolTime -= 1;
-                yield return new WaitForSeconds(1);
-            }
+            currentCoolTime -= 1;
+            yield return new WaitForSeconds(1);
         }
     }
+}
