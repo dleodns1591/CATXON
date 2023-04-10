@@ -135,7 +135,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("이벤트 2입니다 ( 컴퓨터 수리 )");
         EventPanel2.SetActive(true);
-        Computer.IsBreak = false;
+        Computer.isBreak = false;
         StartCoroutine(EventPanelOff());
     }
 
