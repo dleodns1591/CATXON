@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
 
 public class UIManager : MonoBehaviour
 {
@@ -58,13 +59,12 @@ public class UIManager : MonoBehaviour
         Timer();
         UIText();
         GameOver();
-        EventCard();
     }
 
     void UIText()
     {
         employmentGoldText.text = Cat_Manager.instance.employmentGold.ToString();
-        goldText.text = GameManager.instance.currentGold + "$";
+        goldText.text = string.Format("{0:#,0}$", GameManager.instance.currentGold);
         catCountText.text = Cat_Manager.instance.summonList.Count + "¸¶¸®";
     }
 
@@ -76,31 +76,6 @@ public class UIManager : MonoBehaviour
         {
             sec = 0;
             min++;
-        }
-    }
-
-    void EventCard()
-    {
-        eventSlider.fillAmount = Mathf.Lerp(eventSlider.fillAmount, currentCoolTime / maxCoolTime, Time.deltaTime * 10);
-
-        if (!isEvent)
-        {
-            isEvent = true;
-            eventSlider.fillAmount = 1;
-            currentCoolTime = maxCoolTime;
-            StartCoroutine(EventCoolTime());
-        }
-
-        if (currentCoolTime <= 0)
-            isEvent = false;
-    }
-
-    IEnumerator EventCoolTime()
-    {
-        while(currentCoolTime >= 0)
-        {
-            currentCoolTime -= 0.01f;
-            yield return new WaitForSeconds(0.01f);
         }
     }
 
