@@ -647,7 +647,7 @@ Transform:
   - {fileID: 1060127932}
   - {fileID: 1679675641}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &200000597
 GameObject:
@@ -907,7 +907,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 800, y: 260}
-  m_SizeDelta: {x: 301, y: 147}
+  m_SizeDelta: {x: 255, y: 125}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &230022411
 MonoBehaviour:
@@ -1299,7 +1299,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 311142585}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 197, y: -86.5, z: 0}
+  m_LocalPosition: {x: 4.4200025, y: 4.9399953, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1370,11 +1370,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bb0471ca31b2854284bf708aa0fccf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idel: {fileID: 0}
-  work: {fileID: 0}
-  broken: {fileID: 0}
+  getGold: 5
+  getGoldCoolTime: 1
+  idel: {fileID: 21300000, guid: f2bbc4e686575ee4b87c14da2bfa84d9, type: 2}
+  work: {fileID: 21300000, guid: 2a078b482b871f14cabcec9e1dd1ab2d, type: 3}
+  broken: {fileID: 21300000, guid: 4fc2e6eb8ae0cd94c9ca56771261a379, type: 2}
   breakTime: 0
   brokenTime: 10
+  isBreak: 0
   isWork: 0
 --- !u!1 &343589948
 GameObject:
@@ -1512,11 +1515,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bb0471ca31b2854284bf708aa0fccf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idel: {fileID: 0}
-  work: {fileID: 0}
-  broken: {fileID: 0}
+  getGold: 5
+  getGoldCoolTime: 1
+  idel: {fileID: 21300000, guid: f2bbc4e686575ee4b87c14da2bfa84d9, type: 2}
+  work: {fileID: 21300000, guid: 2a078b482b871f14cabcec9e1dd1ab2d, type: 3}
+  broken: {fileID: 21300000, guid: 4fc2e6eb8ae0cd94c9ca56771261a379, type: 2}
   breakTime: 0
   brokenTime: 10
+  isBreak: 0
   isWork: 0
 --- !u!114 &368643811
 MonoBehaviour:
@@ -1530,11 +1536,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bb0471ca31b2854284bf708aa0fccf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idel: {fileID: 0}
-  work: {fileID: 0}
-  broken: {fileID: 0}
+  getGold: 5
+  getGoldCoolTime: 1
+  idel: {fileID: 21300000, guid: f2bbc4e686575ee4b87c14da2bfa84d9, type: 2}
+  work: {fileID: 21300000, guid: 2a078b482b871f14cabcec9e1dd1ab2d, type: 3}
+  broken: {fileID: 21300000, guid: 4fc2e6eb8ae0cd94c9ca56771261a379, type: 2}
   breakTime: 0
   brokenTime: 10
+  isBreak: 0
   isWork: 0
 --- !u!1 &370439782
 GameObject:
@@ -1650,11 +1659,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bb0471ca31b2854284bf708aa0fccf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idel: {fileID: 0}
-  work: {fileID: 0}
-  broken: {fileID: 0}
+  getGold: 5
+  getGoldCoolTime: 1
+  idel: {fileID: 21300000, guid: f2bbc4e686575ee4b87c14da2bfa84d9, type: 2}
+  work: {fileID: 21300000, guid: 2a078b482b871f14cabcec9e1dd1ab2d, type: 3}
+  broken: {fileID: 21300000, guid: 4fc2e6eb8ae0cd94c9ca56771261a379, type: 2}
   breakTime: 0
   brokenTime: 10
+  isBreak: 0
   isWork: 0
 --- !u!1 &373751668
 GameObject:
@@ -1786,11 +1798,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bb0471ca31b2854284bf708aa0fccf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idel: {fileID: 0}
-  work: {fileID: 0}
-  broken: {fileID: 0}
+  getGold: 5
+  getGoldCoolTime: 1
+  idel: {fileID: 21300000, guid: f2bbc4e686575ee4b87c14da2bfa84d9, type: 2}
+  work: {fileID: 21300000, guid: 2a078b482b871f14cabcec9e1dd1ab2d, type: 3}
+  broken: {fileID: 21300000, guid: 4fc2e6eb8ae0cd94c9ca56771261a379, type: 2}
   breakTime: 0
   brokenTime: 10
+  isBreak: 0
   isWork: 0
 --- !u!1 &398709122
 GameObject:
@@ -1817,7 +1832,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 398709122}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 205, y: -92.49, z: 0}
+  m_LocalPosition: {x: 12.420002, y: -1.0500026, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1901,7 +1916,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 434459060}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 197, y: -92.47, z: 0}
+  m_LocalPosition: {x: 4.4200025, y: -1.0300059, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1972,11 +1987,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bb0471ca31b2854284bf708aa0fccf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idel: {fileID: 0}
-  work: {fileID: 0}
-  broken: {fileID: 0}
+  getGold: 5
+  getGoldCoolTime: 1
+  idel: {fileID: 21300000, guid: f2bbc4e686575ee4b87c14da2bfa84d9, type: 2}
+  work: {fileID: 21300000, guid: 2a078b482b871f14cabcec9e1dd1ab2d, type: 3}
+  broken: {fileID: 21300000, guid: 4fc2e6eb8ae0cd94c9ca56771261a379, type: 2}
   breakTime: 0
   brokenTime: 10
+  isBreak: 0
   isWork: 0
 --- !u!1 &488467318
 GameObject:
@@ -2211,7 +2229,7 @@ RectTransform:
   - {fileID: 230022410}
   - {fileID: 762043341}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2366,11 +2384,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bb0471ca31b2854284bf708aa0fccf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idel: {fileID: 0}
-  work: {fileID: 0}
-  broken: {fileID: 0}
+  getGold: 5
+  getGoldCoolTime: 1
+  idel: {fileID: 21300000, guid: f2bbc4e686575ee4b87c14da2bfa84d9, type: 2}
+  work: {fileID: 21300000, guid: 2a078b482b871f14cabcec9e1dd1ab2d, type: 3}
+  broken: {fileID: 21300000, guid: 4fc2e6eb8ae0cd94c9ca56771261a379, type: 2}
   breakTime: 0
   brokenTime: 10
+  isBreak: 0
   isWork: 0
 --- !u!1 &635707408
 GameObject:
@@ -2420,11 +2441,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bb0471ca31b2854284bf708aa0fccf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idel: {fileID: 0}
-  work: {fileID: 0}
-  broken: {fileID: 0}
+  getGold: 5
+  getGoldCoolTime: 1
+  idel: {fileID: 21300000, guid: f2bbc4e686575ee4b87c14da2bfa84d9, type: 2}
+  work: {fileID: 21300000, guid: 2a078b482b871f14cabcec9e1dd1ab2d, type: 3}
+  broken: {fileID: 21300000, guid: 4fc2e6eb8ae0cd94c9ca56771261a379, type: 2}
   breakTime: 0
   brokenTime: 10
+  isBreak: 0
   isWork: 0
 --- !u!61 &671839863
 BoxCollider2D:
@@ -2532,7 +2556,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.3254902, g: 0.13725491, b: 0.043137256, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2736,7 +2760,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 733186338}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 201, y: -92.49, z: 0}
+  m_LocalPosition: {x: 8.420002, y: -1.0500026, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3232,11 +3256,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bb0471ca31b2854284bf708aa0fccf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idel: {fileID: 0}
-  work: {fileID: 0}
-  broken: {fileID: 0}
+  getGold: 5
+  getGoldCoolTime: 1
+  idel: {fileID: 21300000, guid: f2bbc4e686575ee4b87c14da2bfa84d9, type: 2}
+  work: {fileID: 21300000, guid: 2a078b482b871f14cabcec9e1dd1ab2d, type: 3}
+  broken: {fileID: 21300000, guid: 4fc2e6eb8ae0cd94c9ca56771261a379, type: 2}
   breakTime: 0
   brokenTime: 10
+  isBreak: 0
   isWork: 0
 --- !u!114 &835650415
 MonoBehaviour:
@@ -3250,11 +3277,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bb0471ca31b2854284bf708aa0fccf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idel: {fileID: 0}
-  work: {fileID: 0}
-  broken: {fileID: 0}
+  getGold: 5
+  getGoldCoolTime: 1
+  idel: {fileID: 21300000, guid: f2bbc4e686575ee4b87c14da2bfa84d9, type: 2}
+  work: {fileID: 21300000, guid: 2a078b482b871f14cabcec9e1dd1ab2d, type: 3}
+  broken: {fileID: 21300000, guid: 4fc2e6eb8ae0cd94c9ca56771261a379, type: 2}
   breakTime: 0
   brokenTime: 10
+  isBreak: 0
   isWork: 0
 --- !u!114 &878514585
 MonoBehaviour:
@@ -3268,11 +3298,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bb0471ca31b2854284bf708aa0fccf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idel: {fileID: 0}
-  work: {fileID: 0}
-  broken: {fileID: 0}
+  getGold: 5
+  getGoldCoolTime: 1
+  idel: {fileID: 21300000, guid: f2bbc4e686575ee4b87c14da2bfa84d9, type: 2}
+  work: {fileID: 21300000, guid: 2a078b482b871f14cabcec9e1dd1ab2d, type: 3}
+  broken: {fileID: 21300000, guid: 4fc2e6eb8ae0cd94c9ca56771261a379, type: 2}
   breakTime: 0
   brokenTime: 10
+  isBreak: 0
   isWork: 0
 --- !u!1 &886505196
 GameObject:
@@ -3385,8 +3418,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 20, y: -15}
-  m_SizeDelta: {x: 242.0734, y: 53.2283}
+  m_AnchoredPosition: {x: 25.6, y: -22.5}
+  m_SizeDelta: {x: 418.6367, y: 92.0519}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &893567422
 MonoBehaviour:
@@ -3401,7 +3434,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.3254902, g: 0.13725491, b: 0.043137256, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3409,8 +3442,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 4beb055f07aaff244873dec698d0363e, type: 3}
-    m_FontSize: 40
+    m_Font: {fileID: 12800000, guid: 800b16295b067c441bd84e01100b8304, type: 3}
+    m_FontSize: 59
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 3
@@ -3421,7 +3454,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 100000
+  m_Text: 50
 --- !u!222 &893567423
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3950,7 +3983,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1060127931}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 201, y: -86.52, z: 0}
+  m_LocalPosition: {x: 8.420002, y: 4.9199986, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4943,11 +4976,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bb0471ca31b2854284bf708aa0fccf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idel: {fileID: 0}
-  work: {fileID: 0}
-  broken: {fileID: 0}
+  getGold: 5
+  getGoldCoolTime: 1
+  idel: {fileID: 21300000, guid: f2bbc4e686575ee4b87c14da2bfa84d9, type: 2}
+  work: {fileID: 21300000, guid: 2a078b482b871f14cabcec9e1dd1ab2d, type: 3}
+  broken: {fileID: 21300000, guid: 4fc2e6eb8ae0cd94c9ca56771261a379, type: 2}
   breakTime: 0
   brokenTime: 10
+  isBreak: 0
   isWork: 0
 --- !u!50 &1252877539
 Rigidbody2D:
@@ -5047,7 +5083,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0.3254902, g: 0.13725491, b: 0.043137256, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5371,7 +5407,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1380900391}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 189.66, y: -92.49, z: 0}
+  m_LocalPosition: {x: -2.9199939, y: -1.0500026, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5442,11 +5478,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bb0471ca31b2854284bf708aa0fccf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idel: {fileID: 0}
-  work: {fileID: 0}
-  broken: {fileID: 0}
+  getGold: 5
+  getGoldCoolTime: 1
+  idel: {fileID: 21300000, guid: f2bbc4e686575ee4b87c14da2bfa84d9, type: 2}
+  work: {fileID: 21300000, guid: 2a078b482b871f14cabcec9e1dd1ab2d, type: 3}
+  broken: {fileID: 21300000, guid: 4fc2e6eb8ae0cd94c9ca56771261a379, type: 2}
   breakTime: 0
   brokenTime: 10
+  isBreak: 0
   isWork: 0
 --- !u!1 &1480401343
 GameObject:
@@ -5690,7 +5729,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1480746067}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 181.66, y: -86.52, z: 0}
+  m_LocalPosition: {x: -10.919994, y: 4.9199986, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5967,7 +6006,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1486526397}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 192.48001, y: -91.43999, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6169,11 +6208,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bb0471ca31b2854284bf708aa0fccf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idel: {fileID: 0}
-  work: {fileID: 0}
-  broken: {fileID: 0}
+  getGold: 5
+  getGoldCoolTime: 1
+  idel: {fileID: 21300000, guid: f2bbc4e686575ee4b87c14da2bfa84d9, type: 2}
+  work: {fileID: 21300000, guid: 2a078b482b871f14cabcec9e1dd1ab2d, type: 3}
+  broken: {fileID: 21300000, guid: 4fc2e6eb8ae0cd94c9ca56771261a379, type: 2}
   breakTime: 0
   brokenTime: 10
+  isBreak: 0
   isWork: 0
 --- !u!1 &1516517222
 GameObject:
@@ -6328,11 +6370,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bb0471ca31b2854284bf708aa0fccf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idel: {fileID: 0}
-  work: {fileID: 0}
-  broken: {fileID: 0}
+  getGold: 5
+  getGoldCoolTime: 1
+  idel: {fileID: 21300000, guid: f2bbc4e686575ee4b87c14da2bfa84d9, type: 2}
+  work: {fileID: 21300000, guid: 2a078b482b871f14cabcec9e1dd1ab2d, type: 3}
+  broken: {fileID: 21300000, guid: 4fc2e6eb8ae0cd94c9ca56771261a379, type: 2}
   breakTime: 0
   brokenTime: 10
+  isBreak: 0
   isWork: 0
 --- !u!1 &1527256514
 GameObject:
@@ -6500,7 +6545,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1535662637}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 185.66, y: -92.49, z: 0}
+  m_LocalPosition: {x: -6.919994, y: -1.0500026, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6712,11 +6757,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bb0471ca31b2854284bf708aa0fccf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idel: {fileID: 0}
-  work: {fileID: 0}
-  broken: {fileID: 0}
+  getGold: 5
+  getGoldCoolTime: 1
+  idel: {fileID: 21300000, guid: f2bbc4e686575ee4b87c14da2bfa84d9, type: 2}
+  work: {fileID: 21300000, guid: 2a078b482b871f14cabcec9e1dd1ab2d, type: 3}
+  broken: {fileID: 21300000, guid: 4fc2e6eb8ae0cd94c9ca56771261a379, type: 2}
   breakTime: 0
   brokenTime: 10
+  isBreak: 0
   isWork: 0
 --- !u!1 &1679675640
 GameObject:
@@ -6743,7 +6791,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1679675640}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 205, y: -86.52, z: 0}
+  m_LocalPosition: {x: 12.420002, y: 4.9199986, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6907,7 +6955,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1701507545}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 185.66, y: -86.52, z: 0}
+  m_LocalPosition: {x: -6.919994, y: 4.9199986, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7108,7 +7156,7 @@ RectTransform:
   - {fileID: 940792981}
   - {fileID: 1683222810}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -7234,7 +7282,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1824858855}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 181.66, y: -92.49, z: 0}
+  m_LocalPosition: {x: -10.919994, y: -1.0500026, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7434,7 +7482,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1870296798}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 189.66, y: -86.52, z: 0}
+  m_LocalPosition: {x: -2.9199939, y: 4.9199986, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7505,11 +7553,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bb0471ca31b2854284bf708aa0fccf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idel: {fileID: 0}
-  work: {fileID: 0}
-  broken: {fileID: 0}
+  getGold: 5
+  getGoldCoolTime: 1
+  idel: {fileID: 21300000, guid: f2bbc4e686575ee4b87c14da2bfa84d9, type: 2}
+  work: {fileID: 21300000, guid: 2a078b482b871f14cabcec9e1dd1ab2d, type: 3}
+  broken: {fileID: 21300000, guid: 4fc2e6eb8ae0cd94c9ca56771261a379, type: 2}
   breakTime: 0
   brokenTime: 10
+  isBreak: 0
   isWork: 0
 --- !u!1 &1968821812
 GameObject:
@@ -7740,11 +7791,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bb0471ca31b2854284bf708aa0fccf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idel: {fileID: 0}
-  work: {fileID: 0}
-  broken: {fileID: 0}
+  getGold: 5
+  getGoldCoolTime: 1
+  idel: {fileID: 21300000, guid: f2bbc4e686575ee4b87c14da2bfa84d9, type: 2}
+  work: {fileID: 21300000, guid: 2a078b482b871f14cabcec9e1dd1ab2d, type: 3}
+  broken: {fileID: 21300000, guid: 4fc2e6eb8ae0cd94c9ca56771261a379, type: 2}
   breakTime: 0
   brokenTime: 10
+  isBreak: 0
   isWork: 0
 --- !u!1 &1992516628
 GameObject:
@@ -7990,10 +8044,11 @@ MonoBehaviour:
       \uAC00\uC9C4 \uAE08\uC561\uC758 20%\uC5D0 \uD574\uB2F9\uD558\uB294 \uACE8\uB4DC\uB97C
       \uC783\uC5C8\uC2B5\uB2C8\uB2E4."
   currentCoolTime: 0
-  maxCoolTime: 2
+  maxCoolTime: 20
   eventPanel: {fileID: 624147539186437831, guid: c16b943c07a59d94f99313d3d582d32b, type: 3}
   eventParent: {fileID: 1357806938}
   eventSlider: {fileID: 1067394007}
+  isDragLimit: 0
 --- !u!4 &2051967802
 Transform:
   m_ObjectHideFlags: 0
@@ -8086,25 +8141,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentGold: 0
-  GameTotalGold: {fileID: 0}
   currentTime: 0
-  GameTotalTime: {fileID: 218942989}
-  slTimer: {fileID: 0}
-  EventPanel1: {fileID: 0}
-  EventPanel2: {fileID: 0}
-  EventPanel3: {fileID: 0}
-  EventPanel4: {fileID: 0}
   GameTotalTime2: {fileID: 218942987}
   GameTotalGold2: {fileID: 0}
   GamePlayTimeCountMin: 0
   MoneyMinusTime: 0
   MoneyMinusTime2: 20
   MoneyMinusValue: 100
-  EventTime: 0
-  EventTime2: 45
-  EntityText: {fileID: 682693174}
-  goldText: {fileID: 1263535447}
-  Timer_Text: {fileID: 0}
   computers:
   - {fileID: 0}
   - {fileID: 0}
@@ -8176,7 +8219,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -800, y: 0}
-  m_SizeDelta: {x: 301, y: 147}
+  m_SizeDelta: {x: 255, y: 125}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2077681530
 MonoBehaviour:
@@ -8924,7 +8967,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4769690491904566405}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 201, y: -98.42, z: 0}
+  m_LocalPosition: {x: 8.420002, y: -6.980003, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8939,7 +8982,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4769690492351385559}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 181.66, y: -98.42, z: 0}
+  m_LocalPosition: {x: -10.92, y: -6.98, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8954,7 +8997,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4769690492384646537}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 197, y: -98.4, z: 0}
+  m_LocalPosition: {x: 4.4200025, y: -6.960006, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8969,7 +9012,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4769690491122070543}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 205, y: -98.42, z: 0}
+  m_LocalPosition: {x: 12.420002, y: -6.980003, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8984,7 +9027,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4769690491394118822}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 185.66, y: -98.42, z: 0}
+  m_LocalPosition: {x: -6.919994, y: -6.980003, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8999,7 +9042,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4769690491445656530}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 189.66, y: -98.42, z: 0}
+  m_LocalPosition: {x: -2.9199939, y: -6.980003, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

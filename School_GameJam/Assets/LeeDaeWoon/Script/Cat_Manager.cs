@@ -22,7 +22,6 @@ public class Cat_Manager : MonoBehaviour
 
     [SerializeField] GameObject summonCat;
     [SerializeField] GameObject[] catType = new GameObject[3];
-    //public List<GameObject> Cat_Num = new List<GameObject>();
 
     [Header("À§Ä¡")]
     public GameObject catArea;
@@ -146,7 +145,8 @@ public class Cat_Manager : MonoBehaviour
                     {
                         areaRandom = Random.Range(0, area.area01.Count);
 
-                        Instantiate(catType[catRandom], area.area01[areaRandom].transform.position, Quaternion.identity, summonCat.transform);
+                        GameObject cat = Instantiate(catType[catRandom], area.area01[areaRandom].transform.position, Quaternion.identity, summonCat.transform);
+
                         catArea = area.area01[areaRandom];
                         summonList.Add(catArea);
                         area.area01.RemoveAt(areaRandom);
@@ -155,7 +155,7 @@ public class Cat_Manager : MonoBehaviour
 
                 case 1:
                     {
-                        areaRandom = Random.Range(0,area.area02.Count);
+                        areaRandom = Random.Range(0, area.area02.Count);
 
                         Instantiate(catType[catRandom], area.area02[areaRandom].transform.position, Quaternion.identity, GameObject.Find("CatCanvas").transform);
                         catArea = area.area02[areaRandom];

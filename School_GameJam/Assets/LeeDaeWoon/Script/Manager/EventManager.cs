@@ -53,7 +53,7 @@ public class EventManager : MonoBehaviour
 
     IEnumerator EventCard()
     {
-        eventSlider.fillAmount = Mathf.Lerp(eventSlider.fillAmount, currentCoolTime / maxCoolTime, Time.deltaTime * 10);
+        eventSlider.fillAmount = currentCoolTime / maxCoolTime;
 
         if (!isEventCool)
         {
@@ -83,7 +83,7 @@ public class EventManager : MonoBehaviour
             eventType.transform.DOLocalMoveY(0, 0.5f).SetEase(Ease.OutBack);
 
             yield return new WaitForSeconds(1.5f);
-            eventType.transform.DOLocalMoveX(-1500, 1).SetEase(Ease.Linear).OnComplete(() =>
+            eventType.transform.DOLocalMoveX(-1500, 1).SetEase(Ease.InBack).OnComplete(() =>
             {
                 Destroy(eventType);
             });
@@ -125,8 +125,8 @@ public class EventManager : MonoBehaviour
     {
         while (currentCoolTime >= 0)
         {
-            currentCoolTime -= 1;
-            yield return new WaitForSeconds(1);
+            currentCoolTime -= 0.01f;
+            yield return new WaitForSeconds(0.01f);
         }
     }
 }

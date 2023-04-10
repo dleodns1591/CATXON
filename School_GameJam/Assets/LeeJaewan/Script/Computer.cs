@@ -7,12 +7,11 @@ public class Computer : MonoBehaviour
 {
     Image computer;
 
-    // 골드를 몇 초마다 지급하는지 초를 정해주는 변수입니다.
-    public static float GoldGetTime = 1;
+    [Header("얻는 골드")]
+    [SerializeField] int getGold = 5;
+    [SerializeField] float getGoldCoolTime = 1;
 
-    // 골드를 얼마나 얻을지에 대한 변수입니다.
-    public static float GoldValue = 5;
-
+    [Header("컴퓨터 상태")]
     [SerializeField] Sprite idel;
     [SerializeField] Sprite work;
     [SerializeField] Sprite broken;
@@ -21,16 +20,10 @@ public class Computer : MonoBehaviour
     [SerializeField] float breakTime = 0;
     [SerializeField] float brokenTime = 10;
 
-    private float moneyGetTime;
-
-    // 고양이가 앉아 있냐 를 뜻하는 변수입니다.
-    bool isSit = false;
-
-    // 컴퓨터가 부셔졌나 를 뜻하는 변수
-    public bool isBreak = false;
-
-    // 고양이가 일을 하고 있는가를 뜻하는 변수입니다
-    public bool isWork = false;
+    float moneyGetTime;
+    bool isSit = false; // 고양이가 앉아 있는지 확인
+    public bool isBreak = false; // 컴퓨터가 부셔졌는지 확인
+    public bool isWork = false; // 고양이가 일을 하고 있는지 확인
 
 
     void Start()
@@ -46,6 +39,7 @@ public class Computer : MonoBehaviour
 
     void ComputerSetting()
     {
+        // 기본
         if (!isSit)
         {
             isBreak = false;
@@ -55,6 +49,7 @@ public class Computer : MonoBehaviour
             computer.sprite = idel;
         }
 
+        // 망가졌을 시
         if (isBreak)
         {
             isWork = false;
@@ -63,6 +58,7 @@ public class Computer : MonoBehaviour
             computer.sprite = broken;
         }
 
+        // 일하고 있을 시
         else if (!isBreak && isSit)
         {
             isWork = true;
@@ -78,10 +74,10 @@ public class Computer : MonoBehaviour
 
             if (!UIManager.instance.isGameOver)
             {
-                if (moneyGetTime >= GoldGetTime)
+                if (moneyGetTime >= getGoldCoolTime)
                 {
-                    moneyGetTime -= GoldGetTime;
-                    GameManager.instance.currentGold += (int)GoldValue;
+                    moneyGetTime -= getGoldCoolTime;
+                    GameManager.instance.currentGold += getGold;
                     //GameManager.GameTotalGoldValue+= GoldValue;
                 }
             }

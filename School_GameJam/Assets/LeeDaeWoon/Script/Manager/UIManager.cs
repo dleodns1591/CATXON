@@ -65,7 +65,7 @@ public class UIManager : MonoBehaviour
     {
         employmentGoldText.text = Cat_Manager.instance.employmentGold.ToString();
         goldText.text = string.Format("{0:#,0}$", GameManager.instance.currentGold);
-        catCountText.text = Cat_Manager.instance.summonList.Count + "마리";
+        catCountText.text = string.Format("{0:#,0}마리", Cat_Manager.instance.summonList.Count);
     }
 
     void Timer()
