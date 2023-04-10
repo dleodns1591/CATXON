@@ -5,19 +5,18 @@ using UnityEngine.EventSystems;
 
 public class CatDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
-    public enum EInformation
+    public enum EType
     {
         GrayCat,
         WhiteCat,
         OrnageCat,
     }
-    public EInformation eInformation;
+    public EType eType;
+
+    [SerializeField] GameObject targetCat;
+    [SerializeField] GameObject currentArea;
 
     int catStar = 0;
-    bool isDrag = false;
-    bool isRecycle = false;
-
-    public GameObject Area_obj;
 
     public int _CatStar
     {
@@ -30,14 +29,12 @@ public class CatDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragH
         }
     }
 
-    [SerializeField] GameObject save;
-
-    public static Vector2 currentPos;
-    GameObject catArea;
+    bool isDrag = false;
+    bool isRecycle = false;
 
     void Start()
     {
-        catArea = Cat_Manager.instance.catArea;
+        currentArea = Cat_Manager.instance.catArea;
     }
 
     void Update()
@@ -56,20 +53,20 @@ public class CatDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragH
     public void OnBeginDrag(PointerEventData eventData)
     {
         if (!EventManager.instance.isDragLimit)
-            currentPos = transform.position;
+            currentArea.transform.position = transform.position;
     }
 
     // 드래그 종료 시 한 번 호출한다.
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (save != null && !EventManager.instance.isDragLimit)
+        if (targetCat != null && !EventManager.instance.isDragLimit)
         {
             // 같은 등급과 종류를 합쳐 등급을 한 단계 올려준다.
-            if (save.GetComponent<CatDrag>().eInformation == eInformation && _CatStar == save.GetComponent<CatDrag>()._CatStar)
+            if (targetCat.GetComponent<CatDrag>().eType == eType && _CatStar == targetCat.GetComponent<CatDrag>()._CatStar)
             {
                 for (int i = 0; i < Cat_Manager.instance.summonList.Count; i++)
                 {
-                    if (catArea == Cat_Manager.instance.summonList[i])
+                    if (currentArea == Cat_Manager.instance.summonList[i])
                     {
                         switch (Cat_Manager.instance.summonList[i].GetComponent<Area>().floor)
                         {
@@ -88,29 +85,30 @@ public class CatDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragH
                         Cat_Manager.instance.summonList.RemoveAt(i);
                     }
                 }
-                save.GetComponent<CatDrag>()._CatStar++;
+                targetCat.GetComponent<CatDrag>()._CatStar++;
                 Destroy(gameObject);
             }
 
             // 현재 위치에 고양이가 배치되었을 경우 교체할 고양이와 드래그를 할 고양이의 위치를 서로 교체한다.
-            GameObject Save_Area = catArea;
+            GameObject curArea = currentArea;
 
-            transform.position = save.transform.position;
-            catArea = save.GetComponent<CatDrag>().catArea;
+            transform.position = targetCat.transform.position;
+            currentArea = targetCat.GetComponent<CatDrag>().currentArea;
 
-            save.transform.position = currentPos;
-            save.GetComponent<CatDrag>().catArea = Save_Area;
+            targetCat.transform.position = curArea.transform.position;
+            targetCat.GetComponent<CatDrag>().currentArea = curArea;
         }
 
         // 컴퓨터 위치가 아니거나 해금이 안됬을 경우
         else
-            transform.position = currentPos;
+            transform.position = currentArea.transform.position;
+
 
         if (isRecycle)
         {
             for (int i = 0; i < Cat_Manager.instance.summonList.Count; i++)
             {
-                if (catArea == Cat_Manager.instance.summonList[i])
+                if (currentArea == Cat_Manager.instance.summonList[i])
                 {
                     switch (Cat_Manager.instance.summonList[i].GetComponent<Area>().floor)
                     {
@@ -135,7 +133,7 @@ public class CatDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragH
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Cat"))
-            save = collision.gameObject;
+            targetCat = collision.gameObject;
 
         if (collision.CompareTag("Recycle_Bin"))
             isRecycle = true;
@@ -144,7 +142,7 @@ public class CatDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragH
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Cat"))
-            save = null;
+            targetCat = null;
 
         if (collision.CompareTag("Recycle_Bin"))
             isRecycle = false;
