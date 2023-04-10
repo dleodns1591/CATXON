@@ -65,7 +65,7 @@ public class UIManager : MonoBehaviour
     {
         employmentGoldText.text = Cat_Manager.instance.employmentGold.ToString();
         goldText.text = GameManager.instance.currentGold + "$";
-        catCountText.text = Cat_Manager.instance.D_Area.Count + "마리";
+        catCountText.text = Cat_Manager.instance.summonList.Count + "마리";
     }
 
     void Timer()
@@ -89,8 +89,6 @@ public class UIManager : MonoBehaviour
             eventSlider.fillAmount = 1;
             currentCoolTime = maxCoolTime;
             StartCoroutine(EventCoolTime());
-
-
         }
 
         if (currentCoolTime <= 0)

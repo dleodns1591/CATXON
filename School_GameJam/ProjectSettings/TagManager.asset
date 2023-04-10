@@ -51,6 +51,9 @@ TagManager:
   - name: BackGround
     uniqueID: 66618235
     locked: 0
+  - name: Cat
+    uniqueID: 1806431217
+    locked: 0
   - name: Chair
     uniqueID: 338637487
     locked: 0

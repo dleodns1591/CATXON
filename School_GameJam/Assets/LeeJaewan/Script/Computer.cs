@@ -85,7 +85,7 @@ public class Computer : MonoBehaviour
         if (collision.CompareTag("Floor2")) 
         {
             // 2층의 불이 켜져있는지 확인
-            if (Cat_Manager.instance.BuyFloor_Idx == 1)
+            if (Cat_Manager.instance.buyFloorIndex == 1)
             {
                 // 불이 꺼져있다면 고양이가 있을지라도 일을 안 함
                 IsWork = false;
@@ -107,7 +107,7 @@ public class Computer : MonoBehaviour
     {
         if (IsSit == true && IsBreak == false && IsWork == true)
         {
-            Debug.Log(IsBreak);
+            //Debug.Log(IsBreak);
             BrokenTimeCount();
             computer.sprite = WorkComputer;
             if (!UIManager.instance.isGameOver)

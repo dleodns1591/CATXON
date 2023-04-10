@@ -8,7 +8,7 @@ public class Event
     public Sprite icon;
     public string name;
 
-    [Multiline(3)]
+    [TextArea(7,3)]
     public string exPlanation;
 }
 
