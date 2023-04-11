@@ -95,17 +95,22 @@ public class Computer : MonoBehaviour
     {
         if (collision.CompareTag("Cat"))
         {
+            var cat = collision.GetComponent<CatDrag>();
+
             if (catSit == null)
                 catSit = collision.gameObject;
 
-            // 현재 컴퓨터에 고양이가 앉아 있다면
-            if (catSit.GetComponent<CatDrag>().isSit)
-                isWork = true;
-
-            else
+            if (currentArea.gameObject == cat.currentArea)
             {
-                isWork = false;
-                isBreak = false;
+                // 현재 컴퓨터에 고양이가 앉아 있다면
+                if (catSit.GetComponent<CatDrag>().isSit)
+                    isWork = true;
+
+                else
+                {
+                    isWork = false;
+                    isBreak = false;
+                }
             }
         }
     }
@@ -115,7 +120,8 @@ public class Computer : MonoBehaviour
         if (collision.CompareTag("Cat"))
         {
             var cat = collision.GetComponent<CatDrag>();
-            if (!cat.isDrag && !cat.isSit)
+
+            if (currentArea.gameObject == cat.currentArea)
             {
                 isWork = false;
                 isBreak = false;
