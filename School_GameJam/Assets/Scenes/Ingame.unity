@@ -482,7 +482,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baff5d0e8613f954fa2eb9371725915c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  area_Name: 5
+  eArea: 0
   Area_Obj: {fileID: 0}
   floor: 0
 --- !u!114 &165671386
@@ -749,7 +749,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baff5d0e8613f954fa2eb9371725915c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  area_Name: 3
+  eArea: 0
   Area_Obj: {fileID: 0}
   floor: 0
 --- !u!114 &200000602
@@ -1167,7 +1167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baff5d0e8613f954fa2eb9371725915c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  area_Name: 0
+  eArea: 0
   Area_Obj: {fileID: 0}
   floor: 0
 --- !u!114 &292459871
@@ -2327,21 +2327,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   area:
-    area01:
+  - areaList:
     - {fileID: 292459866}
     - {fileID: 1032248241}
     - {fileID: 1176636180}
     - {fileID: 1098378477}
     - {fileID: 1504623958}
     - {fileID: 1516517222}
-    area02:
+  - areaList:
     - {fileID: 1480500489}
     - {fileID: 1124277934}
     - {fileID: 1664104463}
     - {fileID: 1973774665}
     - {fileID: 1527256514}
     - {fileID: 1121737198}
-    area03:
+  - areaList:
     - {fileID: 1129992742}
     - {fileID: 777281596}
     - {fileID: 1483961278}
@@ -2356,7 +2356,7 @@ MonoBehaviour:
   - {fileID: 4075046122217625692, guid: 241993160eca65f4c87b0caadc8559ce, type: 3}
   catArea: {fileID: 0}
   employmentGold: 0
-  buyFloorIndex: 0
+  floorIndex: 0
 --- !u!4 &584873988
 Transform:
   m_ObjectHideFlags: 0
@@ -3127,7 +3127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baff5d0e8613f954fa2eb9371725915c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  area_Name: 1
+  eArea: 0
   Area_Obj: {fileID: 0}
   floor: 0
 --- !u!114 &777281601
@@ -3837,7 +3837,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baff5d0e8613f954fa2eb9371725915c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  area_Name: 1
+  eArea: 0
   Area_Obj: {fileID: 0}
   floor: 0
 --- !u!114 &1032248246
@@ -4265,7 +4265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baff5d0e8613f954fa2eb9371725915c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  area_Name: 3
+  eArea: 0
   Area_Obj: {fileID: 0}
   floor: 0
 --- !u!114 &1098378482
@@ -4406,7 +4406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baff5d0e8613f954fa2eb9371725915c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  area_Name: 5
+  eArea: 0
   Area_Obj: {fileID: 0}
   floor: 0
 --- !u!114 &1121737203
@@ -4547,7 +4547,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baff5d0e8613f954fa2eb9371725915c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  area_Name: 1
+  eArea: 0
   Area_Obj: {fileID: 0}
   floor: 0
 --- !u!114 &1124277939
@@ -4688,7 +4688,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baff5d0e8613f954fa2eb9371725915c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  area_Name: 0
+  eArea: 0
   Area_Obj: {fileID: 0}
   floor: 0
 --- !u!114 &1129992747
@@ -4829,7 +4829,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baff5d0e8613f954fa2eb9371725915c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  area_Name: 2
+  eArea: 0
   Area_Obj: {fileID: 0}
   floor: 0
 --- !u!114 &1176636185
@@ -5663,7 +5663,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baff5d0e8613f954fa2eb9371725915c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  area_Name: 0
+  eArea: 0
   Area_Obj: {fileID: 0}
   floor: 0
 --- !u!114 &1480500494
@@ -5888,7 +5888,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baff5d0e8613f954fa2eb9371725915c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  area_Name: 2
+  eArea: 0
   Area_Obj: {fileID: 0}
   floor: 0
 --- !u!114 &1483961283
@@ -6155,7 +6155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baff5d0e8613f954fa2eb9371725915c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  area_Name: 4
+  eArea: 0
   Area_Obj: {fileID: 0}
   floor: 0
 --- !u!114 &1504623963
@@ -6317,7 +6317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baff5d0e8613f954fa2eb9371725915c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  area_Name: 5
+  eArea: 0
   Area_Obj: {fileID: 0}
   floor: 0
 --- !u!114 &1516517227
@@ -6479,7 +6479,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baff5d0e8613f954fa2eb9371725915c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  area_Name: 4
+  eArea: 0
   Area_Obj: {fileID: 0}
   floor: 0
 --- !u!114 &1527256519
@@ -6704,7 +6704,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baff5d0e8613f954fa2eb9371725915c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  area_Name: 2
+  eArea: 0
   Area_Obj: {fileID: 0}
   floor: 0
 --- !u!114 &1664104468
@@ -7738,7 +7738,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baff5d0e8613f954fa2eb9371725915c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  area_Name: 3
+  eArea: 0
   Area_Obj: {fileID: 0}
   floor: 0
 --- !u!114 &1973774670
@@ -7900,7 +7900,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baff5d0e8613f954fa2eb9371725915c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  area_Name: 4
+  eArea: 0
   Area_Obj: {fileID: 0}
   floor: 0
 --- !u!114 &1992516633
@@ -8142,9 +8142,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentGold: 0
   currentTime: 0
-  GameTotalTime2: {fileID: 218942987}
-  GameTotalGold2: {fileID: 0}
-  GamePlayTimeCountMin: 0
   MoneyMinusTime: 0
   MoneyMinusTime2: 20
   MoneyMinusValue: 100

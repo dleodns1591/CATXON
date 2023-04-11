@@ -6,9 +6,7 @@ using UnityEngine.UI;
 [System.Serializable]
 public class Floor
 {
-    public List<GameObject> area01 = new List<GameObject>();
-    public List<GameObject> area02 = new List<GameObject>();
-    public List<GameObject> area03 = new List<GameObject>();
+    public List<GameObject> areaList = new List<GameObject>();
 }
 
 public class Cat_Manager : MonoBehaviour
@@ -17,7 +15,7 @@ public class Cat_Manager : MonoBehaviour
     void Awake() => instance = this;
 
     [Header("고양이 소환")]
-    public Floor area = new Floor();
+    public Floor[] area = new Floor[3];
     public List<GameObject> summonList = new List<GameObject>();
 
     [SerializeField] GameObject summonCat;
@@ -28,7 +26,7 @@ public class Cat_Manager : MonoBehaviour
     int areaRandom = 0;
 
     public int employmentGold;
-    public int buyFloorIndex = 0;
+    public int floorIndex = 0;
 
     void Start()
     {
@@ -104,79 +102,31 @@ public class Cat_Manager : MonoBehaviour
 
     public void CatSummon()
     {
-        if (GameManager.instance.currentGold >= employmentGold && summonList.Count < 6 * (buyFloorIndex + 1))
+        // 해금 된 층의 계수에 따라 소환할 고양이 제한이 달라진다.
+        if (GameManager.instance.currentGold >= employmentGold && summonList.Count < 6 * (floorIndex + 1))
         {
             GameManager.instance.currentGold -= employmentGold;
 
-            bool cheak = true;
-            int whileCount = 0;
-            int randomFloor = 0;
-
-            while (cheak)
-            {
-                whileCount++;
-                randomFloor = Random.Range(0, buyFloorIndex + 1);
-                switch (randomFloor)
-                {
-                    case 0:
-                        if (area.area01.Count != 0)
-                            cheak = false;
-                        break;
-
-                    case 1:
-                        if (area.area02.Count != 0)
-                            cheak = false;
-                        break;
-
-                    case 2:
-                        if (area.area03.Count != 0)
-                            cheak = false;
-                        break;
-                }
-
-                if (whileCount > 50)
-                    break;
-            }
-
             int catRandom = Random.Range(0, catType.Length);
-            switch (randomFloor)
-            {
-                case 0:
-                    {
-                        areaRandom = Random.Range(0, area.area01.Count);
+            int randomFloor = Random.Range(0, floorIndex + 1);
 
-                        GameObject cat = Instantiate(catType[catRandom], area.area01[areaRandom].transform.position, Quaternion.identity, summonCat.transform);
+            //while (cheak)
+            //{
+            //    whileCount++;
+            //    randomFloor = Random.Range(0, floorIndex + 1);
+            //    if (area[randomFloor].areaList.Count != 0)
+            //        cheak = true;
+                
+            //    if (whileCount > 50)
+            //        break;
+            //}
 
-                        catArea = area.area01[areaRandom];
-                        summonList.Add(catArea);
-                        area.area01.RemoveAt(areaRandom);
-                        break;
-                    }
+            areaRandom = Random.Range(0, area[randomFloor].areaList.Count);
 
-                case 1:
-                    {
-                        areaRandom = Random.Range(0, area.area02.Count);
-
-                        Instantiate(catType[catRandom], area.area02[areaRandom].transform.position, Quaternion.identity, GameObject.Find("CatCanvas").transform);
-                        catArea = area.area02[areaRandom];
-                        summonList.Add(catArea);
-                        area.area02.RemoveAt(areaRandom);
-                        break;
-                    }
-
-                case 2:
-                    {
-                        areaRandom = Random.Range(0, area.area03.Count);
-                        Instantiate(catType[catRandom], area.area03[areaRandom].transform.position, Quaternion.identity, GameObject.Find("CatCanvas").transform);
-                        catArea = area.area03[areaRandom];
-                        summonList.Add(catArea);
-                        area.area03.RemoveAt(areaRandom);
-                        break;
-                    }
-
-                default:
-                    break;
-            }
+            Instantiate(catType[catRandom], area[randomFloor].areaList[areaRandom].transform.position, Quaternion.identity, summonCat.transform);
+            catArea = area[randomFloor].areaList[areaRandom];
+            summonList.Add(catArea);
+            area[randomFloor].areaList.RemoveAt(areaRandom);
         }
     }
 }
