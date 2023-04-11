@@ -108,8 +108,10 @@ public class UIManager : MonoBehaviour
             {
                 GameManager.instance.currentGold -= 800;
 
-                limit800Btn.gameObject.SetActive(false);
+                Cat_Manager.instance.floorIndex++;
+
                 floor2.SetActive(true);
+                limit800Btn.gameObject.SetActive(false);
             }
         });
 
@@ -120,9 +122,11 @@ public class UIManager : MonoBehaviour
             {
                 GameManager.instance.currentGold -= 3000;
 
-                limit3000Btn.gameObject.SetActive(false);
+                Cat_Manager.instance.floorIndex++;
+
                 floor3.SetActive(true);
                 roof.SetActive(true);
+                limit3000Btn.gameObject.SetActive(false);
             }
         });
     }

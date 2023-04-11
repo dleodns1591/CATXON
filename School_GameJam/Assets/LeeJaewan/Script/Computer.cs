@@ -119,6 +119,7 @@ public class Computer : MonoBehaviour
             {
                 isWork = false;
                 isBreak = false;
+                computer.sprite = idel;
             }
         }
     }

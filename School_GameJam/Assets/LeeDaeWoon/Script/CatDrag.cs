@@ -150,24 +150,26 @@ public class CatDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragH
             {
                 int floor = Cat_Manager.instance.summonList[i].GetComponent<Area>().floor;
 
-                // areaList에 summonList[i]를 넣어준다,
-                Cat_Manager.instance.area[floor].areaList.Add(Cat_Manager.instance.summonList[i]);
-                currentArea = computerArea.currentArea.gameObject;
-                Cat_Manager.instance.summonList.RemoveAt(i);
-
-
-                for (int p = 0; p < 3; p++)
+                if (floor >= Cat_Manager.instance.floorIndex)
                 {
-                    for (int c = 0; c < 6; c++)
+                    // areaList에 summonList[i]를 넣어준다,
+                    Cat_Manager.instance.area[floor].areaList.Add(Cat_Manager.instance.summonList[i]);
+                    currentArea = computerArea.currentArea.gameObject;
+                    Cat_Manager.instance.summonList.RemoveAt(i);
+
+                    for (int p = 0; p < 3; p++)
                     {
-                        Debug.Log(Cat_Manager.instance.area[p].areaList[c]);
-                        if (currentArea == Cat_Manager.instance.area[p].areaList[c])
+                        for (int c = 0; c < 6; c++)
                         {
-                            Cat_Manager.instance.summonList.Add(Cat_Manager.instance.area[p].areaList[c]);
-                            break;
+                            if (currentArea == Cat_Manager.instance.area[p].areaList[c])
+                            {
+                                Cat_Manager.instance.summonList.Add(Cat_Manager.instance.area[p].areaList[c]);
+                                break;
+                            }
                         }
                     }
                 }
+
             }
         }
 

@@ -2355,7 +2355,7 @@ MonoBehaviour:
   - {fileID: 2400236360656676583, guid: eedc5e316ceff2944a6a66233a9d23cd, type: 3}
   - {fileID: 4075046122217625692, guid: 241993160eca65f4c87b0caadc8559ce, type: 3}
   employmentGold: 0
-  floorIndex: 1
+  floorIndex: 0
   catArea: {fileID: 0}
 --- !u!4 &584873988
 Transform:
