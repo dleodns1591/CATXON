@@ -8,9 +8,9 @@ TagManager:
   - Floor3
   - Floor2
   - Computer
-  - Recycle_Bin
   - Area
   - Chier
+  - Trash
   layers:
   - Default
   - TransparentFX

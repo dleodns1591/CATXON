@@ -31,7 +31,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] Text overTime;
     [SerializeField] Button rePlayBtn;
     [SerializeField] Button mainBtn;
-    public bool isGameOver = false;
 
     [Header("층")]
     [SerializeField] GameObject floor2;
@@ -49,7 +48,6 @@ public class UIManager : MonoBehaviour
     {
         Timer();
         UIText();
-        GameOver();
     }
 
     void UIText()
@@ -70,14 +68,12 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    void GameOver()
+    public void GameOver()
     {
         // 현재 골드가 0이하일 경우 게임오버가 된다.
         if (GameManager.instance.currentGold <= 0)
         {
             Time.timeScale = 0;
-            isGameOver = true;
-
             gameoverWindow.SetActive(true);
 
             overGold.text = GameManager.instance.currentGold + "$";

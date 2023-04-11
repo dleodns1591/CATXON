@@ -13,9 +13,10 @@ public class CatDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragH
     }
     public EType eType;
 
+    [Header("고양이 설정")]
     [SerializeField] GameObject targetCat;
-    [SerializeField] GameObject currentArea;
-
+    public GameObject currentArea;
+    public bool isSit = false;
     public bool isDrag = false;
     int catStar = 0;
 
@@ -30,8 +31,16 @@ public class CatDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragH
         }
     }
 
+    [Header("쓰레기통")]
+    bool isTrash = false;
+
+    [Header("컴퓨터")]
+    GameObject computer;
+    bool isComputer = false;
+
     void Start()
     {
+        isSit = true;
         currentArea = Cat_Manager.instance.catArea;
     }
 
@@ -52,7 +61,7 @@ public class CatDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragH
     {
         if (!EventManager.instance.isDragLimit)
         {
-            isDrag = true;
+            isSit = false;
             currentArea.transform.position = transform.position;
         }
     }
@@ -60,7 +69,9 @@ public class CatDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragH
     // 드래그 종료 시 한 번 호출한다.
     public void OnEndDrag(PointerEventData eventData)
     {
-        isDrag = false;
+        isSit = true;
+
+        Trash();
         CatAdd();
     }
 
@@ -100,19 +111,94 @@ public class CatDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragH
 
         // 컴퓨터 위치가 아니거나 해금이 안됬을 경우
         else
-            transform.position = currentArea.transform.position;
+        {
+            if (!isComputer)
+                transform.position = currentArea.transform.position;
+            else
+                ComPuter();
+        }
     }
 
+    void Trash()
+    {
+        if (isTrash)
+        {
+            for (int i = 0; i < Cat_Manager.instance.summonList.Count; i++)
+            {
+                if (currentArea == Cat_Manager.instance.summonList[i])
+                {
+                    isSit = false;
+
+                    int floor = Cat_Manager.instance.summonList[i].GetComponent<Area>().floor;
+                    Cat_Manager.instance.area[floor].areaList.Add(Cat_Manager.instance.summonList[i]);
+                    Destroy(gameObject);
+                    Cat_Manager.instance.summonList.RemoveAt(i);
+                }
+            }
+        }
+    }
+
+    void ComPuter()
+    {
+        var computerArea = computer.GetComponent<Computer>();
+
+        // 소환된 고양이 수 만큼 for문을 돌려준다.
+        for (int i = 0; i < Cat_Manager.instance.summonList.Count; i++)
+        {
+            // 만약 현재 고양이와 같다면
+            if (currentArea == Cat_Manager.instance.summonList[i])
+            {
+                int floor = Cat_Manager.instance.summonList[i].GetComponent<Area>().floor;
+
+                // areaList에 summonList[i]를 넣어준다,
+                Cat_Manager.instance.area[floor].areaList.Add(Cat_Manager.instance.summonList[i]);
+                currentArea = computerArea.currentArea.gameObject;
+                Cat_Manager.instance.summonList.RemoveAt(i);
+
+
+                for (int p = 0; p < 3; p++)
+                {
+                    for (int c = 0; c < 6; c++)
+                    {
+                        Debug.Log(Cat_Manager.instance.area[p].areaList[c]);
+                        if (currentArea == Cat_Manager.instance.area[p].areaList[c])
+                        {
+                            Cat_Manager.instance.summonList.Add(Cat_Manager.instance.area[p].areaList[c]);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+        transform.position = currentArea.transform.position;
+        isComputer = false;
+    }
 
     void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Cat"))
             targetCat = collision.gameObject;
+
+        if (collision.CompareTag("Trash"))
+            isTrash = true;
+
+        if (collision.CompareTag("Computer"))
+        {
+            isComputer = true;
+            computer = collision.gameObject;
+        }
     }
 
     void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Cat"))
             targetCat = null;
+
+        if (collision.CompareTag("Computer"))
+        {
+            isComputer = false;
+            isSit = false;
+        }
     }
 }

@@ -8,10 +8,11 @@ public class Computer : MonoBehaviour
     Image computer;
 
     [Header("얻는 골드")]
-    [SerializeField] int getGold = 5;
-    [SerializeField] float getGoldCoolTime = 1;
+    bool isGold = false;
 
     [Header("컴퓨터 상태")]
+    public int comNum = 0;
+    public Area currentArea;
     [SerializeField] Sprite idel;
     [SerializeField] Sprite work;
     [SerializeField] Sprite broken;
@@ -21,147 +22,90 @@ public class Computer : MonoBehaviour
     [SerializeField] float brokenTime = 10;
 
     float moneyGetTime;
-    public bool isSit = false; // 고양이가 앉아 있는지 확인
     public bool isBreak = false; // 컴퓨터가 부셔졌는지 확인
     public bool isWork = false; // 고양이가 일을 하고 있는지 확인
 
+    [Header("고양이 상태")]
+    [SerializeField] GameObject catSit;
 
     void Start()
     {
         computer = GetComponent<Image>();
+        CurrentArea();
     }
 
     void Update()
     {
-        GoldCount();
         ComputerSetting();
+    }
+
+    void CurrentArea()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 6; j++)
+            {
+                var area = Cat_Manager.instance.area[i].areaList[j].GetComponent<Area>();
+
+                if (area.area == comNum)
+                    currentArea = area;
+            }
+        }
     }
 
     void ComputerSetting()
     {
-        // 기본
-        if (!isSit)
+        if (catSit != null && catSit.GetComponent<CatDrag>().isSit)
         {
-            isBreak = false;
+            if (isBreak)
+            {
+                isWork = false;
+                isGold = false;
+                computer.sprite = broken;
+                StopCoroutine("GoldSetting");
+            }
+
+            if (isWork)
+            {
+                isBreak = false;
+                computer.sprite = work;
+                StartCoroutine("GoldSetting");
+            }
+        }
+
+        else
             isWork = false;
-
-            breakTime = 0;
-            computer.sprite = idel;
-        }
-
-        // 망가졌을 시
-        if (isBreak)
-        {
-            isWork = false;
-
-            moneyGetTime = 0;
-            computer.sprite = broken;
-        }
-
-        // 일하고 있을 시
-        else if (!isBreak && isSit)
-        {
-            isWork = true;
-            computer.sprite = work;
-        }
     }
 
-    void GoldCount()
+    IEnumerator GoldSetting()
     {
-        if (isWork)
+        if (!isGold)
         {
-            BrokenTimeCount();
+            isGold = true;
 
-            if (!UIManager.instance.isGameOver)
+            while (true)
             {
-                if (moneyGetTime >= getGoldCoolTime)
-                {
-                    moneyGetTime -= getGoldCoolTime;
-                    GameManager.instance.currentGold += getGold;
-                    //GameManager.GameTotalGoldValue+= GoldValue;
-                }
+                GameManager.instance.currentGold++;
+                yield return new WaitForSeconds(1);
             }
-        }
-
-        void BrokenTimeCount()
-        {
-            StartCoroutine(BreakTimeCountPlus());
-            if (breakTime >= brokenTime)
-            {
-                breakTime -= brokenTime;
-                isBreak = true;
-            }
-        }
-
-        IEnumerator GoldCountPlus()
-        {
-            moneyGetTime++;
-            yield return new WaitForSecondsRealtime(1);
-            StartCoroutine(GoldCountPlus());
-        }
-
-        IEnumerator BreakTimeCountPlus()
-        {
-            breakTime++;
-            yield return new WaitForSecondsRealtime(1);
-            StartCoroutine(BreakTimeCountPlus());
         }
     }
 
     void OnTriggerStay2D(Collider2D collision)
     {
-        //if (collision.CompareTag("Cat"))
-        //{
-        //    isSit = true;
-
-        //    if (isSit)
-        //        isWork = true;
-
-        //    else if (isSit && isBreak)
-        //        isWork = false;
-
-        //    Debug.Log("지금 작동중입니다.");
-        //}
-
-        //// 2층일과 닿고 있을때 
-        //if (collision.CompareTag("Floor2")) 
-        //{
-        //    // 2층의 불이 켜져있는지 확인
-        //    if (Cat_Manager.instance.floorIndex == 1)
-        //    {
-        //        // 불이 꺼져있다면 고양이가 있을지라도 일을 안 함
-        //        isWork = false;
-        //    }
-        //    else 
-        //    {
-        //        isWork = true;
-        //        //Sp.sprite = Sprite[2];
-        //    }
-        //}
-
-
-
         if (collision.CompareTag("Cat"))
         {
-            GameObject cat = collision.gameObject;
+            if (catSit == null)
+                catSit = collision.gameObject;
 
-            if (!cat.GetComponent<CatDrag>().isDrag)
-            {
-                isSit = true;
-
-                if (isSit)
-                {
-                    if (!isBreak)
-                        isWork = true;
-
-                    else
-                        isWork = false;
-                }
-            }
+            // 현재 컴퓨터에 고양이가 앉아 있다면
+            if (catSit.GetComponent<CatDrag>().isSit)
+                isWork = true;
 
             else
             {
-                isSit = false;
+                isWork = false;
+                isBreak = false;
             }
         }
     }
@@ -169,6 +113,13 @@ public class Computer : MonoBehaviour
     void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Cat"))
-            isSit = false;
+        {
+            var cat = collision.GetComponent<CatDrag>();
+            if (!cat.isDrag && !cat.isSit)
+            {
+                isWork = false;
+                isBreak = false;
+            }
+        }
     }
 }

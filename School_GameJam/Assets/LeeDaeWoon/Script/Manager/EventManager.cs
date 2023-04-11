@@ -101,8 +101,11 @@ public class EventManager : MonoBehaviour
             case Event.EEvent.Repair: // ¼ö¸®
                 if (Cat_Manager.instance.summonList.Count != 0)
                 {
-                    for (int i = 0; i < GameManager.instance.computers.Count; i++)
-                        GameManager.instance.computers[i].isBreak = false;
+                    for (int i = 0; i < GameManager.instance.computer.Length; i++)
+                    {
+                        for (int j = 0; j < GameManager.instance.computer[i].computerList.Count; j++)
+                            GameManager.instance.computer[i].computerList[j].isBreak = false;
+                    }
                 }
                 break;
 

@@ -5,6 +5,12 @@ using Unity.UI;
 using TMPro;
 using UnityEngine.UI;
 
+[System.Serializable]
+public class ComputerFloor
+{
+    public List<Computer> computerList = new List<Computer>();
+}
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
@@ -17,11 +23,10 @@ public class GameManager : MonoBehaviour
     [Header("시간")]
     public int currentTime = 0;
 
-    //골드 감소 시간 변수입니다.
-    public float MoneyMinusTime, MoneyMinusTime2 = 5f, MoneyMinusValue = 100;
-    public static float GameTotalGoldValue = 0;
+    [Header("컴퓨터")]
+    public ComputerFloor[] computer = new ComputerFloor[3];
 
-    public List<Computer> computers;
+    bool isDie = false;
 
     void Start()
     {
@@ -30,19 +35,35 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        // 모든 그 컴퓨터가 고장이 났을 때, 게임 오버를 해주는 구문
-        //if (!computers.Exists((Computer x) => !x.IsBreak)) 
-        //    GameOver();
-
-
-        MoneyMinusTime += Time.deltaTime;
-        if (MoneyMinusTime >= MoneyMinusTime2)
-        {
-            MoneyMinusTime -= MoneyMinusTime2;
-            currentGold -= (int)MoneyMinusValue;
-        }
-
+        Die();
         Cheat();
+    }
+
+    void Die()
+    {
+        if (!isDie)
+        {
+            for (int floor = 0; floor < 3; floor++)
+            {
+                for (int area = 0; area < 6; area++)
+                {
+                    if (computer[2].computerList[5].isBreak)
+                    {
+                        isDie = true;
+                        UIManager.instance.GameOver();
+                    }
+                    else
+                        break;
+
+                }
+            }
+
+            if (currentGold <= 0)
+            {
+                isDie = true;
+                UIManager.instance.GameOver();
+            }
+        }
     }
 
     void Cheat()
