@@ -14,9 +14,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] Text goldText;
 
     [Header("시간")]
-    [SerializeField] Text timerText;
     [SerializeField] int min;
     [SerializeField] float sec;
+    [SerializeField] Text timerText;
 
     [Header("고양이")]
     [SerializeField] Text catCountText;
@@ -24,13 +24,6 @@ public class UIManager : MonoBehaviour
     [Header("고양이 고용")]
     [SerializeField] Text employmentGoldText;
     [SerializeField] Button employmentBtn;
-
-    [Header("이벤트")]
-    public int maxCoolTime = 0;
-    public float currentCoolTime = 0;
-    [SerializeField] Image eventCard;
-    [SerializeField] Image eventSlider;
-    bool isEvent = false;
 
     [Header("게임오버")]
     [SerializeField] GameObject gameoverWindow;
@@ -49,8 +42,6 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
-        currentCoolTime = maxCoolTime;
-
         Btns();
     }
 
@@ -120,6 +111,7 @@ public class UIManager : MonoBehaviour
             if(GameManager.instance.currentGold >= 800)
             {
                 GameManager.instance.currentGold -= 800;
+
                 limit800Btn.gameObject.SetActive(false);
                 floor2.SetActive(true);
             }
@@ -131,6 +123,7 @@ public class UIManager : MonoBehaviour
             if (GameManager.instance.currentGold >= 3000)
             {
                 GameManager.instance.currentGold -= 3000;
+
                 limit3000Btn.gameObject.SetActive(false);
                 floor3.SetActive(true);
                 roof.SetActive(true);

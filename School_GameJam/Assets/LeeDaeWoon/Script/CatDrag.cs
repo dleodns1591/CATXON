@@ -13,9 +13,10 @@ public class CatDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragH
     }
     public EType eType;
 
-    GameObject targetCat;
+    [SerializeField] GameObject targetCat;
     [SerializeField] GameObject currentArea;
 
+    public bool isDrag = false;
     int catStar = 0;
 
     public int _CatStar
@@ -28,9 +29,6 @@ public class CatDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragH
             catStar = value;
         }
     }
-
-    bool isDrag = false;
-    bool isRecycle = false;
 
     void Start()
     {
@@ -53,11 +51,20 @@ public class CatDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragH
     public void OnBeginDrag(PointerEventData eventData)
     {
         if (!EventManager.instance.isDragLimit)
+        {
+            isDrag = true;
             currentArea.transform.position = transform.position;
+        }
     }
 
     // 드래그 종료 시 한 번 호출한다.
     public void OnEndDrag(PointerEventData eventData)
+    {
+        isDrag = false;
+        CatAdd();
+    }
+
+    void CatAdd()
     {
         if (targetCat != null && !EventManager.instance.isDragLimit)
         {
@@ -66,37 +73,21 @@ public class CatDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragH
             {
                 for (int i = 0; i < Cat_Manager.instance.summonList.Count; i++)
                 {
-
+                    if (currentArea == Cat_Manager.instance.summonList[i])
+                    {
+                        int floor = Cat_Manager.instance.summonList[i].GetComponent<Area>().floor;
+                        Cat_Manager.instance.area[floor].areaList.Add(Cat_Manager.instance.summonList[i]);
+                        Cat_Manager.instance.summonList.RemoveAt(i);
+                    }
                 }
 
-                //for (int i = 0; i < Cat_Manager.instance.summonList.Count; i++)
-                //{
-                //    if (currentArea == Cat_Manager.instance.summonList[i])
-                //    {
-                //        switch (Cat_Manager.instance.summonList[i].GetComponent<Area>().floor)
-                //        {
-                //            case 0:
-                //                Cat_Manager.instance.area.area01.Add(Cat_Manager.instance.summonList[i]);
-                //                break;
-
-                //            case 1:
-                //                Cat_Manager.instance.area.area02.Add(Cat_Manager.instance.summonList[i]);
-                //                break;
-
-                //            case 2:
-                //                Cat_Manager.instance.area.area03.Add(Cat_Manager.instance.summonList[i]);
-                //                break;
-                //        }
-                //        Cat_Manager.instance.summonList.RemoveAt(i);
-                //    }
-                //}
-                //targetCat.GetComponent<CatDrag>()._CatStar++;
-                //Destroy(gameObject);
+                targetCat.GetComponent<CatDrag>()._CatStar++;
+                Destroy(gameObject);
             }
 
+            // 현재 위치에 고양이가 배치되었을 경우 교체할 고양이와 드래그를 할 고양이의 위치를 서로 교체한다.
             else
             {
-                // 현재 위치에 고양이가 배치되었을 경우 교체할 고양이와 드래그를 할 고양이의 위치를 서로 교체한다.
                 GameObject curArea = currentArea; // 옮길 고양이의 위치를 curArea 오브젝트에 넣어준다.
 
                 transform.position = targetCat.transform.position; // 현재 고양이 위치를 교체할 고양이 위치로 이동한다.
@@ -110,53 +101,18 @@ public class CatDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragH
         // 컴퓨터 위치가 아니거나 해금이 안됬을 경우
         else
             transform.position = currentArea.transform.position;
-
-
-        if (isRecycle)
-        {
-            for (int i = 0; i < Cat_Manager.instance.summonList.Count; i++)
-            {
-                if (currentArea == Cat_Manager.instance.summonList[i])
-                {
-                    //switch (Cat_Manager.instance.summonList[i].GetComponent<Area>().floor)
-                    //{
-                    //    case 0:
-                    //        Cat_Manager.instance.area.area01.Add(Cat_Manager.instance.summonList[i]);
-                    //        break;
-                    //    case 1:
-                    //        Cat_Manager.instance.area.area02.Add(Cat_Manager.instance.summonList[i]);
-                    //        break;
-                    //    case 2:
-                    //        Cat_Manager.instance.area.area03.Add(Cat_Manager.instance.summonList[i]);
-                    //        break;
-                    //}
-                    Cat_Manager.instance.summonList.RemoveAt(i);
-                }
-            }
-            Destroy(gameObject);
-        }
     }
 
 
-    public void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Cat"))
             targetCat = collision.gameObject;
-
-        if (collision.CompareTag("Recycle_Bin"))
-            isRecycle = true;
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Cat"))
             targetCat = null;
-
-        if (collision.CompareTag("Recycle_Bin"))
-            isRecycle = false;
-
-        if (collision.CompareTag("Area"))
-            isDrag = false;
-
     }
 }

@@ -22,11 +22,10 @@ public class Cat_Manager : MonoBehaviour
     [SerializeField] GameObject[] catType = new GameObject[3];
 
     [Header("위치")]
-    public GameObject catArea;
     int areaRandom = 0;
-
     public int employmentGold;
     public int floorIndex = 0;
+    public GameObject catArea;
 
     void Start()
     {
@@ -106,27 +105,26 @@ public class Cat_Manager : MonoBehaviour
         if (GameManager.instance.currentGold >= employmentGold && summonList.Count < 6 * (floorIndex + 1))
         {
             GameManager.instance.currentGold -= employmentGold;
-
-            int catRandom = Random.Range(0, catType.Length);
-            int randomFloor = Random.Range(0, floorIndex + 1);
-
-            //while (cheak)
-            //{
-            //    whileCount++;
-            //    randomFloor = Random.Range(0, floorIndex + 1);
-            //    if (area[randomFloor].areaList.Count != 0)
-            //        cheak = true;
-                
-            //    if (whileCount > 50)
-            //        break;
-            //}
-
-            areaRandom = Random.Range(0, area[randomFloor].areaList.Count);
-
-            Instantiate(catType[catRandom], area[randomFloor].areaList[areaRandom].transform.position, Quaternion.identity, summonCat.transform);
-            catArea = area[randomFloor].areaList[areaRandom];
-            summonList.Add(catArea);
-            area[randomFloor].areaList.RemoveAt(areaRandom);
+            CatRandom();
         }
+    }
+
+    void CatRandom()
+    {
+        int catRandom = Random.Range(0, catType.Length);
+        int randomFloor = Random.Range(0, floorIndex + 1);
+
+        if (area[randomFloor].areaList.Count != 0)
+        {
+            areaRandom = Random.Range(0, area[randomFloor].areaList.Count);
+            Instantiate(catType[catRandom], area[randomFloor].areaList[areaRandom].transform.position, Quaternion.identity, summonCat.transform);
+
+            catArea = area[randomFloor].areaList[areaRandom]; // 지정된 장소를 catArea 변수에 넣어준다.
+            summonList.Add(catArea); // 소환된리스트 안에 catArea를 넣어준다.
+            area[randomFloor].areaList.RemoveAt(areaRandom); // 저장된 장소를 지워준다.
+        }
+
+        else
+            CatRandom();
     }
 }

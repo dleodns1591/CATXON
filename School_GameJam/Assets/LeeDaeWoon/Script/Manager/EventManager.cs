@@ -31,19 +31,19 @@ public class EventManager : MonoBehaviour
     public List<Event> eventSpawn = new List<Event>();
 
     [Header("이벤트")]
-    [SerializeField] float currentCoolTime = 0;
     [SerializeField] int maxCoolTime = 0;
+    [SerializeField] float currentCoolTime = 0;
     [SerializeField] GameObject eventPanel;
     [SerializeField] GameObject eventParent;
     [SerializeField] Image eventSlider;
-    public bool isDragLimit = false;
 
+    public bool isDragLimit = false;
     bool isEvent = false;
     bool isEventCool = false;
 
     void Start()
     {
-
+        currentCoolTime = maxCoolTime;
     }
 
     void Update()
@@ -99,8 +99,11 @@ public class EventManager : MonoBehaviour
                 break;
 
             case Event.EEvent.Repair: // 수리
-                for (int i = 0; i < GameManager.instance.computers.Count; i++)
-                    GameManager.instance.computers[i].isBreak = false;
+                if (Cat_Manager.instance.summonList.Count != 0)
+                {
+                    for (int i = 0; i < GameManager.instance.computers.Count; i++)
+                        GameManager.instance.computers[i].isBreak = false;
+                }
                 break;
 
             case Event.EEvent.WalkOut: // 파업

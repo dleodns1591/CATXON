@@ -21,7 +21,7 @@ public class Computer : MonoBehaviour
     [SerializeField] float brokenTime = 10;
 
     float moneyGetTime;
-    bool isSit = false; // 고양이가 앉아 있는지 확인
+    public bool isSit = false; // 고양이가 앉아 있는지 확인
     public bool isBreak = false; // 컴퓨터가 부셔졌는지 확인
     public bool isWork = false; // 고양이가 일을 하고 있는지 확인
 
@@ -110,32 +110,58 @@ public class Computer : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D collision)
     {
+        //if (collision.CompareTag("Cat"))
+        //{
+        //    isSit = true;
+
+        //    if (isSit)
+        //        isWork = true;
+
+        //    else if (isSit && isBreak)
+        //        isWork = false;
+
+        //    Debug.Log("지금 작동중입니다.");
+        //}
+
+        //// 2층일과 닿고 있을때 
+        //if (collision.CompareTag("Floor2")) 
+        //{
+        //    // 2층의 불이 켜져있는지 확인
+        //    if (Cat_Manager.instance.floorIndex == 1)
+        //    {
+        //        // 불이 꺼져있다면 고양이가 있을지라도 일을 안 함
+        //        isWork = false;
+        //    }
+        //    else 
+        //    {
+        //        isWork = true;
+        //        //Sp.sprite = Sprite[2];
+        //    }
+        //}
+
+
+
         if (collision.CompareTag("Cat"))
         {
-            isSit = true;
+            GameObject cat = collision.gameObject;
 
-            if (isSit)
-                isWork = true;
-
-            else if (isSit && isBreak)
-                isWork = false;
-
-            Debug.Log("지금 작동중입니다.");
-        }
-
-        // 2층일과 닿고 있을때 
-        if (collision.CompareTag("Floor2")) 
-        {
-            // 2층의 불이 켜져있는지 확인
-            if (Cat_Manager.instance.floorIndex == 1)
+            if (!cat.GetComponent<CatDrag>().isDrag)
             {
-                // 불이 꺼져있다면 고양이가 있을지라도 일을 안 함
-                isWork = false;
+                isSit = true;
+
+                if (isSit)
+                {
+                    if (!isBreak)
+                        isWork = true;
+
+                    else
+                        isWork = false;
+                }
             }
-            else 
+
+            else
             {
-                isWork = true;
-                //Sp.sprite = Sprite[2];
+                isSit = false;
             }
         }
     }
@@ -145,6 +171,4 @@ public class Computer : MonoBehaviour
         if (collision.CompareTag("Cat"))
             isSit = false;
     }
-
-    
 }
