@@ -15,7 +15,7 @@ public class Event
         Stray,
     }
 
-    public Sprite icon;
+    public Sprite card;
     public string name;
     public EEvent eEvent;
 
@@ -76,9 +76,9 @@ public class EventManager : MonoBehaviour
             GameObject eventType = Instantiate(eventPanel, summonPos, Quaternion.identity, eventParent.transform);
             eventType.transform.localPosition = summonPos;
 
-            eventType.transform.GetChild(0).GetComponent<Image>().sprite = eventSpawn[randomEvent].icon;
-            eventType.transform.GetChild(1).GetComponent<Text>().text = eventSpawn[randomEvent].name;
-            eventType.transform.GetChild(2).GetComponent<Text>().text = eventSpawn[randomEvent].exPlanation;
+            eventType.GetComponent<Image>().sprite = eventSpawn[randomEvent].card;
+            eventType.transform.GetChild(0).GetComponent<Text>().text = eventSpawn[randomEvent].name;
+            eventType.transform.GetChild(1).GetComponent<Text>().text = eventSpawn[randomEvent].exPlanation;
 
             eventType.transform.DOLocalMoveY(0, 0.5f).SetEase(Ease.OutBack);
 

@@ -8117,25 +8117,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventSpawn:
-  - icon: {fileID: 21300000, guid: 625be81206a1b004599e9c92c2253833, type: 3}
+  - card: {fileID: 21300000, guid: cb398867789accb46bd870deb963c58d, type: 3}
     name: "\uB85C\uB610 \uB2F9\uCCA8!"
     eEvent: 0
     exPlanation: "\uB2F9\uC2E0\uC774 \uAC00\uC9C4 \uAE08\uC561\uC758 50%\uC5D0 \uD574\uB2F9\uD558\uB294
       \uACE8\uB4DC\uB97C \uC5BB\uC2B5\uB2C8\uB2E4."
-  - icon: {fileID: 21300000, guid: 6788bf6f261d9dd41b15e6069fd060c3, type: 3}
+  - card: {fileID: 21300000, guid: 7b25814ad426ebc4ebb4f9496088c074, type: 3}
     name: "\uCEF4\uD4E8\uD130 \uC218\uB9AC"
     eEvent: 1
     exPlanation: "\uD68C\uC0AC\uC5D0 \uCEF4\uD4E8\uD130 \uC218\uB9AC\uACF5\uC774
       \uCC3E\uC544\uC640 \uACE0\uC591\uC774\uB4E4\uC758 \uCEF4\uD4E8\uD130\uB97C
       \uC218\uB9AC\uD574\uC92C\uC2B5\uB2C8\uB2E4.\n\n\uBAA8\uB4E0 \uCE35\uC758 \uACE0\uC7A5\uB09C
       \uCEF4\uD4E8\uD130\uAC00 \uC218\uB9AC\uB429\uB2C8\uB2E4."
-  - icon: {fileID: 21300000, guid: 25f2f96f19a26a848a0645ca18c35c79, type: 3}
+  - card: {fileID: 21300000, guid: a79950ac5f872ce4f95ad9d841ccd02e, type: 3}
     name: "\uD30C\uC5C5"
     eEvent: 2
     exPlanation: "\uACE0\uC591\uC774\uB4E4\uC758 \uACE0\uB41C \uC77C\uC5D0 \uC9C0\uCCD0
       \uD30C\uC5C5\uD588\uC2B5\uB2C8\uB2E4.\n\n10\uCD08\uB3D9\uC548 \uB4DC\uB798\uADF8\uC640
       \uB4DC\uB86D\uC744 \uD560 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4."
-  - icon: {fileID: 21300000, guid: 4bac5b5cde4b5844881954f2ad7b34f1, type: 3}
+  - card: {fileID: 21300000, guid: 26b51b0f6df600e47b0d41063211cce0, type: 3}
     name: "\uB3C4\uB451 \uACE0\uC591\uC774"
     eEvent: 3
     exPlanation: "\uD68C\uC0AC\uC758 \uC790\uAE08\uC744 \uBE7C\uB3CC\uB9AC\uB294
@@ -8144,7 +8144,7 @@ MonoBehaviour:
       \uC783\uC5C8\uC2B5\uB2C8\uB2E4."
   maxCoolTime: 20
   currentCoolTime: 0
-  eventPanel: {fileID: 624147539186437831, guid: c16b943c07a59d94f99313d3d582d32b, type: 3}
+  eventPanel: {fileID: 4025750427476596960, guid: 8e53f05ab389c2e4aba621503b95b3b5, type: 3}
   eventParent: {fileID: 1357806938}
   eventSlider: {fileID: 1067394007}
   isDragLimit: 0
