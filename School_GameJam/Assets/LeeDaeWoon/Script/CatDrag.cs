@@ -109,7 +109,7 @@ public class CatDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragH
                     GameObject curArea = currentArea; // 옮길 고양이의 위치를 curArea 오브젝트에 넣어준다.
 
                     transform.position = targetCat.transform.position; // 현재 고양이 위치를 교체할 고양이 위치로 이동한다.
-                    targetCat.transform.position = currentArea.transform.position; // 교체 당한 고양이는 현재 고양이 전 위치로 이동한다.
+                    targetCat.transform.position = curArea.transform.position; // 교체 당한 고양이는 현재 고양이 전 위치로 이동한다.
 
                     currentArea = targetCat.GetComponent<CatDrag>().currentArea; // 현재 고양이 위치를 교체할 고양이 위치 오브젝트를 넣어준다.
                     targetCat.GetComponent<CatDrag>().currentArea = curArea; // 교체 당한 고양이는 현재 고양이 전 위치 오브젝트를 넣어준다.
@@ -156,29 +156,22 @@ public class CatDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragH
             // 만약 현재 고양이와 같다면
             if (currentArea == Cat_Manager.instance.summonList[i])
             {
+                currentArea = computerArea.currentArea.gameObject;
+
                 int floor = Cat_Manager.instance.summonList[i].GetComponent<Area>().floor;
 
-                // areaList에 summonList[i]를 넣어준다,
                 Cat_Manager.instance.area[floor].areaList.Add(Cat_Manager.instance.summonList[i]);
-                currentArea = computerArea.currentArea.gameObject;
                 Cat_Manager.instance.summonList.RemoveAt(i);
+                Cat_Manager.instance.summonList.Add(currentArea);
 
-
-                for (int p = 0; p < 3; p++)
+                for (int j = 0; j < Cat_Manager.instance.area[floor].areaList.Count; j++)
                 {
-                    for (int c = 0; c < 6; c++)
-                    {
-                        if (currentArea == Cat_Manager.instance.area[p].areaList[c])
-                        {
-                            Cat_Manager.instance.summonList.Add(Cat_Manager.instance.area[p].areaList[c]);
-                            Cat_Manager.instance.area[p].areaList.RemoveAt(c);
-                            break;
-                        }
-                    }
+                    if (Cat_Manager.instance.area[floor].areaList[j] == Cat_Manager.instance.summonList[i])
+                        Cat_Manager.instance.area[floor].areaList.RemoveAt(j);
                 }
+
             }
         }
-
 
         transform.position = currentArea.transform.position;
         isComputer = false;
