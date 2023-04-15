@@ -105,6 +105,7 @@ public class Cat_Manager : MonoBehaviour
         if (GameManager.instance.currentGold >= employmentGold && summonList.Count < 6 * (floorIndex + 1))
         {
             GameManager.instance.currentGold -= employmentGold;
+            SoundManager.instance.PlaySoundClip("SFX_Employment", SoundType.SFX);
             CatRandom();
         }
 

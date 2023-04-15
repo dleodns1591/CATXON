@@ -2351,11 +2351,11 @@ MonoBehaviour:
   summonList: []
   summonCat: {fileID: 635707408}
   catType:
-  - {fileID: 4993364464945482488, guid: aae4f36946329004aa7d40ab99506bda, type: 3}
-  - {fileID: 2400236360656676583, guid: eedc5e316ceff2944a6a66233a9d23cd, type: 3}
-  - {fileID: 4075046122217625692, guid: 241993160eca65f4c87b0caadc8559ce, type: 3}
-  employmentGold: 0
+  - {fileID: 821843768202239509, guid: aae4f36946329004aa7d40ab99506bda, type: 3}
+  - {fileID: 74554675979238231, guid: eedc5e316ceff2944a6a66233a9d23cd, type: 3}
+  - {fileID: 5769285372322359615, guid: 241993160eca65f4c87b0caadc8559ce, type: 3}
   floorIndex: 0
+  employmentGold: 0
   catArea: {fileID: 0}
 --- !u!4 &584873988
 Transform:

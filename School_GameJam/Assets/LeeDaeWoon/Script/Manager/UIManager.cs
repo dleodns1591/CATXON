@@ -98,7 +98,6 @@ public class UIManager : MonoBehaviour
         // 고용 버튼을 눌렀을 경우
         employmentBtn.onClick.AddListener(() =>
         {
-            SoundManager.instance.PlaySoundClip("SFX_Employment", SoundType.SFX);
             Cat_Manager.instance.CatSummon();
         });
 

@@ -25,8 +25,8 @@ public class CatDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragH
         get { return catStar; }
         set
         {
-            transform.GetChild(catStar).gameObject.SetActive(false);
-            transform.GetChild(catStar + 1).gameObject.SetActive(true);
+            transform.GetChild(0).GetChild(catStar).gameObject.SetActive(false);
+            transform.GetChild(0).GetChild(catStar + 1).gameObject.SetActive(true);
             catStar = value;
         }
     }
@@ -62,6 +62,8 @@ public class CatDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragH
         if (!EventManager.instance.isDragLimit)
         {
             isSit = false;
+            transform.GetChild(1).gameObject.SetActive(true);
+            transform.GetChild(2).gameObject.SetActive(false);
             currentArea.transform.position = transform.position;
         }
     }
@@ -71,51 +73,57 @@ public class CatDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragH
     {
         isSit = true;
 
+        transform.GetChild(1).gameObject.SetActive(false);
+        transform.GetChild(2).gameObject.SetActive(true);
+
         Trash();
         CatAdd();
     }
 
     void CatAdd()
     {
-        if (targetCat != null && !EventManager.instance.isDragLimit)
+        if (!EventManager.instance.isDragLimit)
         {
-            // 같은 등급과 같은 종류 일 때
-            if (eType == targetCat.GetComponent<CatDrag>().eType && _CatStar == targetCat.GetComponent<CatDrag>()._CatStar)
+            if (targetCat != null)
             {
-                for (int i = 0; i < Cat_Manager.instance.summonList.Count; i++)
+                // 같은 등급과 같은 종류 일 때
+                if (eType == targetCat.GetComponent<CatDrag>().eType && _CatStar == targetCat.GetComponent<CatDrag>()._CatStar)
                 {
-                    if (currentArea == Cat_Manager.instance.summonList[i])
+                    for (int i = 0; i < Cat_Manager.instance.summonList.Count; i++)
                     {
-                        int floor = Cat_Manager.instance.summonList[i].GetComponent<Area>().floor;
-                        Cat_Manager.instance.area[floor].areaList.Add(Cat_Manager.instance.summonList[i]);
-                        Cat_Manager.instance.summonList.RemoveAt(i);
+                        if (currentArea == Cat_Manager.instance.summonList[i])
+                        {
+                            int floor = Cat_Manager.instance.summonList[i].GetComponent<Area>().floor;
+                            Cat_Manager.instance.area[floor].areaList.Add(Cat_Manager.instance.summonList[i]);
+                            Cat_Manager.instance.summonList.RemoveAt(i);
+                        }
                     }
+
+                    targetCat.GetComponent<CatDrag>()._CatStar++;
+                    Destroy(gameObject);
                 }
 
-                targetCat.GetComponent<CatDrag>()._CatStar++;
-                Destroy(gameObject);
+                // 현재 위치에 고양이가 배치되었을 경우 교체할 고양이와 드래그를 할 고양이의 위치를 서로 교체한다.
+                else
+                {
+                    GameObject curArea = currentArea; // 옮길 고양이의 위치를 curArea 오브젝트에 넣어준다.
+
+                    transform.position = targetCat.transform.position; // 현재 고양이 위치를 교체할 고양이 위치로 이동한다.
+                    targetCat.transform.position = currentArea.transform.position; // 교체 당한 고양이는 현재 고양이 전 위치로 이동한다.
+
+                    currentArea = targetCat.GetComponent<CatDrag>().currentArea; // 현재 고양이 위치를 교체할 고양이 위치 오브젝트를 넣어준다.
+                    targetCat.GetComponent<CatDrag>().currentArea = curArea; // 교체 당한 고양이는 현재 고양이 전 위치 오브젝트를 넣어준다.
+                }
             }
 
-            // 현재 위치에 고양이가 배치되었을 경우 교체할 고양이와 드래그를 할 고양이의 위치를 서로 교체한다.
+            // 컴퓨터 위치가 아니거나 해금이 안됬을 경우
             else
             {
-                GameObject curArea = currentArea; // 옮길 고양이의 위치를 curArea 오브젝트에 넣어준다.
-
-                transform.position = targetCat.transform.position; // 현재 고양이 위치를 교체할 고양이 위치로 이동한다.
-                targetCat.transform.position = currentArea.transform.position; // 교체 당한 고양이는 현재 고양이 전 위치로 이동한다.
-
-                currentArea = targetCat.GetComponent<CatDrag>().currentArea; // 현재 고양이 위치를 교체할 고양이 위치 오브젝트를 넣어준다.
-                targetCat.GetComponent<CatDrag>().currentArea = curArea; // 교체 당한 고양이는 현재 고양이 전 위치 오브젝트를 넣어준다.
+                if (!isComputer)
+                    transform.position = currentArea.transform.position;
+                else
+                    ComPuter();
             }
-        }
-
-        // 컴퓨터 위치가 아니거나 해금이 안됬을 경우
-        else
-        {
-            if (!isComputer)
-                transform.position = currentArea.transform.position;
-            else
-                ComPuter();
         }
     }
 
@@ -156,18 +164,18 @@ public class CatDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragH
                 Cat_Manager.instance.summonList.RemoveAt(i);
 
 
-                //for (int p = 0; p < 3; p++)
-                //{
-                //    for (int c = 0; c < 6; c++)
-                //    {
-                //        if (currentArea == Cat_Manager.instance.area[p].areaList[c])
-                //        {
-                //            Cat_Manager.instance.summonList.Add(Cat_Manager.instance.area[p].areaList[c]);
-                //            Cat_Manager.instance.area[p].areaList.RemoveAt(c);
-                //            break;
-                //        }
-                //    }
-                //}
+                for (int p = 0; p < 3; p++)
+                {
+                    for (int c = 0; c < 6; c++)
+                    {
+                        if (currentArea == Cat_Manager.instance.area[p].areaList[c])
+                        {
+                            Cat_Manager.instance.summonList.Add(Cat_Manager.instance.area[p].areaList[c]);
+                            Cat_Manager.instance.area[p].areaList.RemoveAt(c);
+                            break;
+                        }
+                    }
+                }
             }
         }
 
