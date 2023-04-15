@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        SoundManager.instance.PlaySoundClip("BGM_Ingame", SoundType.BGM);
         currentGold = basicFund;
     }
 

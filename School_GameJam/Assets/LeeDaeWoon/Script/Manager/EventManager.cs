@@ -110,11 +110,13 @@ public class EventManager : MonoBehaviour
                 break;
 
             case Event.EEvent.WalkOut: // ÆÄ¾÷
+                SoundManager.instance.PlaySoundClip("SFX_NEvent", SoundType.SFX);
                 StartCoroutine(WalkOutEvent());
                 break;
 
             case Event.EEvent.Stray: // µµµÏ
                 float result = GameManager.instance.currentGold * 0.2f;
+                SoundManager.instance.PlaySoundClip("SFX_NEvent", SoundType.SFX);
                 GameManager.instance.currentGold += (int)result;
                 break;
         }

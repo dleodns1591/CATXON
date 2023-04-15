@@ -80,7 +80,7 @@ public class CatDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragH
         if (targetCat != null && !EventManager.instance.isDragLimit)
         {
             // 같은 등급과 같은 종류 일 때
-            if (targetCat.GetComponent<CatDrag>().eType == eType && _CatStar == targetCat.GetComponent<CatDrag>()._CatStar)
+            if (eType == targetCat.GetComponent<CatDrag>().eType && _CatStar == targetCat.GetComponent<CatDrag>()._CatStar)
             {
                 for (int i = 0; i < Cat_Manager.instance.summonList.Count; i++)
                 {
@@ -195,6 +195,9 @@ public class CatDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragH
     {
         if (collision.CompareTag("Cat"))
             targetCat = null;
+
+        if (collision.CompareTag("Trash"))
+            isTrash = false;
 
         if (collision.CompareTag("Computer"))
         {

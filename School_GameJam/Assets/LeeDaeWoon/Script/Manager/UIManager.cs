@@ -98,6 +98,7 @@ public class UIManager : MonoBehaviour
         // 고용 버튼을 눌렀을 경우
         employmentBtn.onClick.AddListener(() =>
         {
+            SoundManager.instance.PlaySoundClip("SFX_Employment", SoundType.SFX);
             Cat_Manager.instance.CatSummon();
         });
 
@@ -113,6 +114,8 @@ public class UIManager : MonoBehaviour
                 floor2.SetActive(true);
                 limit800Btn.gameObject.SetActive(false);
             }
+            else
+                SoundManager.instance.PlaySoundClip("SFX_Shortage", SoundType.SFX);
         });
 
         // 1300제한 버튼을 눌렀을 경우
@@ -128,6 +131,9 @@ public class UIManager : MonoBehaviour
                 roof.SetActive(true);
                 limit3000Btn.gameObject.SetActive(false);
             }
+
+            else
+                SoundManager.instance.PlaySoundClip("SFX_Shortage", SoundType.SFX);
         });
     }
 }

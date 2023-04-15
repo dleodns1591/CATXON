@@ -23,7 +23,7 @@ public class TitleManager : MonoBehaviour
     {
         startBtn.onClick.AddListener(() =>
         {
-            SoundManager.Instance.audioSources[0].Play();
+            SoundManager.instance.PlaySoundClip("SFX_Click", SoundType.SFX);
             SceneManager.LoadScene("Ingame");
         });
     }

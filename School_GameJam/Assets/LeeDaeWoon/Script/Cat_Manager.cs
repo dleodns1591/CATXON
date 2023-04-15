@@ -23,8 +23,8 @@ public class Cat_Manager : MonoBehaviour
 
     [Header("À§Ä¡")]
     int areaRandom = 0;
-    public int employmentGold;
     public int floorIndex = 0;
+    public int employmentGold = 0;
     public GameObject catArea;
 
     void Start()
@@ -107,6 +107,9 @@ public class Cat_Manager : MonoBehaviour
             GameManager.instance.currentGold -= employmentGold;
             CatRandom();
         }
+
+        else
+            SoundManager.instance.PlaySoundClip("SFX_Shortage", SoundType.SFX);
     }
 
     void CatRandom()

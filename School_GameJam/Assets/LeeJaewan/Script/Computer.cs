@@ -21,7 +21,7 @@ public class Computer : MonoBehaviour
     [SerializeField] float breakTime = 0;
     [SerializeField] float brokenTime = 10;
 
-    float moneyGetTime;
+    float moneyGetTime = 0;
     public bool isBreak = false; // 컴퓨터가 부셔졌는지 확인
     public bool isWork = false; // 고양이가 일을 하고 있는지 확인
 
@@ -41,14 +41,14 @@ public class Computer : MonoBehaviour
 
     void CurrentArea()
     {
-        for (int i = 0; i < 3; i++)
+        for (int floor = 0; floor < 3; floor++)
         {
-            for (int j = 0; j < 6; j++)
+            for (int area = 0; area < 6; area++)
             {
-                var area = Cat_Manager.instance.area[i].areaList[j].GetComponent<Area>();
+                var catArea = Cat_Manager.instance.area[floor].areaList[area].GetComponent<Area>();
 
-                if (area.area == comNum)
-                    currentArea = area;
+                if (catArea.area == comNum)
+                    currentArea = catArea;
             }
         }
     }
