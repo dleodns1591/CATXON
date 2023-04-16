@@ -101,10 +101,14 @@ public class EventManager : MonoBehaviour
             case Event.EEvent.Repair: // ¼ö¸®
                 if (Cat_Manager.instance.summonList.Count != 0)
                 {
-                    for (int i = 0; i < GameManager.instance.computer.Length; i++)
+                    GameObject summonCat = GameObject.Find("SummonCat").gameObject;
+
+                    for(int i = 0; i < summonCat.transform.childCount; i++)
                     {
-                        for (int j = 0; j < GameManager.instance.computer[i].computerList.Count; j++)
-                            GameManager.instance.computer[i].computerList[j].isBreak = false;
+                        var catComputer = summonCat.transform.GetChild(i).GetComponent<CatDrag>().computer.GetComponent<Computer>();
+
+                        catComputer.isBreak = false;
+                        catComputer.isWork = true;
                     }
                 }
                 break;

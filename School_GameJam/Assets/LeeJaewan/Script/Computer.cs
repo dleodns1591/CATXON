@@ -16,17 +16,18 @@ public class Computer : MonoBehaviour
     [SerializeField] Sprite idel;
     [SerializeField] Sprite work;
     [SerializeField] Sprite broken;
+    public bool isBreak = false; // 컴퓨터가 부셔졌는지 확인
+    public bool isWork = false; // 고양이가 일을 하고 있는지 확인
+    public bool isSit = false;
 
     // 컴퓨터가 고장나는 시간 변수입니다.
     [Header("고장")]
     [SerializeField] float currentBreakTime = 0;
-    const float breakCoolTime = 10;
+    const float breakCoolTime = 5;
     bool isBreakCool = false;
 
-    float moneyGetTime = 0;
-    public bool isBreak = false; // 컴퓨터가 부셔졌는지 확인
-    public bool isWork = false; // 고양이가 일을 하고 있는지 확인
-    public bool isSit = false;
+    [Header("돈")]
+    bool isWorkGold = false;
 
     [Header("고양이 상태")]
     [SerializeField] GameObject catSit;
@@ -63,15 +64,39 @@ public class Computer : MonoBehaviour
         {
             isWork = false;
             computer.sprite = broken;
+
+            isWorkGold = false;
+            StopCoroutine("GetGold");
         }
 
         if (isWork)
         {
+            StartCoroutine("GetGold");
             computer.sprite = work;
         }
 
         if (!isSit)
+        {
+            isWorkGold = false;
+            StopCoroutine("GetGold");
+
+            catSit = null;
             computer.sprite = idel;
+        }
+    }
+
+    IEnumerator GetGold()
+    {
+        if(!isWorkGold)
+        {
+            isWorkGold = true;
+
+            while(isWorkGold)
+            {
+                GameManager.instance.currentGold += 10;
+                yield return new WaitForSeconds(1);
+            }
+        }
     }
 
     void BreakComputer()
@@ -131,11 +156,10 @@ public class Computer : MonoBehaviour
     {
         if (collision.CompareTag("Cat"))
         {
+            var cat = collision.GetComponent<CatDrag>();
+
             if (catSit == collision.gameObject)
             {
-                catSit = null;
-
-                // 망가지진 않고 고양이가 자리비웠을 경우 기본 컴퓨터로 세팅한다
                 if (!isBreak)
                 {
                     isSit = false;
@@ -145,12 +169,11 @@ public class Computer : MonoBehaviour
 
                 else
                 {
-                    var cat = collision.GetComponent<CatDrag>();
-
-                    if(gameObject != cat.computer && !cat.isDrag)
+                    if (gameObject != cat.computer)
                     {
-                        isBreak = false;
+                        isSit = false;
                         isWork = false;
+                        isBreak = false;
                         computer.sprite = idel;
                     }
                 }

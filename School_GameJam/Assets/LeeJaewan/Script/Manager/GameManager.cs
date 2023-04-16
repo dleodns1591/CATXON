@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     public ComputerFloor[] computer = new ComputerFloor[3];
 
     bool isDie = false;
+    bool isDieCheck = false;
 
     void Start()
     {
@@ -39,22 +40,9 @@ public class GameManager : MonoBehaviour
 
     void Die()
     {
-        if (!isDie)
+        if (!isDie && !isDieCheck)
         {
-            for (int floor = 0; floor < 3; floor++)
-            {
-                for (int area = 0; area < 6; area++)
-                {
-                    if (computer[2].computerList[5].isBreak)
-                    {
-                        isDie = true;
-                        UIManager.instance.GameOver();
-                    }
-                    else
-                        break;
-
-                }
-            }
+            isDieCheck = true;
 
             if (currentGold <= 0)
             {

@@ -16,7 +16,6 @@ public class CatDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragH
     [Header("고양이 설정")]
     [SerializeField] GameObject targetCat;
     public GameObject currentArea;
-    public bool isDrag = false;
 
     int catStar = 0;
 
@@ -60,7 +59,6 @@ public class CatDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragH
     {
         if (!EventManager.instance.isDragLimit)
         {
-            isDrag = true;
             transform.GetChild(1).gameObject.SetActive(true);
             transform.GetChild(2).gameObject.SetActive(false);
             currentArea.transform.position = transform.position;
@@ -70,7 +68,6 @@ public class CatDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragH
     // 드래그 종료 시 한 번 호출한다.
     public void OnEndDrag(PointerEventData eventData)
     {
-        isDrag = false;
         transform.GetChild(1).gameObject.SetActive(false);
         transform.GetChild(2).gameObject.SetActive(true);
 
@@ -203,9 +200,7 @@ public class CatDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragH
         if (collision.CompareTag("Computer"))
         {
             if (currentArea == collision.GetComponent<Computer>().currentArea.gameObject)
-            {
                 isComputer = false;
-            }
         }
     }
 }
