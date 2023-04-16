@@ -18,24 +18,28 @@ public class Computer : MonoBehaviour
     [SerializeField] Sprite broken;
 
     // 컴퓨터가 고장나는 시간 변수입니다.
-    [SerializeField] float breakTime = 0;
-    [SerializeField] float brokenTime = 10;
+    [Header("고장")]
+    [SerializeField] float currentBreakTime = 0;
+    const float breakCoolTime = 10;
+    bool isBreakCool = false;
 
     float moneyGetTime = 0;
     public bool isBreak = false; // 컴퓨터가 부셔졌는지 확인
     public bool isWork = false; // 고양이가 일을 하고 있는지 확인
+    public bool isSit = false;
 
     [Header("고양이 상태")]
     [SerializeField] GameObject catSit;
 
     void Start()
     {
-        computer = GetComponent<Image>();
         CurrentArea();
+        computer = GetComponent<Image>();
     }
 
     void Update()
     {
+        BreakComputer();
         ComputerSetting();
     }
 
@@ -55,39 +59,54 @@ public class Computer : MonoBehaviour
 
     void ComputerSetting()
     {
-        if (catSit != null && catSit.GetComponent<CatDrag>().isSit)
+        if (isBreak)
         {
-            if (isBreak)
-            {
-                isWork = false;
-                isGold = false;
-                computer.sprite = broken;
-                StopCoroutine("GoldSetting");
-            }
-
-            if (isWork)
-            {
-                isBreak = false;
-                computer.sprite = work;
-                StartCoroutine("GoldSetting");
-            }
+            isWork = false;
+            computer.sprite = broken;
         }
 
-        else
-            isWork = false;
+        if (isWork)
+        {
+            computer.sprite = work;
+        }
+
+        if (!isSit)
+            computer.sprite = idel;
     }
 
-    IEnumerator GoldSetting()
+    void BreakComputer()
     {
-        if (!isGold)
+        if (!isBreak && isSit)
         {
-            isGold = true;
-
-            while (true)
+            if (!isBreakCool)
             {
-                GameManager.instance.currentGold++;
-                yield return new WaitForSeconds(1);
+                isBreakCool = true;
+                currentBreakTime = breakCoolTime;
+                StopCoroutine("BrokenCoolTIme");
+                StartCoroutine("BrokenCoolTIme");
             }
+
+            if (currentBreakTime <= 0)
+            {
+                isBreakCool = false;
+
+                int randomBreak = Random.Range(0, 2);
+                switch (randomBreak)
+                {
+                    case 0:
+                        isBreak = true;
+                        break;
+                }
+            }
+        }
+    }
+
+    IEnumerator BrokenCoolTIme()
+    {
+        while (currentBreakTime >= 0)
+        {
+            currentBreakTime -= 1;
+            yield return new WaitForSeconds(1);
         }
     }
 
@@ -95,22 +114,15 @@ public class Computer : MonoBehaviour
     {
         if (collision.CompareTag("Cat"))
         {
-            var cat = collision.GetComponent<CatDrag>();
-
             if (catSit == null)
                 catSit = collision.gameObject;
 
-            if (currentArea.gameObject == cat.currentArea)
+            if (currentArea.gameObject == collision.GetComponent<CatDrag>().currentArea.gameObject)
             {
-                // 현재 컴퓨터에 고양이가 앉아 있다면
-                if (catSit.GetComponent<CatDrag>().isSit)
-                    isWork = true;
+                isSit = true;
 
-                else
-                {
-                    isWork = false;
-                    isBreak = false;
-                }
+                if (!isBreak)
+                    isWork = true;
             }
         }
     }
@@ -119,13 +131,29 @@ public class Computer : MonoBehaviour
     {
         if (collision.CompareTag("Cat"))
         {
-            var cat = collision.GetComponent<CatDrag>();
-
-            if (currentArea.gameObject == cat.currentArea)
+            if (catSit == collision.gameObject)
             {
-                isWork = false;
-                isBreak = false;
-                computer.sprite = idel;
+                catSit = null;
+
+                // 망가지진 않고 고양이가 자리비웠을 경우 기본 컴퓨터로 세팅한다
+                if (!isBreak)
+                {
+                    isSit = false;
+                    isWork = false;
+                    computer.sprite = idel;
+                }
+
+                else
+                {
+                    var cat = collision.GetComponent<CatDrag>();
+
+                    if(gameObject != cat.computer && !cat.isDrag)
+                    {
+                        isBreak = false;
+                        isWork = false;
+                        computer.sprite = idel;
+                    }
+                }
             }
         }
     }

@@ -1367,10 +1367,10 @@ MonoBehaviour:
   idel: {fileID: 21300000, guid: f2bbc4e686575ee4b87c14da2bfa84d9, type: 2}
   work: {fileID: 21300000, guid: 2a078b482b871f14cabcec9e1dd1ab2d, type: 3}
   broken: {fileID: 21300000, guid: 4fc2e6eb8ae0cd94c9ca56771261a379, type: 2}
-  breakTime: 0
-  brokenTime: 10
+  currentBreakTime: 0
   isBreak: 0
   isWork: 0
+  isSit: 0
   catSit: {fileID: 0}
 --- !u!1 &343589948
 GameObject:
@@ -1513,10 +1513,10 @@ MonoBehaviour:
   idel: {fileID: 21300000, guid: f2bbc4e686575ee4b87c14da2bfa84d9, type: 2}
   work: {fileID: 21300000, guid: 2a078b482b871f14cabcec9e1dd1ab2d, type: 3}
   broken: {fileID: 21300000, guid: 4fc2e6eb8ae0cd94c9ca56771261a379, type: 2}
-  breakTime: 0
-  brokenTime: 10
+  currentBreakTime: 0
   isBreak: 0
   isWork: 0
+  isSit: 0
   catSit: {fileID: 0}
 --- !u!114 &368643811
 MonoBehaviour:
@@ -1535,10 +1535,10 @@ MonoBehaviour:
   idel: {fileID: 21300000, guid: f2bbc4e686575ee4b87c14da2bfa84d9, type: 2}
   work: {fileID: 21300000, guid: 2a078b482b871f14cabcec9e1dd1ab2d, type: 3}
   broken: {fileID: 21300000, guid: 4fc2e6eb8ae0cd94c9ca56771261a379, type: 2}
-  breakTime: 0
-  brokenTime: 10
+  currentBreakTime: 0
   isBreak: 0
   isWork: 0
+  isSit: 0
   catSit: {fileID: 0}
 --- !u!1 &370439782
 GameObject:
@@ -1660,10 +1660,10 @@ MonoBehaviour:
   idel: {fileID: 21300000, guid: f2bbc4e686575ee4b87c14da2bfa84d9, type: 2}
   work: {fileID: 21300000, guid: 2a078b482b871f14cabcec9e1dd1ab2d, type: 3}
   broken: {fileID: 21300000, guid: 4fc2e6eb8ae0cd94c9ca56771261a379, type: 2}
-  breakTime: 0
-  brokenTime: 10
+  currentBreakTime: 0
   isBreak: 0
   isWork: 0
+  isSit: 0
   catSit: {fileID: 0}
 --- !u!1 &373751668
 GameObject:
@@ -1800,10 +1800,10 @@ MonoBehaviour:
   idel: {fileID: 21300000, guid: f2bbc4e686575ee4b87c14da2bfa84d9, type: 2}
   work: {fileID: 21300000, guid: 2a078b482b871f14cabcec9e1dd1ab2d, type: 3}
   broken: {fileID: 21300000, guid: 4fc2e6eb8ae0cd94c9ca56771261a379, type: 2}
-  breakTime: 0
-  brokenTime: 10
+  currentBreakTime: 0
   isBreak: 0
   isWork: 0
+  isSit: 0
   catSit: {fileID: 0}
 --- !u!1 &398709122
 GameObject:
@@ -1990,10 +1990,10 @@ MonoBehaviour:
   idel: {fileID: 21300000, guid: f2bbc4e686575ee4b87c14da2bfa84d9, type: 2}
   work: {fileID: 21300000, guid: 2a078b482b871f14cabcec9e1dd1ab2d, type: 3}
   broken: {fileID: 21300000, guid: 4fc2e6eb8ae0cd94c9ca56771261a379, type: 2}
-  breakTime: 0
-  brokenTime: 10
+  currentBreakTime: 0
   isBreak: 0
   isWork: 0
+  isSit: 0
   catSit: {fileID: 0}
 --- !u!1 &488467318
 GameObject:
@@ -2389,10 +2389,10 @@ MonoBehaviour:
   idel: {fileID: 21300000, guid: f2bbc4e686575ee4b87c14da2bfa84d9, type: 2}
   work: {fileID: 21300000, guid: 2a078b482b871f14cabcec9e1dd1ab2d, type: 3}
   broken: {fileID: 21300000, guid: 4fc2e6eb8ae0cd94c9ca56771261a379, type: 2}
-  breakTime: 0
-  brokenTime: 10
+  currentBreakTime: 0
   isBreak: 0
   isWork: 0
+  isSit: 0
   catSit: {fileID: 0}
 --- !u!1 &635707408
 GameObject:
@@ -2447,10 +2447,10 @@ MonoBehaviour:
   idel: {fileID: 21300000, guid: f2bbc4e686575ee4b87c14da2bfa84d9, type: 2}
   work: {fileID: 21300000, guid: 2a078b482b871f14cabcec9e1dd1ab2d, type: 3}
   broken: {fileID: 21300000, guid: 4fc2e6eb8ae0cd94c9ca56771261a379, type: 2}
-  breakTime: 0
-  brokenTime: 10
+  currentBreakTime: 0
   isBreak: 0
   isWork: 0
+  isSit: 0
   catSit: {fileID: 0}
 --- !u!61 &671839863
 BoxCollider2D:
@@ -3262,10 +3262,10 @@ MonoBehaviour:
   idel: {fileID: 21300000, guid: f2bbc4e686575ee4b87c14da2bfa84d9, type: 2}
   work: {fileID: 21300000, guid: 2a078b482b871f14cabcec9e1dd1ab2d, type: 3}
   broken: {fileID: 21300000, guid: 4fc2e6eb8ae0cd94c9ca56771261a379, type: 2}
-  breakTime: 0
-  brokenTime: 10
+  currentBreakTime: 0
   isBreak: 0
   isWork: 0
+  isSit: 0
   catSit: {fileID: 0}
 --- !u!114 &835650415
 MonoBehaviour:
@@ -3284,10 +3284,10 @@ MonoBehaviour:
   idel: {fileID: 21300000, guid: f2bbc4e686575ee4b87c14da2bfa84d9, type: 2}
   work: {fileID: 21300000, guid: 2a078b482b871f14cabcec9e1dd1ab2d, type: 3}
   broken: {fileID: 21300000, guid: 4fc2e6eb8ae0cd94c9ca56771261a379, type: 2}
-  breakTime: 0
-  brokenTime: 10
+  currentBreakTime: 0
   isBreak: 0
   isWork: 0
+  isSit: 0
   catSit: {fileID: 0}
 --- !u!114 &878514585
 MonoBehaviour:
@@ -3306,10 +3306,10 @@ MonoBehaviour:
   idel: {fileID: 21300000, guid: f2bbc4e686575ee4b87c14da2bfa84d9, type: 2}
   work: {fileID: 21300000, guid: 2a078b482b871f14cabcec9e1dd1ab2d, type: 3}
   broken: {fileID: 21300000, guid: 4fc2e6eb8ae0cd94c9ca56771261a379, type: 2}
-  breakTime: 0
-  brokenTime: 10
+  currentBreakTime: 0
   isBreak: 0
   isWork: 0
+  isSit: 0
   catSit: {fileID: 0}
 --- !u!1 &886505196
 GameObject:
@@ -4979,10 +4979,10 @@ MonoBehaviour:
   idel: {fileID: 21300000, guid: f2bbc4e686575ee4b87c14da2bfa84d9, type: 2}
   work: {fileID: 21300000, guid: 2a078b482b871f14cabcec9e1dd1ab2d, type: 3}
   broken: {fileID: 21300000, guid: 4fc2e6eb8ae0cd94c9ca56771261a379, type: 2}
-  breakTime: 0
-  brokenTime: 10
+  currentBreakTime: 0
   isBreak: 0
   isWork: 0
+  isSit: 0
   catSit: {fileID: 0}
 --- !u!50 &1252877539
 Rigidbody2D:
@@ -5482,10 +5482,10 @@ MonoBehaviour:
   idel: {fileID: 21300000, guid: f2bbc4e686575ee4b87c14da2bfa84d9, type: 2}
   work: {fileID: 21300000, guid: 2a078b482b871f14cabcec9e1dd1ab2d, type: 3}
   broken: {fileID: 21300000, guid: 4fc2e6eb8ae0cd94c9ca56771261a379, type: 2}
-  breakTime: 0
-  brokenTime: 10
+  currentBreakTime: 0
   isBreak: 0
   isWork: 0
+  isSit: 0
   catSit: {fileID: 0}
 --- !u!1 &1480401343
 GameObject:
@@ -6210,10 +6210,10 @@ MonoBehaviour:
   idel: {fileID: 21300000, guid: f2bbc4e686575ee4b87c14da2bfa84d9, type: 2}
   work: {fileID: 21300000, guid: 2a078b482b871f14cabcec9e1dd1ab2d, type: 3}
   broken: {fileID: 21300000, guid: 4fc2e6eb8ae0cd94c9ca56771261a379, type: 2}
-  breakTime: 0
-  brokenTime: 10
+  currentBreakTime: 0
   isBreak: 0
   isWork: 0
+  isSit: 0
   catSit: {fileID: 0}
 --- !u!1 &1516517222
 GameObject:
@@ -6372,10 +6372,10 @@ MonoBehaviour:
   idel: {fileID: 21300000, guid: f2bbc4e686575ee4b87c14da2bfa84d9, type: 2}
   work: {fileID: 21300000, guid: 2a078b482b871f14cabcec9e1dd1ab2d, type: 3}
   broken: {fileID: 21300000, guid: 4fc2e6eb8ae0cd94c9ca56771261a379, type: 2}
-  breakTime: 0
-  brokenTime: 10
+  currentBreakTime: 0
   isBreak: 0
   isWork: 0
+  isSit: 0
   catSit: {fileID: 0}
 --- !u!1 &1527256514
 GameObject:
@@ -6758,10 +6758,10 @@ MonoBehaviour:
   idel: {fileID: 21300000, guid: f2bbc4e686575ee4b87c14da2bfa84d9, type: 2}
   work: {fileID: 21300000, guid: 2a078b482b871f14cabcec9e1dd1ab2d, type: 3}
   broken: {fileID: 21300000, guid: 4fc2e6eb8ae0cd94c9ca56771261a379, type: 2}
-  breakTime: 0
-  brokenTime: 10
+  currentBreakTime: 0
   isBreak: 0
   isWork: 0
+  isSit: 0
   catSit: {fileID: 0}
 --- !u!1 &1679675640
 GameObject:
@@ -7701,10 +7701,10 @@ MonoBehaviour:
   idel: {fileID: 21300000, guid: f2bbc4e686575ee4b87c14da2bfa84d9, type: 2}
   work: {fileID: 21300000, guid: 2a078b482b871f14cabcec9e1dd1ab2d, type: 3}
   broken: {fileID: 21300000, guid: 4fc2e6eb8ae0cd94c9ca56771261a379, type: 2}
-  breakTime: 0
-  brokenTime: 10
+  currentBreakTime: 0
   isBreak: 0
   isWork: 0
+  isSit: 0
   catSit: {fileID: 0}
 --- !u!1 &1968821812
 GameObject:
@@ -7939,10 +7939,10 @@ MonoBehaviour:
   idel: {fileID: 21300000, guid: f2bbc4e686575ee4b87c14da2bfa84d9, type: 2}
   work: {fileID: 21300000, guid: 2a078b482b871f14cabcec9e1dd1ab2d, type: 3}
   broken: {fileID: 21300000, guid: 4fc2e6eb8ae0cd94c9ca56771261a379, type: 2}
-  breakTime: 0
-  brokenTime: 10
+  currentBreakTime: 0
   isBreak: 0
   isWork: 0
+  isSit: 0
   catSit: {fileID: 0}
 --- !u!1 &1992516628
 GameObject:

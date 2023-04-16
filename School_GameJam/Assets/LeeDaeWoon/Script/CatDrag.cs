@@ -16,8 +16,8 @@ public class CatDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragH
     [Header("고양이 설정")]
     [SerializeField] GameObject targetCat;
     public GameObject currentArea;
-    public bool isSit = false;
     public bool isDrag = false;
+
     int catStar = 0;
 
     public int _CatStar
@@ -35,12 +35,11 @@ public class CatDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragH
     bool isTrash = false;
 
     [Header("컴퓨터")]
-    GameObject computer;
-    bool isComputer = false;
+    public GameObject computer;
+    public bool isComputer = false;
 
     void Start()
     {
-        isSit = true;
         currentArea = Cat_Manager.instance.catArea;
     }
 
@@ -61,7 +60,7 @@ public class CatDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragH
     {
         if (!EventManager.instance.isDragLimit)
         {
-            isSit = false;
+            isDrag = true;
             transform.GetChild(1).gameObject.SetActive(true);
             transform.GetChild(2).gameObject.SetActive(false);
             currentArea.transform.position = transform.position;
@@ -71,8 +70,7 @@ public class CatDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragH
     // 드래그 종료 시 한 번 호출한다.
     public void OnEndDrag(PointerEventData eventData)
     {
-        isSit = true;
-
+        isDrag = false;
         transform.GetChild(1).gameObject.SetActive(false);
         transform.GetChild(2).gameObject.SetActive(true);
 
@@ -135,7 +133,6 @@ public class CatDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragH
             {
                 if (currentArea == Cat_Manager.instance.summonList[i])
                 {
-                    isSit = false;
 
                     int floor = Cat_Manager.instance.summonList[i].GetComponent<Area>().floor;
                     Cat_Manager.instance.area[floor].areaList.Add(Cat_Manager.instance.summonList[i]);
@@ -187,8 +184,11 @@ public class CatDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragH
 
         if (collision.CompareTag("Computer"))
         {
-            isComputer = true;
-            computer = collision.gameObject;
+            if (!collision.GetComponent<Computer>().isSit)
+            {
+                isComputer = true;
+                computer = collision.gameObject;
+            }
         }
     }
 
@@ -204,7 +204,6 @@ public class CatDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragH
         {
             if (currentArea == collision.GetComponent<Computer>().currentArea.gameObject)
             {
-                isSit = false;
                 isComputer = false;
             }
         }
