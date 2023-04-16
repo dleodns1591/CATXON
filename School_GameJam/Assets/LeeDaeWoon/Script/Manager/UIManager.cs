@@ -70,15 +70,11 @@ public class UIManager : MonoBehaviour
 
     public void GameOver()
     {
-        // 현재 골드가 0이하일 경우 게임오버가 된다.
-        if (GameManager.instance.currentGold <= 0)
-        {
-            Time.timeScale = 0;
-            gameoverWindow.SetActive(true);
+        Time.timeScale = 0;
+        gameoverWindow.SetActive(true);
 
-            overGold.text = GameManager.instance.currentGold + "$";
-            overTime.text = string.Format("{0:D2}:{1:D2}", min, (int)sec);
-        }
+        overGold.text = GameManager.instance.currentGold + "$";
+        overTime.text = string.Format("{0:D2}:{1:D2}", min, (int)sec);
     }
 
     void Btns()
@@ -104,7 +100,7 @@ public class UIManager : MonoBehaviour
         // 800제한 버튼을 눌렀을 경우
         limit800Btn.onClick.AddListener(() =>
         {
-            if(GameManager.instance.currentGold >= 800)
+            if (GameManager.instance.currentGold >= 800)
             {
                 GameManager.instance.currentGold -= 800;
 

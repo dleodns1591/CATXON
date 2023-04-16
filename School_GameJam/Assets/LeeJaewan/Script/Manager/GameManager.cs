@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
     [Header("ÄÄÇ»ÅÍ")]
     public ComputerFloor[] computer = new ComputerFloor[3];
 
+    [Header("Á×À½")]
+    [SerializeField] int breakNum = 0;
     bool isDie = false;
     bool isDieCheck = false;
 
@@ -40,9 +42,37 @@ public class GameManager : MonoBehaviour
 
     void Die()
     {
-        if (!isDie && !isDieCheck)
+        if (!isDie)
         {
-            isDieCheck = true;
+            if (!isDieCheck)
+            {
+                isDieCheck = true;
+
+                for (int i = 0; i < Cat_Manager.instance.floorIndex + 1; i++)
+                {
+                    for (int j = 0; j < 6;)
+                    {
+                        if (computer[i].computerList[j].GetComponent<Computer>().isBreak)
+                        {
+                            j++;
+                            breakNum++;
+                        }
+
+                        else
+                        {
+                            isDieCheck = false;
+                            break;
+                        }
+
+                    }
+                }
+            }
+
+            if (breakNum == (Cat_Manager.instance.floorIndex + 1) * 6)
+            {
+                isDie = true;
+                UIManager.instance.GameOver();
+            }
 
             if (currentGold <= 0)
             {
